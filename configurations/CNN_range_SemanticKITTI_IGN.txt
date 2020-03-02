@@ -1,0 +1,8 @@
+prepareTotalProj_spinBox_18 500
+prepareNumOfVertViews_spinBox_19 2
+prepareEuclideanCluMinClusterSize_spinBox 25
+prepareEuclideanCluMaxClusterSize_spinBox 4000000
+decimation_twoStep_spinBox_2 5
+EuclideanCluMinClusterSize_spinBox 50
+EuclideanCluMaxClusterSize_spinBox_2 4000000
+decimation
