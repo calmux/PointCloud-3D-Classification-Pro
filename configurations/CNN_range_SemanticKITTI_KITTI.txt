@@ -1,0 +1,4 @@
+prepareTotalProj_spinBox_18 500
+prepareNumOfVertViews_spinBox_19 2
+prepareEuclideanCluMinClusterSize_spinBox 25
+prepar
