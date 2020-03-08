@@ -14,4 +14,19 @@ n_proj_spinBox_6 36
 n_h_proj_spinBox_8 1
 numberOfClasses_spinBox_17 5
 prepareHorStartDeg_doubleSpinBox_11 0
-prepareHorEndDeg_doubleSpinBox_12 35
+prepareHorEndDeg_doubleSpinBox_12 350
+prepareVertStartDeg_doubleSpinBox_13 0
+prepareVertEndDeg_doubleSpinBox_14 45
+prepareEuclideanCluSegRadius_doubleSpinBox 0.4
+EuclideanCluSegRadius_doubleSpinBox 0.4
+scale1_twoStep_doubleSpinBox_5 5
+scale2_twoStep_doubleSpinBox_6 50
+threshold_twoStep_doubleSpinBox_7 0.3
+segradius_twoStep_doubleSpinBox_8 0.4
+scale1_1_twoStep_doubleSpinBox_9 0.8
+scale2_1_twoStep_doubleSpinBox_10 8
+scale1_doubleSpinBox 0.4
+scale2_doubleSpinBox_2 4
+threshold_doubleSpinBox_3 0.25
+segradius_doubleSpinBox_4 0.4
+min_deg
