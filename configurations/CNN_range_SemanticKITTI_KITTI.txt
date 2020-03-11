@@ -29,4 +29,20 @@ scale1_doubleSpinBox 0.4
 scale2_doubleSpinBox_2 4
 threshold_doubleSpinBox_3 0.25
 segradius_doubleSpinBox_4 0.4
-min_deg
+min_deg_rangeImg_doubleSpinBox_11 0
+max_deg_rangeImgdoubleSpinBox_12 360
+min_h_rangeImgdoubleSpinBox_14 0
+max_h_rangeImg_doubleSpinBox_15 0
+min_deg_doubleSpinBox_3 0
+max_deg_doubleSpinBox_4 350
+min_h_doubleSpinBox_5 0
+max_h_doubleSpinBox_7 0
+memoryLimit_doubleSpinBox 10000
+approx_twoStep_checkBox_2 true
+approx_checkBox true
+orientedBB_checkBox false
+dontClassify_checkBox false
+preparedImageType_comboBox 0
+segmentation_comboBox 0
+projection_comboBox 1
+editProjKerne
