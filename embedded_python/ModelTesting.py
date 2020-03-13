@@ -70,3 +70,15 @@ def classify_test():
     # res=classify_path("/home/radek/Projects/ImageClassifier/data/images/tree1.jpg","/home/radek/Projects/ImageClassifier/data/models/CNN_binary_Map_person_edited_3x3")
     img_batch=[]
     paths=["/home/radek/Projects/ImageClassifier/data/images/tree1.jpg",
+     "/home/radek/Projects/ImageClassifier/data/images/tree.jpg"]
+    for path in paths:
+        img_arr=classify_loadImage(path)
+        img_batch.append(img_arr)
+
+    res = classify_multiple_projections_and_get_response_vector(img_batch,
+        "/home/radek/Projects/ImageClassifier/data/models/CNN_binary_Map_person_edited_3x3", 5)
+    print("CLASS = {}".format(res[0]))
+
+
+if __name__ == '__main__':
+    classify_test()
