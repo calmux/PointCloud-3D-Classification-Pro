@@ -33,4 +33,15 @@ QTreeWidgetItem* PointCloudController::getTopLevelItem(QTreeWidgetItem* item){
 int PointCloudController::getTopLevelIndexOfSelectedCloud(QTreeWidgetItem* item){
     item=getTopLevelItem(item);
     //index=this->treeWidgetObserver->indexOfTopLevelItem(item); //# tego nie moge uzywac, bo powinieme zwrocic index w vektorze cachedClouds, a nie w hierarchi treeWidget
-    //qDebug()<<"INDEX RETURNED FORM QTreeWidget::indexOfTopLevelItem(ite
+    //qDebug()<<"INDEX RETURNED FORM QTreeWidget::indexOfTopLevelItem(item)="<<index;
+    for(int i=0; i<cachedClouds.size();++i){
+        if(cachedClouds.at(i)->getSourcePath()==item->text(0).toStdString())
+            return i;
+    }
+    //we didnt found cloudScene witch such sourcePath
+    return -1;
+}
+QTreeWidgetItem* PointCloudController::getChildItemWithID(QTreeWidgetItem* parent,int id){
+    //# TA FUNKCJA NIE DZIALA -> zwraca np. rodzica zamiast dziecko o danym id
+    QTreeWidgetItemIterator it(parent);
+   
