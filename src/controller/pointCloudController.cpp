@@ -28,4 +28,9 @@ QTreeWidgetItem* PointCloudController::getTopLevelItem(QTreeWidgetItem* item){
 /**
  * @brief CloudScenesObservable::getTopLevelIndexOfSelectedCloud
  * @param cloudPath
- * @return Index of selected cloud in treeWidget or of parent (top level) of
+ * @return Index of selected cloud in treeWidget or of parent (top level) of selected cloud (if selected cloud is not in a top level item in a tree widget -> cloud is an object after segmentation)
+ */
+int PointCloudController::getTopLevelIndexOfSelectedCloud(QTreeWidgetItem* item){
+    item=getTopLevelItem(item);
+    //index=this->treeWidgetObserver->indexOfTopLevelItem(item); //# tego nie moge uzywac, bo powinieme zwrocic index w vektorze cachedClouds, a nie w hierarchi treeWidget
+    //qDebug()<<"INDEX RETURNED FORM QTreeWidget::indexOfTopLevelItem(ite
