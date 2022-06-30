@@ -55,4 +55,17 @@ QTreeWidgetItem* PointCloudController::getChildItemWithID(QTreeWidgetItem* paren
     }
     return nullptr;
 }
-void PointCloudController::clearViewer(pcl::visualization::PCLVisualizer:
+void PointCloudController::clearViewer(pcl::visualization::PCLVisualizer::Ptr viewer){
+    viewer->removeAllPointClouds();
+    viewer->removeAllShapes();
+}
+void PointCloudController::clearTreeWidgetTreeChildren(){
+    QTreeWidgetItemIterator it(this->treeWidgetObserver,QTreeWidgetItemIterator::HasChildren); //iterate only over items that have children
+      while (*it) {
+          //we only clear objects on the top level
+          if((*it)->parent()!=nullptr)
+          {
+              qDebug()<<"CHILDREN SKIPPING";
+              continue;
+          }
+          (*it)->takeC
