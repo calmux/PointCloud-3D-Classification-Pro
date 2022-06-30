@@ -84,4 +84,16 @@ void PointCloudController::setCachedCloudsMemoryLimit(std::size_t limit){
     this->cachedCloudsMemoryLimit=limit;
 }
 /**
- * @brief PointCloudCont
+ * @brief PointCloudController::updateView
+ * updates whole view
+ */
+void PointCloudController::updateView(){
+    clearTreeWidgetTreeChildren();
+    for(auto const &cloud:cachedClouds){
+        //updateTreeWidgetItem(cloud->getSourcePath(),cloud->getCloudsNames());
+        cloud->updateView();
+    }
+    qDebug()<<"TOTAL MEMORY USAGE BY CLOUDS[MB]="<<static_cast<float>(getMemoryUsageOfCachedClouds())/static_cast<float>(1000000);
+}
+/**
+ * @brief PointCloudController::updateVie
