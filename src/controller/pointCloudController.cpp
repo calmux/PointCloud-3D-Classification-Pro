@@ -68,4 +68,20 @@ void PointCloudController::clearTreeWidgetTreeChildren(){
               qDebug()<<"CHILDREN SKIPPING";
               continue;
           }
-          (*it)->takeC
+          (*it)->takeChildren();
+          ++it;
+      }
+}
+std::size_t PointCloudController::getMemoryUsageOfCachedClouds(){
+    std::size_t total_size=0;
+    for(auto const &cloud:cachedClouds){
+        //updateTreeWidgetItem(cloud->getSourcePath(),cloud->getCloudsNames());
+        total_size=total_size+cloud->getCloudSize();
+    }
+    return total_size;
+}
+void PointCloudController::setCachedCloudsMemoryLimit(std::size_t limit){
+    this->cachedCloudsMemoryLimit=limit;
+}
+/**
+ * @brief PointCloudCont
