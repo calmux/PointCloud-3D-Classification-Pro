@@ -16,4 +16,16 @@ void PointCloudController::registerQTreeWidgetObserver(QTreeWidget *treeWiOb){
 void PointCloudController::registerQVTKidgetObserver(QVTKWidget *qVTKWiOb){
     this->qVTKWidgetObserver=qVTKWiOb;
 }
-void PointClou
+void PointCloudController::registerPCLViewerObserver(pcl::visualization::PCLVisualizer::Ptr viewOb){
+    this->viewerObserver=viewOb;
+}
+QTreeWidgetItem* PointCloudController::getTopLevelItem(QTreeWidgetItem* item){
+    while(item->parent()!=nullptr){
+        item=item->parent();
+    }
+    return item;
+}
+/**
+ * @brief CloudScenesObservable::getTopLevelIndexOfSelectedCloud
+ * @param cloudPath
+ * @return Index of selected cloud in treeWidget or of parent (top level) of
