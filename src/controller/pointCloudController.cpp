@@ -44,4 +44,15 @@ int PointCloudController::getTopLevelIndexOfSelectedCloud(QTreeWidgetItem* item)
 QTreeWidgetItem* PointCloudController::getChildItemWithID(QTreeWidgetItem* parent,int id){
     //# TA FUNKCJA NIE DZIALA -> zwraca np. rodzica zamiast dziecko o danym id
     QTreeWidgetItemIterator it(parent);
-   
+    while(*it){
+        //# qDebug()<<"CHILD DATA-id is null?="<<(*it)->data(0, Qt::UserRole).isNull();
+        //# qDebug()<<"CHILD DATA-id="<<(*it)->data(0, Qt::UserRole).toInt();
+        //iterate over parent children that have given id
+        if(!(*it)->data(0, Qt::UserRole).isNull() && (*it)->parent()==parent && (*it)->data(0, Qt::UserRole).toInt()==id){
+            return *it;
+        }
+        ++it;
+    }
+    return nullptr;
+}
+void PointCloudController::clearViewer(pcl::visualization::PCLVisualizer:
