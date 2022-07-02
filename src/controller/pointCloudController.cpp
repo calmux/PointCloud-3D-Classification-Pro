@@ -118,4 +118,14 @@ void PointCloudController::updateView(QTreeWidgetItem* item){
     //# UWAGA - tu przekazuje raw ptr (pobrany z unique_ptr  -> ptr.get()), bo taki akceptuje ponizsza funkcja- powinienem tak robic tylko
     //# wtedy, gdy jestem pewny ze obiekt wskazywany przez unique_ptr bedzie caly czas istnial w trakcie wykonywania ponizszej funkcji :https://stackoverflow.com/questions/30905487/how-can-i-pass-stdunique-ptr-into-a-function
     try {
-     
+        updateTreeWidgetItem(this->cachedClouds.at(topLevelCloudIndex).get());
+    } catch (const std::out_of_range& e) {
+        qDebug()<<"Cannot update view - Worng topLevelCloudIndex ="<<topLevelCloudIndex<<" . chachedClouds.size()="<<cachedClouds.size();
+    }
+
+    //qDebug()<<"cloudNames size: "<<this->cachedClouds.at(topLevelCloudIndex)->getCloudsNames().size();
+}
+/*
+void PointCloudController::updateTreeWidgetItem(std::string cloudPath,std::vector<std::string> children){
+
+    QList<QTreeWidget
