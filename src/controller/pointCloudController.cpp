@@ -111,4 +111,11 @@ void PointCloudController::updateView(CloudComponent *cloud){
 void PointCloudController::updateView(QTreeWidgetItem* item){
     int topLevelCloudIndex;
     std::string cloudPath="";
-    topLevelCloudIndex=getTopLevelIndexOfSelectedCloud(item)
+    topLevelCloudIndex=getTopLevelIndexOfSelectedCloud(item);
+    //item=getTopLevelItem(item);
+    //cloudPath=item->text(0).toStdString();
+
+    //# UWAGA - tu przekazuje raw ptr (pobrany z unique_ptr  -> ptr.get()), bo taki akceptuje ponizsza funkcja- powinienem tak robic tylko
+    //# wtedy, gdy jestem pewny ze obiekt wskazywany przez unique_ptr bedzie caly czas istnial w trakcie wykonywania ponizszej funkcji :https://stackoverflow.com/questions/30905487/how-can-i-pass-stdunique-ptr-into-a-function
+    try {
+     
