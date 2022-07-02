@@ -96,4 +96,19 @@ void PointCloudController::updateView(){
     qDebug()<<"TOTAL MEMORY USAGE BY CLOUDS[MB]="<<static_cast<float>(getMemoryUsageOfCachedClouds())/static_cast<float>(1000000);
 }
 /**
- * @brief PointCloudController::updateVie
+ * @brief PointCloudController::updateView
+ * @param cloud
+ * Updates only one item in view that referes to particular cloud
+ */
+void PointCloudController::updateView(CloudComponent *cloud){
+    updateTreeWidgetItem(cloud);
+}
+/**
+ * @brief PointCloudController::updateView
+ * @param cloud
+ * Updates only one selected item in view
+ */
+void PointCloudController::updateView(QTreeWidgetItem* item){
+    int topLevelCloudIndex;
+    std::string cloudPath="";
+    topLevelCloudIndex=getTopLevelIndexOfSelectedCloud(item)
