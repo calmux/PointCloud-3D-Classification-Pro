@@ -128,4 +128,10 @@ void PointCloudController::updateView(QTreeWidgetItem* item){
 /*
 void PointCloudController::updateTreeWidgetItem(std::string cloudPath,std::vector<std::string> children){
 
-    QList<QTreeWidget
+    QList<QTreeWidgetItem *> foundItems=this->treeWidgetObserver->findItems(QString::fromStdString(cloudPath),Qt::MatchCaseSensitive);
+    QTreeWidgetItem * treeChildObject;
+    // we assume thad CloudPath is unique, so there is only one item in TreeWidget witch such text
+    foundItems.at(0)->takeChildren(); //remove children (objects list)
+    //and fill the list according to model
+    for(auto child:children){
+        //treeChildObject=new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString::number(chi
