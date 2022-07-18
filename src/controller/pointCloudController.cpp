@@ -134,4 +134,18 @@ void PointCloudController::updateTreeWidgetItem(std::string cloudPath,std::vecto
     foundItems.at(0)->takeChildren(); //remove children (objects list)
     //and fill the list according to model
     for(auto child:children){
-        //treeChildObject=new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString::number(chi
+        //treeChildObject=new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString::number(child)));
+        treeChildObject=new QTreeWidgetItem((QTreeWidget*)0, QStringList(QString(child.c_str())));
+        foundItems.at(0)->addChild(treeChildObject);
+    }
+
+}
+*/
+void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
+    QList<QTreeWidgetItem *> foundItems;
+    QTreeWidgetItem* child;
+    int childIndex=-1;
+
+    //cloud has no parent
+    if(cloud->getParentSceneName()==""){
+        foundItems=this->treeWidgetObserver->fin
