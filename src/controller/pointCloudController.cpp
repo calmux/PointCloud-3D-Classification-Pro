@@ -148,4 +148,10 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
 
     //cloud has no parent
     if(cloud->getParentSceneName()==""){
-        foundItems=this->treeWidgetObserver->fin
+        foundItems=this->treeWidgetObserver->findItems(QString::fromStdString(cloud->getSourcePath()),Qt::MatchCaseSensitive);
+        if(!foundItems.empty()){
+            //only one item should be found while using uniqe identifier (here cloud source path)
+            foundItems.at(0)->setText(treeWidgetNameColumnID,QString(cloud->getSourcePath().c_str()));
+            if(cloud->getCloudType()==type_CloudScene){
+                foundItems.at(0)->setText(treeWidgetCloudTypeID,QString("scene"));
+            }else if(cloud->getCloudType
