@@ -160,4 +160,9 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
             foundItems.at(0)->setText(treeWidgetClassIDColumnID,QString::number(cloud->getCloudClassID()));
             foundItems.at(0)->setText(treeWidgetClassNameColumnID,QString(cloud->getCloudClassName().c_str()));
             //std::string responseVector=vectorToString(cloud->getNNResopneVector()," ");
-            //foundItems.at(0)->setText(treeWidgetNNResponseVectorColumnID,QString(re
+            //foundItems.at(0)->setText(treeWidgetNNResponseVectorColumnID,QString(responseVector.c_str()));
+            foundItems.at(0)->setText(treeWidgetNNResponseVectorColumnID,QString(vectorToString(cloud->getNNResopneVector()," ",true).c_str()));
+        }else{
+            //create newItem with cloud sourcePath in first column
+            QTreeWidgetItem * newItem = new QTreeWidgetItem (this->treeWidgetObserver, QStringList(QString(cloud->getSourcePath().c_str())));
+            qDebug()<<"Could not find parent by sourcePath ="<<cloud->getSourcePath().c_str()<<" for parent
