@@ -165,4 +165,14 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
         }else{
             //create newItem with cloud sourcePath in first column
             QTreeWidgetItem * newItem = new QTreeWidgetItem (this->treeWidgetObserver, QStringList(QString(cloud->getSourcePath().c_str())));
-            qDebug()<<"Could not find parent by sourcePath ="<<cloud->getSourcePath().c_str()<<" for parent
+            qDebug()<<"Could not find parent by sourcePath ="<<cloud->getSourcePath().c_str()<<" for parent cloud: "<<cloud->getName().c_str();
+            qDebug()<<"Adding new qTreeWidget item.";
+            treeWidgetObserver->addTopLevelItem(newItem);
+            updateTreeWidgetItem(cloud);
+        }
+    }//cloud is a child
+    else{
+        foundItems=this->treeWidgetObserver->findItems(QString::fromStdString(cloud->getParentSourcePath()),Qt::MatchCaseSensitive);
+        if(!foundItems.empty()){
+            childIndex=cloud->getCloudID();
+            //# UW
