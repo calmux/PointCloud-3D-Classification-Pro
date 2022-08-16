@@ -180,4 +180,8 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
             //child=foundItems.at(0)->child(childIndex);//# UWAGA - tu trzeba znajdowac inaczej (child dla ktorego item->data(0, Qt::UserRole).toInt() ==childIndex)
             if(child==nullptr){
                 child=new QTreeWidgetItem(((QTreeWidget*)0));
-                child->setText(treeWidge
+                child->setText(treeWidgetNameColumnID,QString(cloud->getName().c_str()));
+                child->setText(treeWidgetClassIDColumnID,QString::number(cloud->getCloudClassID()));
+                child->setText(treeWidgetClassNameColumnID,QString(cloud->getCloudClassName().c_str()));
+                child->setText(treeWidgetNNResponseVectorColumnID,QString(vectorToString(cloud->getNNResopneVector()," ",true).c_str()));
+                //# UWAGA tu moze potencjalnie wystapic blad -> niezsynchronizowanie id obi
