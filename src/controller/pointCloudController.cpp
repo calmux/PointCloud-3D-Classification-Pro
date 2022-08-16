@@ -175,4 +175,9 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
         foundItems=this->treeWidgetObserver->findItems(QString::fromStdString(cloud->getParentSourcePath()),Qt::MatchCaseSensitive);
         if(!foundItems.empty()){
             childIndex=cloud->getCloudID();
-            //# UW
+            //# UWAGA ->TU nie przeprowadzilem jeszcze child->setData() wiec wywolywanie tej funkcji (getChildItemWithID - bazuje ona na id dzieci) nie ma sensu
+            child=getChildItemWithID(foundItems.at(0),childIndex);
+            //child=foundItems.at(0)->child(childIndex);//# UWAGA - tu trzeba znajdowac inaczej (child dla ktorego item->data(0, Qt::UserRole).toInt() ==childIndex)
+            if(child==nullptr){
+                child=new QTreeWidgetItem(((QTreeWidget*)0));
+                child->setText(treeWidge
