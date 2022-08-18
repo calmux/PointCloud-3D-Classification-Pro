@@ -184,4 +184,7 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
                 child->setText(treeWidgetClassIDColumnID,QString::number(cloud->getCloudClassID()));
                 child->setText(treeWidgetClassNameColumnID,QString(cloud->getCloudClassName().c_str()));
                 child->setText(treeWidgetNNResponseVectorColumnID,QString(vectorToString(cloud->getNNResopneVector()," ",true).c_str()));
-                //# UWAGA tu moze potencjalnie wystapic blad -> niezsynchronizowanie id obi
+                //# UWAGA tu moze potencjalnie wystapic blad -> niezsynchronizowanie id obiektu z id w treeWidgetItems childs
+                //# to moze wystapic w kazdym przypadku, gdy nie dodajemy hurtowo wszystkich posegmentowanych obiektow do TreeWidget
+                //# ale QTreeWidgetItem->insert juz chyba rozwiazjuje ten problem (wstawaimy na konkretnym miejscu a nie koncu)
+                //# OSTATECZNE ROZWIAZANIE - nie uzywam indexu childItem w QTreeWidget, tylko dodaje do kazdego childItem id tak jak ponizej i tu :https://stackoverflow.com/questions/28791549/qtreewidgteritem-hidden-value-or-addi
