@@ -187,4 +187,9 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
                 //# UWAGA tu moze potencjalnie wystapic blad -> niezsynchronizowanie id obiektu z id w treeWidgetItems childs
                 //# to moze wystapic w kazdym przypadku, gdy nie dodajemy hurtowo wszystkich posegmentowanych obiektow do TreeWidget
                 //# ale QTreeWidgetItem->insert juz chyba rozwiazjuje ten problem (wstawaimy na konkretnym miejscu a nie koncu)
-                //# OSTATECZNE ROZWIAZANIE - nie uzywam indexu childItem w QTreeWidget, tylko dodaje do kazdego childItem id tak jak ponizej i tu :https://stackoverflow.com/questions/28791549/qtreewidgteritem-hidden-value-or-addi
+                //# OSTATECZNE ROZWIAZANIE - nie uzywam indexu childItem w QTreeWidget, tylko dodaje do kazdego childItem id tak jak ponizej i tu :https://stackoverflow.com/questions/28791549/qtreewidgteritem-hidden-value-or-addition-attribute
+                //# to id jest zawsze takie samo jak cloud id i nie musi korespondiwac z chilItem index, czyli tez nie musi byc wyswietlane na pozycji o danym childIndex w QTreeWidget
+                //set QTreeWidget Item child ID = child cloud ID
+                // WARNING - position of QTreeWidget child Item in QTreeWidget doesnt have to correspond to its id (cloud ID)
+                child->setData(0, Qt::UserRole, childIndex);
+                foundItems.at(0)->a
