@@ -192,4 +192,10 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
                 //set QTreeWidget Item child ID = child cloud ID
                 // WARNING - position of QTreeWidget child Item in QTreeWidget doesnt have to correspond to its id (cloud ID)
                 child->setData(0, Qt::UserRole, childIndex);
-                foundItems.at(0)->a
+                foundItems.at(0)->addChild(child);
+                //foundItems.at(0)->insertChild(childIndex,child);
+
+            }else{
+                //# UWAGA problem jest w funkcji getChildItemWithID -> funkcja zamiast child zwraca parent, i edytujemy wowczas tekst rodzica - stad ta zmiana nazwy rodzica na nazwe dziecka
+                child->setText(treeWidgetNameColumnID,QString(cloud->getName().c_str()));
+                child->setText(treeWidgetClassIDColumn
