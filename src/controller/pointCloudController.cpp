@@ -198,4 +198,9 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
             }else{
                 //# UWAGA problem jest w funkcji getChildItemWithID -> funkcja zamiast child zwraca parent, i edytujemy wowczas tekst rodzica - stad ta zmiana nazwy rodzica na nazwe dziecka
                 child->setText(treeWidgetNameColumnID,QString(cloud->getName().c_str()));
-                child->setText(treeWidgetClassIDColumn
+                child->setText(treeWidgetClassIDColumnID,QString::number(cloud->getCloudClassID()));
+                child->setText(treeWidgetClassNameColumnID,QString(cloud->getCloudClassName().c_str()));
+                child->setText(treeWidgetNNResponseVectorColumnID,QString(vectorToString(cloud->getNNResopneVector()," ",true).c_str()));
+            }
+        }else{
+            qDebug()<<"Could not find parent by parentSourcePath ="<<cloud->getParentSourcePath().c_str()<<" for child cloud: "<<cloud->g
