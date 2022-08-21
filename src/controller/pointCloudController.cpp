@@ -219,4 +219,9 @@ bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selected
     if(getTopLevelIndexOfSelectedCloud(selectedItem)>=0){
         return true;
     }
-    //else check if memory is ava
+    //else check if memory is available and create new CloudScene or CloudObject object
+    else{
+        //if cached cloud scenes occupy to much memory, delete the oldest (first added) ones
+        while(getMemoryUsageOfCachedClouds()>static_cast<std::size_t>(cachedCloudsMemoryLimit*1000000)){
+            qDebug()<<"deleting: "<<cachedClouds.at(0)->getName().c_str()<<" beacuse memory limit for cached clouds was exceeded - you can change it in settings";
+        
