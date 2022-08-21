@@ -203,4 +203,20 @@ void PointCloudController::updateTreeWidgetItem(CloudComponent *cloud){
                 child->setText(treeWidgetNNResponseVectorColumnID,QString(vectorToString(cloud->getNNResopneVector()," ",true).c_str()));
             }
         }else{
-            qDebug()<<"Could not find parent by parentSourcePath ="<<cloud->getParentSourcePath().c_str()<<" for child cloud: "<<cloud->g
+            qDebug()<<"Could not find parent by parentSourcePath ="<<cloud->getParentSourcePath().c_str()<<" for child cloud: "<<cloud->getName().c_str();
+        }
+
+    }
+}
+
+void PointCloudController::updateQVTKWidget(){
+    this->viewerObserver->resetCamera(); //to center camera on object
+    this->qVTKWidgetObserver->update ();
+}
+bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selectedItem){
+
+    //if top Level Scene or Object object is already created
+    if(getTopLevelIndexOfSelectedCloud(selectedItem)>=0){
+        return true;
+    }
+    //else check if memory is ava
