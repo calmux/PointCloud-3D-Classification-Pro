@@ -224,4 +224,6 @@ bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selected
         //if cached cloud scenes occupy to much memory, delete the oldest (first added) ones
         while(getMemoryUsageOfCachedClouds()>static_cast<std::size_t>(cachedCloudsMemoryLimit*1000000)){
             qDebug()<<"deleting: "<<cachedClouds.at(0)->getName().c_str()<<" beacuse memory limit for cached clouds was exceeded - you can change it in settings";
-        
+            cachedClouds.erase(cachedClouds.begin());
+            //this->observer->updateTreeWidgetItem(cloudPath,{}); //we delete items assosiated with segmented objects which doesnt exist any more (because we deleted secen holding them)
+            //#UWAGA -> czy na pewno usuwajac scene usuwam tez obiekty (posegmentowane) znajdujace sie w niej w postaci wektora clouds ? -> moze cloud objects tez powinny byc unique_ptr, albo powienienm je usuwac jakosc dla pewnosci w destruktorz
