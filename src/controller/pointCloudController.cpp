@@ -234,4 +234,9 @@ bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selected
         selectedItem=getTopLevelItem(selectedItem);
         std::string cloudPath=selectedItem->text(treeWidgetNameColumnID).toStdString();
 
-        if(selectedItem->text(treeWidgetClou
+        if(selectedItem->text(treeWidgetCloudTypeID)=="scene"){
+            std::unique_ptr<CloudScene> newScene =sceneFactory->create(cloudPath);
+            newScene->setFactory(objectFactory);
+            newScene->setController(shared_from_this());//#https://stackoverflow.com/questions/27894246/cast-this-to-stdshared-ptr
+            cachedClouds.push_back(std::move(newScene)); //#we have to move unique_ptr : https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
+        }el
