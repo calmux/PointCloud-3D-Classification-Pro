@@ -226,4 +226,12 @@ bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selected
             qDebug()<<"deleting: "<<cachedClouds.at(0)->getName().c_str()<<" beacuse memory limit for cached clouds was exceeded - you can change it in settings";
             cachedClouds.erase(cachedClouds.begin());
             //this->observer->updateTreeWidgetItem(cloudPath,{}); //we delete items assosiated with segmented objects which doesnt exist any more (because we deleted secen holding them)
-            //#UWAGA -> czy na pewno usuwajac scene usuwam tez obiekty (posegmentowane) znajdujace sie w niej w postaci wektora clouds ? -> moze cloud objects tez powinny byc unique_ptr, albo powienienm je usuwac jakosc dla pewnosci w destruktorz
+            //#UWAGA -> czy na pewno usuwajac scene usuwam tez obiekty (posegmentowane) znajdujace sie w niej w postaci wektora clouds ? -> moze cloud objects tez powinny byc unique_ptr, albo powienienm je usuwac jakosc dla pewnosci w destruktorze CloudScene ?
+        }
+
+        //# I TUTAJ TWORZE CloudScene albo CloudObject (w zaleznosci od typu wczytanego obiketu ->kolumna nr 1 w QTreeWidget, uzupelniania wtrakcie wczytywania)
+        //Create CloudScene or CloudObject object depending on top level item type (selected while loading by user)
+        selectedItem=getTopLevelItem(selectedItem);
+        std::string cloudPath=selectedItem->text(treeWidgetNameColumnID).toStdString();
+
+        if(selectedItem->text(treeWidgetClou
