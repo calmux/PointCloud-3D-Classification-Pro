@@ -239,4 +239,14 @@ bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selected
             newScene->setFactory(objectFactory);
             newScene->setController(shared_from_this());//#https://stackoverflow.com/questions/27894246/cast-this-to-stdshared-ptr
             cachedClouds.push_back(std::move(newScene)); //#we have to move unique_ptr : https://stackoverflow.com/questions/3283778/why-can-i-not-push-back-a-unique-ptr-into-a-vector
-        }el
+        }else{
+            //UWAGA -> TRZEBA CHYBA wszedzie przerobic w modelu w CloudObject shared_ptr na unique_ptr (i tak to powinno byc chyba lepsze - shared_ptr jest wydaje mi sie niepotrzebny)
+            std::unique_ptr<CloudObject> newObject=objectFactory->create(cloudPath);
+            newObject->setController(shared_from_this());
+            cachedClouds.push_back(std::move(newObject));
+        }
+        updateView();
+        return true;
+    }
+}
+void PointCloudController::remo
