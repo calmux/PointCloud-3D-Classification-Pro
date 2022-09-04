@@ -249,4 +249,13 @@ bool PointCloudController::updateCachedCloudsContainer(QTreeWidgetItem* selected
         return true;
     }
 }
-void PointCloudController::remo
+void PointCloudController::remove(QList<QTreeWidgetItem*> selectedClouds){
+    int selectedSceneIndex;
+    if(selectedClouds.size()>0){
+        for (auto item:selectedClouds){
+            //updateCachedCloudsContainer(item);
+            selectedSceneIndex=getTopLevelIndexOfSelectedCloud(item);
+            if(selectedSceneIndex>=0){
+                //selected child cloud (after segmentation)
+                if(item->parent()!=nullptr){
+                    cachedClouds.at(selectedSceneIndex)->removeCloud(/*id*/item-
