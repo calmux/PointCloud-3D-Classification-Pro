@@ -258,4 +258,14 @@ void PointCloudController::remove(QList<QTreeWidgetItem*> selectedClouds){
             if(selectedSceneIndex>=0){
                 //selected child cloud (after segmentation)
                 if(item->parent()!=nullptr){
-                    cachedClouds.at(selectedSceneIndex)->removeCloud(/*id*/item-
+                    cachedClouds.at(selectedSceneIndex)->removeCloud(/*id*/item->data(0, Qt::UserRole).toInt());
+                    delete item;
+                }
+                //selected top level cloud (scene or object)
+                else{
+                    //this->observable->visualize(selectedItem->text(0).toStdString(),viewer);
+                    cachedClouds.erase(cachedClouds.begin()+selectedSceneIndex);
+                    delete item;
+                }
+            }else{
+                //we delete only item in v
