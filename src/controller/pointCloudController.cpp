@@ -268,4 +268,16 @@ void PointCloudController::remove(QList<QTreeWidgetItem*> selectedClouds){
                     delete item;
                 }
             }else{
-                //we delete only item in v
+                //we delete only item in view:
+                delete item;
+                qDebug()<<"Could not find selected cloudScene in cachedClouds vector or could not find parent cloudScene for selected  object in cachedClouds vector";
+            }
+        }
+        updateView();
+    }
+}
+void PointCloudController::visualize(QTreeWidgetItem* selectedItem,pcl::visualization::PCLVisualizer::Ptr viewer){
+    //We are using same viewer, so we have to clear all added point clouds and shapes
+    clearViewer(viewer);
+    int selectedSceneIndex;
+    if(select
