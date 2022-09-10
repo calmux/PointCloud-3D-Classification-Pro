@@ -280,4 +280,12 @@ void PointCloudController::visualize(QTreeWidgetItem* selectedItem,pcl::visualiz
     //We are using same viewer, so we have to clear all added point clouds and shapes
     clearViewer(viewer);
     int selectedSceneIndex;
-    if(select
+    if(selectedItem!=nullptr){
+        updateCachedCloudsContainer(selectedItem);
+        selectedSceneIndex=getTopLevelIndexOfSelectedCloud(selectedItem);
+
+        if(selectedSceneIndex>=0){
+            //selected child cloud (after segmentation)
+            if(selectedItem->parent()!=nullptr){
+                //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->parent()->indexOfChild(selectedItem),viewer);
+                if(cachedClouds.at(selectedSceneIndex)->getCloudType()==type_Clo
