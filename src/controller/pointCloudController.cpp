@@ -288,4 +288,14 @@ void PointCloudController::visualize(QTreeWidgetItem* selectedItem,pcl::visualiz
             //selected child cloud (after segmentation)
             if(selectedItem->parent()!=nullptr){
                 //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->parent()->indexOfChild(selectedItem),viewer);
-                if(cachedClouds.at(selectedSceneIndex)->getCloudType()==type_Clo
+                if(cachedClouds.at(selectedSceneIndex)->getCloudType()==type_CloudScene){
+                    cachedClouds.at(selectedSceneIndex)->visualize(visualization,/*id*/selectedItem->data(0, Qt::UserRole).toInt(),viewer);
+                    updateQVTKWidget();
+                }else{
+                    qDebug()<<"This operation is supported only for CloudScene";
+                    qDebug()<<cachedClouds.at(selectedSceneIndex)->getName().c_str();
+                }
+            }
+            //selected top level cloud (scene or object)
+            else{
+                //this->o
