@@ -298,4 +298,18 @@ void PointCloudController::visualize(QTreeWidgetItem* selectedItem,pcl::visualiz
             }
             //selected top level cloud (scene or object)
             else{
-                //this->o
+                //this->observable->visualize(selectedItem->text(0).toStdString(),viewer);
+                cachedClouds.at(selectedSceneIndex)->visualize(visualization, viewer);
+                updateQVTKWidget();
+            }
+        }else{
+            qDebug()<<"Could not find selected cloudScene in cachedClouds vector or could not find parent cloudScene for selected  object in cachedClouds vector";
+        }
+    }
+    else{
+        qDebug()<<"No items selected ";
+    }
+
+
+}
+void PointCloudController::visualizeAllChi
