@@ -312,4 +312,13 @@ void PointCloudController::visualize(QTreeWidgetItem* selectedItem,pcl::visualiz
 
 
 }
-void PointCloudController::visualizeAllChi
+void PointCloudController::visualizeAllChildren(QTreeWidgetItem* selectedItem,pcl::visualization::PCLVisualizer::Ptr viewer){
+    //We are using same viewer, so we have to clear all added point clouds and shapes
+    clearViewer(viewer);
+    int selectedSceneIndex;
+    if(selectedItem!=nullptr){
+        updateCachedCloudsContainer(selectedItem);
+        selectedSceneIndex=getTopLevelIndexOfSelectedCloud(selectedItem);
+
+        if(selectedSceneIndex>=0){
+            //selected child cloud
