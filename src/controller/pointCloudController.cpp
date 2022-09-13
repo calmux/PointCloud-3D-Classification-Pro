@@ -321,4 +321,9 @@ void PointCloudController::visualizeAllChildren(QTreeWidgetItem* selectedItem,pc
         selectedSceneIndex=getTopLevelIndexOfSelectedCloud(selectedItem);
 
         if(selectedSceneIndex>=0){
-            //selected child cloud
+            //selected child cloud (after segmentation)
+            if(selectedItem->parent()!=nullptr){
+                //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->parent()->indexOfChild(selectedItem),viewer);
+                if(cachedClouds.at(selectedSceneIndex)->getCloudType()==type_CloudScene){
+                    //#tu powinna tez byc opcja visualizeAllChildren dla sceny-dziecka
+                    cachedClouds.at(selectedSceneIndex)->visualize(visuali
