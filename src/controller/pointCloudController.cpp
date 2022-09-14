@@ -326,4 +326,14 @@ void PointCloudController::visualizeAllChildren(QTreeWidgetItem* selectedItem,pc
                 //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->parent()->indexOfChild(selectedItem),viewer);
                 if(cachedClouds.at(selectedSceneIndex)->getCloudType()==type_CloudScene){
                     //#tu powinna tez byc opcja visualizeAllChildren dla sceny-dziecka
-                    cachedClouds.at(selectedSceneIndex)->visualize(visuali
+                    cachedClouds.at(selectedSceneIndex)->visualize(visualization,selectedItem->data(0, Qt::UserRole).toInt(),viewer);
+                    updateQVTKWidget();
+                }else{
+                    qDebug()<<"This operation is supported only for CloudScene";
+                    qDebug()<<cachedClouds.at(selectedSceneIndex)->getName().c_str();
+                }
+            }
+            //selected top level cloud (scene or object)
+            else{
+                //this->observable->visualize(selectedItem->text(0).toStdString(),viewer);
+      
