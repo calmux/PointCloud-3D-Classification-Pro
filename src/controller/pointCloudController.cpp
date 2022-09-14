@@ -359,4 +359,10 @@ void PointCloudController::segment(QList<QTreeWidgetItem*> selectedClouds,std::s
 
     if(selectedClouds.size()>0){
         for (auto item:selectedClouds){
-            //cloudPath=item->text(0
+            //cloudPath=item->text(0).toStdString();  //# tutaj kolumna zawierajaca lokalizacje pliku
+            updateCachedCloudsContainer(item);
+            selectedSceneIndex=getTopLevelIndexOfSelectedCloud(item);
+            if(selectedSceneIndex>=0){
+                cachedClouds.at(selectedSceneIndex)->segment(segmentationType);
+                //notifyObserver(item);
+                //updateView(item); //# to cos jeszcze nie dziala-> POPRAW, bo ze wzgledu na wydajnosc lepiej updateowac tylko chmure,ktro
