@@ -347,4 +347,16 @@ void PointCloudController::visualizeAllChildren(QTreeWidgetItem* selectedItem,pc
         qDebug()<<"No items selected ";
     }
 }
-void PointCloudController::segment(QList<QTreeWidgetI
+void PointCloudController::segment(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<SegmentationType> segmentationType){
+    int selectedSceneIndex;
+    //remove from selection already segmented cloudObjects
+    //# na razie nie wspieram segmentacji posegmentowanych obiektow
+    for (int i=0; i<selectedClouds.size();++i){
+        if(selectedClouds.at(i)->parent()!=nullptr){
+            selectedClouds.removeAt(i);
+        }
+    }
+
+    if(selectedClouds.size()>0){
+        for (auto item:selectedClouds){
+            //cloudPath=item->text(0
