@@ -386,4 +386,11 @@ void PointCloudController::project(QList<QTreeWidgetItem*> selectedClouds,std::s
             if(selectedSceneIndex>=0){
                 //selected child cloud (after segmentation)
                 if(item->parent()!=nullptr){
-                    //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->
+                    //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->parent()->indexOfChild(selectedItem),viewer);
+                    cachedClouds.at(selectedSceneIndex)->project(projectionType,item->data(0, Qt::UserRole).toInt());
+                    if(editType!=nullptr){
+                        cachedClouds.at(selectedSceneIndex)->edit(editType,item->data(0, Qt::UserRole).toInt());
+                    }
+                    //# scenes.at(selectedSceneIndex)->saveProjections(folderPath,item->parent()->indexOfChild(item));
+                }
+  
