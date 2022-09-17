@@ -365,4 +365,17 @@ void PointCloudController::segment(QList<QTreeWidgetItem*> selectedClouds,std::s
             if(selectedSceneIndex>=0){
                 cachedClouds.at(selectedSceneIndex)->segment(segmentationType);
                 //notifyObserver(item);
-                //updateView(item); //# to cos jeszcze nie dziala-> POPRAW, bo ze wzgledu na wydajnosc lepiej updateowac tylko chmure,ktro
+                //updateView(item); //# to cos jeszcze nie dziala-> POPRAW, bo ze wzgledu na wydajnosc lepiej updateowac tylko chmure,ktroej to dotyuczy niz wszstkie
+                updateView();
+            }else{
+                qDebug()<<"Could not find any cloudScene in cachedClouds vector";
+            }
+        }
+    }else{
+        qDebug()<<"No items selected for segmentation, you can only segment scenes";
+    }
+
+}
+void PointCloudController::project(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ProjectionType> projectionType,std::shared_ptr<EditType> editType){
+    int selectedSceneIndex;
+    i
