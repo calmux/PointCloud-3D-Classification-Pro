@@ -393,4 +393,10 @@ void PointCloudController::project(QList<QTreeWidgetItem*> selectedClouds,std::s
                     }
                     //# scenes.at(selectedSceneIndex)->saveProjections(folderPath,item->parent()->indexOfChild(item));
                 }
-  
+                //selected top level cloud (scene or object)
+                //# jak na razie w modelu to jest zdefiniowane tak, ze robimy projekcje wszystkich podchmur (wysegmentowanych obiektow w scenie)
+                else{
+                    //this->observable->visualize(selectedItem->text(0).toStdString(),viewer);
+                    cachedClouds.at(selectedSceneIndex)->project(projectionType);
+                    if(editType!=nullptr){
+                        cachedClouds.at(selec
