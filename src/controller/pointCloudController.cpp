@@ -399,4 +399,15 @@ void PointCloudController::project(QList<QTreeWidgetItem*> selectedClouds,std::s
                     //this->observable->visualize(selectedItem->text(0).toStdString(),viewer);
                     cachedClouds.at(selectedSceneIndex)->project(projectionType);
                     if(editType!=nullptr){
-                        cachedClouds.at(selec
+                        cachedClouds.at(selectedSceneIndex)->edit(editType);
+                    }
+                    //# scenes.at(selectedSceneIndex)->saveProjections(folderPath);
+                }
+            }else{
+                qDebug()<<"Could not find selected cloudScene in cachedClouds vector or could not find parent cloudScene for selected  object in cachedClouds vector";
+            }
+        }
+    }
+
+}
+void PointCloudController::saveProjections(QList<QTreeW
