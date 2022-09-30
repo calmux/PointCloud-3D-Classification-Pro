@@ -410,4 +410,12 @@ void PointCloudController::project(QList<QTreeWidgetItem*> selectedClouds,std::s
     }
 
 }
-void PointCloudController::saveProjections(QList<QTreeW
+void PointCloudController::saveProjections(QList<QTreeWidgetItem*> selectedClouds,std::string folderPath){
+    int selectedSceneIndex;
+    for (auto item:selectedClouds){
+        updateCachedCloudsContainer(item);
+        selectedSceneIndex=getTopLevelIndexOfSelectedCloud(item);
+        if(selectedSceneIndex>=0){
+            //selected child cloud (after segmentation)
+            if(item->parent()!=nullptr){
+                //this->observable->visualize(selectedItem->parent()->text(0).toStdString(),selectedItem->parent()->indexOfChild
