@@ -425,4 +425,16 @@ void PointCloudController::saveProjections(QList<QTreeWidgetItem*> selectedCloud
             //# jak na razie w modelu to jest zdefiniowane tak, ze robimy projekcje wszystkich podchmur (wysegmentowanych obiektow w scenie)
             else{
                 //this->observable->visualize(selectedItem->text(0).toStdString(),viewer);
-                cachedClouds.at(
+                cachedClouds.at(selectedSceneIndex)->saveProjections(folderPath);
+            }
+        }else{
+            qDebug()<<"Could not find selected cloudScene in cachedClouds vector or could not find parent cloudScene for selected  object in cachedClouds vector";
+        }
+    }
+}
+
+/* stara wersja classify
+ *
+void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::string modelPath,int numOfClasses){
+    int selectedSceneIndex;
+    //s
