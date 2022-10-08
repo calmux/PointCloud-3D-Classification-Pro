@@ -464,4 +464,11 @@ void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::
 void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::shared_ptr<SegmentationType> segmentationType,std::shared_ptr<ProjectionType> projectionType,std::shared_ptr<EditType> editType,std::string modelPath,int numOfClasses){
     int selectedSceneIndex;
     //segment(selectedClouds,segmentationType);
-    //project(selectedCl
+    //project(selectedClouds,projectionType,editType);
+    //# UWAGA DODAC OPCJE KLASYFIKACJI POJEDYNCZYCH, POSEGMENTOWANYCH OBIKETOW (CZYLI TAKICH DLA KTORYCH item->parent()!=nullptr)
+    for (auto item:selectedClouds){
+        //cloudPath=item->text(0).toStdString();  //# tutaj kolumna zawierajaca lokalizacje pliku
+        updateCachedCloudsContainer(item);
+        selectedSceneIndex=getTopLevelIndexOfSelectedCloud(item);
+        if(selectedSceneIndex>=0){
+            //selected child cloud (after segmentat
