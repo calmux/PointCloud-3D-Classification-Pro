@@ -444,4 +444,15 @@ void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::
         //cloudPath=item->text(0).toStdString();  //# tutaj kolumna zawierajaca lokalizacje pliku
         updateScenesContainer(item);
         selectedSceneIndex=getTopLevelIndexOfSelectedCloud(item);
-        if(selectedSc
+        if(selectedSceneIndex>=0){
+            //selected child cloud (after segmentation)
+            if(item->parent()!=nullptr){
+                cachedClouds.at(selectedSceneIndex)->classify(classificationType,modelPath,numOfClasses,item->parent()->indexOfChild(item));
+            }
+            //selected top level cloud (scene or object)
+            else
+            {
+                cachedClouds.at(selectedSceneIndex)->classify(classificationType,modelPath,numOfClasses);
+            }
+        }else{
+            qDe
