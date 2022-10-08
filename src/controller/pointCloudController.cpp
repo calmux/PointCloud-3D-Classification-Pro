@@ -455,4 +455,13 @@ void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::
                 cachedClouds.at(selectedSceneIndex)->classify(classificationType,modelPath,numOfClasses);
             }
         }else{
-            qDe
+            qDebug()<<"Could not find any cloudScene in cachedClouds vector";
+        }
+    }
+
+}
+*/
+void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::shared_ptr<SegmentationType> segmentationType,std::shared_ptr<ProjectionType> projectionType,std::shared_ptr<EditType> editType,std::string modelPath,int numOfClasses){
+    int selectedSceneIndex;
+    //segment(selectedClouds,segmentationType);
+    //project(selectedCl
