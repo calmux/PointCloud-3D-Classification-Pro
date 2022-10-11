@@ -484,4 +484,16 @@ void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::
             //selected top level cloud (scene or object)
             else
             {
-                cachedClouds.at(selectedSceneIndex)->classify(classificationType,segmentationType,projectionType,editType,modelPath,numOfClasses
+                cachedClouds.at(selectedSceneIndex)->classify(classificationType,segmentationType,projectionType,editType,modelPath,numOfClasses);
+            }
+        }else{
+            qDebug()<<"Could not find any cloudScene in cachedClouds vector";
+        }
+    }
+}
+/*
+void PointCloudController::setBenchmarkType(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<BenchmarkType> benchmarkType){
+    int selectedCloudTopIndex;
+    //# UWAGA DODAC OPCJE BENCHMARKU POJEDYNCZYCH, POSEGMENTOWANYCH OBIKETOW (CZYLI TAKICH DLA KTORYCH item->parent()!=nullptr)
+    for (auto item:selectedClouds){
+        //cloudPath=item->te
