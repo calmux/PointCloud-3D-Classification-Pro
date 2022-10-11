@@ -477,4 +477,11 @@ void PointCloudController::classify(QList<QTreeWidgetItem*> selectedClouds,std::
                 //cachedClouds.at(selectedSceneIndex)->segment(segmentationType,item->parent()->indexOfChild(item));
                 cachedClouds.at(selectedSceneIndex)->project(projectionType,item->data(0, Qt::UserRole).toInt());
                 if(editType!=nullptr){
-                    cachedClouds.at(selectedSceneIndex)->e
+                    cachedClouds.at(selectedSceneIndex)->edit(editType,item->data(0, Qt::UserRole).toInt());
+                }
+                cachedClouds.at(selectedSceneIndex)->classify(classificationType,modelPath,numOfClasses,item->data(0, Qt::UserRole).toInt());
+            }
+            //selected top level cloud (scene or object)
+            else
+            {
+                cachedClouds.at(selectedSceneIndex)->classify(classificationType,segmentationType,projectionType,editType,modelPath,numOfClasses
