@@ -503,4 +503,17 @@ void PointCloudController::setBenchmarkType(QList<QTreeWidgetItem*> selectedClou
             //selected child cloud (after segmentation)
             if(item->parent()!=nullptr){
                 cachedClouds.at(selectedCloudTopIndex)->setBenchmarkType(benchmarkType,item->parent()->indexOfChild(item));
-      
+            }
+            //selected top level cloud (scene or object)
+            else
+            {
+                cachedClouds.at(selectedCloudTopIndex)->setBenchmarkType(benchmarkType);
+            }
+        }else{
+            qDebug()<<"Could not find such parent cloud in cachedClouds vector";
+        }
+        updateView(item);
+    }
+}*/
+void PointCloudController::benchmark(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<BenchmarkType> benchmarkType, std::string folderPath){
+    int selec
