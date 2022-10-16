@@ -516,4 +516,12 @@ void PointCloudController::setBenchmarkType(QList<QTreeWidgetItem*> selectedClou
     }
 }*/
 void PointCloudController::benchmark(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<BenchmarkType> benchmarkType, std::string folderPath){
-    int selec
+    int selectedCloudTopIndex;
+    //# UWAGA DODAC OPCJE BENCHMARKU POJEDYNCZYCH, POSEGMENTOWANYCH OBIKETOW (CZYLI TAKICH DLA KTORYCH item->parent()!=nullptr)
+    for (auto item:selectedClouds){
+        //cloudPath=item->text(0).toStdString();  //# tutaj kolumna zawierajaca lokalizacje pliku
+        updateCachedCloudsContainer(item);
+        selectedCloudTopIndex=getTopLevelIndexOfSelectedCloud(item);
+        if(selectedCloudTopIndex>=0){
+            //selected child cloud (after segmentation)
+            if(item->parent()!=nu
