@@ -524,4 +524,13 @@ void PointCloudController::benchmark(QList<QTreeWidgetItem*> selectedClouds,std:
         selectedCloudTopIndex=getTopLevelIndexOfSelectedCloud(item);
         if(selectedCloudTopIndex>=0){
             //selected child cloud (after segmentation)
-            if(item->parent()!=nu
+            if(item->parent()!=nullptr){
+                try {
+                    cachedClouds.at(selectedCloudTopIndex)->benchmark(benchmarkType,folderPath,/*item id*/item->data(0, Qt::UserRole).toInt());
+
+                } catch (const std::out_of_range& e) {
+                    qDebug()<<"Worng0 selectedCloudTopIndex ="<<selectedCloudTopIndex<<" . chachedClouds.size()="<<cachedClouds.size();
+                }
+            }
+            //selected top level cloud (scene or object)
+          
