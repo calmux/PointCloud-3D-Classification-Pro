@@ -545,4 +545,13 @@ void PointCloudController::benchmark(QList<QTreeWidgetItem*> selectedClouds,std:
         }else{
             qDebug()<<"Could not find such parent cloud in cachedClouds vector";
         }
-        //wyglada na to, ze juz przed wejscie
+        //wyglada na to, ze juz przed wejsciem do updateView(item) scena TopLevel jest zamieniana z object0
+        updateView(item);
+    }
+}
+
+void PointCloudController::saveClouds(QList<QTreeWidgetItem*> selectedClouds,QString folderPath,std::shared_ptr<SaveConditions> saveCond){
+    int selectedCloudTopIndex;
+    std::vector<std::vector<int> > indexesToSave(cachedClouds.size(),std::vector<int>(1,-std::numeric_limits<int>::max())); // {{-max}_1,{-max}_2,...,{-max}_n} n=cachedClouds.size()
+    for (auto item:selectedClouds){
+        selecte
