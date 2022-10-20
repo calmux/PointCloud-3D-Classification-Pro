@@ -554,4 +554,14 @@ void PointCloudController::saveClouds(QList<QTreeWidgetItem*> selectedClouds,QSt
     int selectedCloudTopIndex;
     std::vector<std::vector<int> > indexesToSave(cachedClouds.size(),std::vector<int>(1,-std::numeric_limits<int>::max())); // {{-max}_1,{-max}_2,...,{-max}_n} n=cachedClouds.size()
     for (auto item:selectedClouds){
-        selecte
+        selectedCloudTopIndex=getTopLevelIndexOfSelectedCloud(item);
+        if(selectedCloudTopIndex>=0){
+            //clear vector if he haven't added anny indexes to it yet
+            if(!indexesToSave.empty()){
+                if(indexesToSave.at(selectedCloudTopIndex).at(0)==-std::numeric_limits<int>::max()){
+                        indexesToSave.at(selectedCloudTopIndex).clear();
+                }
+            }
+
+            //selected child cloud (after segmentation)
+            if(item->parent()!=nullp
