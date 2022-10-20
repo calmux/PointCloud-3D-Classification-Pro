@@ -533,4 +533,16 @@ void PointCloudController::benchmark(QList<QTreeWidgetItem*> selectedClouds,std:
                 }
             }
             //selected top level cloud (scene or object)
-          
+            else
+            {
+                try {
+                    cachedClouds.at(selectedCloudTopIndex)->benchmark(benchmarkType,folderPath);
+                } catch (const std::out_of_range& e) {
+                    qDebug()<<"Wrong1 selectedCloudTopIndex ="<<selectedCloudTopIndex<<" . chachedClouds.size()="<<cachedClouds.size();
+                }
+
+            }
+        }else{
+            qDebug()<<"Could not find such parent cloud in cachedClouds vector";
+        }
+        //wyglada na to, ze juz przed wejscie
