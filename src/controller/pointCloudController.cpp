@@ -564,4 +564,16 @@ void PointCloudController::saveClouds(QList<QTreeWidgetItem*> selectedClouds,QSt
             }
 
             //selected child cloud (after segmentation)
-            if(item->parent()!=nullp
+            if(item->parent()!=nullptr){
+                indexesToSave.at(selectedCloudTopIndex).push_back(item->data(0, Qt::UserRole).toInt());
+            }
+            //selected top level cloud (scene or object)
+            else
+            {
+                indexesToSave.at(selectedCloudTopIndex)=cachedClouds.at(selectedCloudTopIndex)->getCloudsIDs();
+            }
+        }else{
+            qDebug()<<"Could not find such parent cloud in cachedClouds vector";
+        }
+    }
+    this->saveLoad->save(folderPath,this->cachedClouds,indexe
