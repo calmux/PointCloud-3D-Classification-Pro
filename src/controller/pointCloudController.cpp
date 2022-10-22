@@ -576,4 +576,9 @@ void PointCloudController::saveClouds(QList<QTreeWidgetItem*> selectedClouds,QSt
             qDebug()<<"Could not find such parent cloud in cachedClouds vector";
         }
     }
-    this->saveLoad->save(folderPath,this->cachedClouds,indexe
+    this->saveLoad->save(folderPath,this->cachedClouds,indexesToSave,saveCond);
+}
+void PointCloudController::loadClouds(QString path){
+    this->saveLoad->load(path,this->cachedClouds,shared_from_this(),this->objectFactory);
+    updateView();
+}
