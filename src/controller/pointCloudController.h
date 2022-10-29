@@ -29,4 +29,12 @@ private:
     int cachedCloudScenesLimit=2;
     std::size_t cachedCloudsMemoryLimit=10000; //in MB
     int treeWidgetNameColumnID=0;
-    i
+    int treeWidgetCloudTypeID=1;
+    int treeWidgetClassIDColumnID=2;
+    int treeWidgetClassNameColumnID=3;
+    int treeWidgetNNResponseVectorColumnID=4;
+public:
+    PointCloudController();
+    int getTopLevelIndexOfSelectedCloud(QTreeWidgetItem* item); //# funkcja nie edytuje orginalnych danych (item), ale zeby to podkreslic wartobyloby dac const -> to skolei powoduje inne problemy)
+    QTreeWidgetItem* getChildItemWithID(QTreeWidgetItem* parent,int id);
+    QTreeWidgetItem* getTopLevelItem(Q
