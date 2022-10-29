@@ -19,4 +19,14 @@ class PointCloudController: public std::enable_shared_from_this<PointCloudContro
 private:
     std::vector<std::unique_ptr<CloudComponent>> cachedClouds;
     std::shared_ptr<CloudSceneFactory> sceneFactory;
-    std
+    std::shared_ptr<CloudObjectFactory> objectFactory;
+    std::shared_ptr<BoundingBoxType> boundingBox;
+    std::shared_ptr<VisualizationType> visualization;
+    std::shared_ptr<SaveLoad> saveLoad;
+    QTreeWidget *treeWidgetObserver;
+    QVTKWidget *qVTKWidgetObserver;
+    pcl::visualization::PCLVisualizer::Ptr viewerObserver;
+    int cachedCloudScenesLimit=2;
+    std::size_t cachedCloudsMemoryLimit=10000; //in MB
+    int treeWidgetNameColumnID=0;
+    i
