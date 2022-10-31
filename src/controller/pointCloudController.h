@@ -37,4 +37,10 @@ public:
     PointCloudController();
     int getTopLevelIndexOfSelectedCloud(QTreeWidgetItem* item); //# funkcja nie edytuje orginalnych danych (item), ale zeby to podkreslic wartobyloby dac const -> to skolei powoduje inne problemy)
     QTreeWidgetItem* getChildItemWithID(QTreeWidgetItem* parent,int id);
-    QTreeWidgetItem* getTopLevelItem(Q
+    QTreeWidgetItem* getTopLevelItem(QTreeWidgetItem* item);//#funkcja nie edytuje orginalnych danych (item), ale zeby to podkreslic wartobyloby dac const -> to skolei powoduje inne problemy)
+    void registerQTreeWidgetObserver(QTreeWidget *treeWidgetObserver);
+    void registerQVTKidgetObserver(QVTKWidget *QVTKWidgetObserver);
+    void registerPCLViewerObserver(pcl::visualization::PCLVisualizer::Ptr viewOb);
+    std::size_t getMemoryUsageOfCachedClouds();
+    void setCachedCloudsMemoryLimit(std::size_t limit);
+    v
