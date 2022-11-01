@@ -43,4 +43,9 @@ public:
     void registerPCLViewerObserver(pcl::visualization::PCLVisualizer::Ptr viewOb);
     std::size_t getMemoryUsageOfCachedClouds();
     void setCachedCloudsMemoryLimit(std::size_t limit);
-    v
+    void updateView(QTreeWidgetItem* item);
+    //void updateTreeWidgetItem(std::string cloudPath,std::vector<std::string> children);//std::unique_ptr<CloudScene> scene
+    //#ponizej uzywam zwyklego wskaznika, bo w pointCloud.cpp wywoluje ta funkcje ze wskaznikiem do obiektu "this" ktory jest raw (zwykly) pointer
+    void updateTreeWidgetItem(CloudComponent *cloud);//void updateTreeWidgetItem(const std::unique_ptr<CloudComponent> &cloud);
+    void updateView();
+    //#ponizej uzywam zwyklego wskaznika, bo w pointCloud.cpp
