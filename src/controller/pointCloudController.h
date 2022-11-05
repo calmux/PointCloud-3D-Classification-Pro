@@ -48,4 +48,11 @@ public:
     //#ponizej uzywam zwyklego wskaznika, bo w pointCloud.cpp wywoluje ta funkcje ze wskaznikiem do obiektu "this" ktory jest raw (zwykly) pointer
     void updateTreeWidgetItem(CloudComponent *cloud);//void updateTreeWidgetItem(const std::unique_ptr<CloudComponent> &cloud);
     void updateView();
-    //#ponizej uzywam zwyklego wskaznika, bo w pointCloud.cpp
+    //#ponizej uzywam zwyklego wskaznika, bo w pointCloud.cpp wywoluje ta funkcje ze wskaznikiem do obiektu "this" ktory jest raw (zwykly) pointer
+    void updateView(CloudComponent *cloud);//void updateView(const std::unique_ptr<CloudComponent> &cloud);
+    void updateQVTKWidget();
+    bool updateCachedCloudsContainer(QTreeWidgetItem* selectedItem);
+    void clearViewer(pcl::visualization::PCLVisualizer::Ptr viewer);
+    void clearTreeWidgetTreeChildren();
+    void remove(QList<QTreeWidgetItem*> selectedClouds);
+    voi
