@@ -62,4 +62,7 @@ public:
     void project(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ProjectionType> projectionType,std::shared_ptr<EditType> editType=nullptr);
     void saveProjections(QList<QTreeWidgetItem*> selectedClouds,std::string folderPath);
     //stara wersja classify
-    //void classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::s
+    //void classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::string modelPath,int numOfClasses);
+    void classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::shared_ptr<SegmentationType> segmentationType,std::shared_ptr<ProjectionType> projectionType,std::shared_ptr<EditType> editType,std::string modelPath,int numOfClasses);
+    void benchmark(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<BenchmarkType> benchmarkType, std::string folderPath="./");
+    //void setBenchmarkType(QL
