@@ -58,4 +58,8 @@ public:
     void visualize(QTreeWidgetItem* selectedItem,pcl::visualization::PCLVisualizer::Ptr viewer);//visualize scene or single object
     void visualizeAllChildren(QTreeWidgetItem* selectedItem,pcl::visualization::PCLVisualizer::Ptr viewer);
     //void visualize(std::string cloudPath, int objectID,pcl::visualization::PCLVisualizer::Ptr viewer); //visualize segmented object
-    void segment(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<SegmentationType> segm
+    void segment(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<SegmentationType> segmentationType);//we should pass to this function only CloudScenes type
+    void project(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ProjectionType> projectionType,std::shared_ptr<EditType> editType=nullptr);
+    void saveProjections(QList<QTreeWidgetItem*> selectedClouds,std::string folderPath);
+    //stara wersja classify
+    //void classify(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<ClassificationType> classificationType,std::s
