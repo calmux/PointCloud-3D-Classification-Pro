@@ -55,4 +55,7 @@ public:
     void clearViewer(pcl::visualization::PCLVisualizer::Ptr viewer);
     void clearTreeWidgetTreeChildren();
     void remove(QList<QTreeWidgetItem*> selectedClouds);
-    voi
+    void visualize(QTreeWidgetItem* selectedItem,pcl::visualization::PCLVisualizer::Ptr viewer);//visualize scene or single object
+    void visualizeAllChildren(QTreeWidgetItem* selectedItem,pcl::visualization::PCLVisualizer::Ptr viewer);
+    //void visualize(std::string cloudPath, int objectID,pcl::visualization::PCLVisualizer::Ptr viewer); //visualize segmented object
+    void segment(QList<QTreeWidgetItem*> selectedClouds,std::shared_ptr<SegmentationType> segm
