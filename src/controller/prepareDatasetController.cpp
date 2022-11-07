@@ -23,4 +23,8 @@ void PrepareDatasetController::extract(std::shared_ptr<ExtractObjectsInstances> 
     for (auto item:selectedItems){
         updateView(item,"processing ...");
         extractObjectsInstances->setInPath(item->text(this->srcPathColumn).toStdString());
-        extractObjectsInstances->setOutPath(item->text(this->dstPathColumn).toSt
+        extractObjectsInstances->setOutPath(item->text(this->dstPathColumn).toStdString());
+        extractObjectsInstances->extract();
+        updateView(item,"finished");
+    }
+}
