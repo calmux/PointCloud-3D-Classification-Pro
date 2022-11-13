@@ -11,4 +11,9 @@ private:
     const int finishedIndicatorColumn=2;
 public:
     PrepareDatasetController(QTreeWidget* trWid);
-    void
+    void updateView(QTreeWidgetItem* item,const QString state);
+    void prepare(std::shared_ptr<PrepareDatasetFrom3D> prepareDatasetFrom3D);
+    void extract(std::shared_ptr<ExtractObjectsInstances> extractObjectsInstances);
+};
+
+#endif // PREPAREDATASETCONTROLLER_H
