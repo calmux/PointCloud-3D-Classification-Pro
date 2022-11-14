@@ -8,4 +8,12 @@ void Worker::classify(const cloudControllerSharedPtr modelController, listOfTree
 }
 */
 void Worker::classify(const cloudControllerSharedPtr modelController, listOfTreeWidgetItemRawPtr selectedClouds
-              ,classificati
+              ,classificationTypeSharedPtr classificationType,segmentationTypeSharedPtr segmentationType
+              ,projectionTypeSharedPtr projectionType, editTypeSharedPtr editType
+                      ,stdString modelPath,integer numOfClasses){
+    QString result="CLASSIFICATION FINISHED";
+    //qDebug()<<"CLASSIFICATION thread:  "<<thread()->currentThreadId();
+    modelController->classify(selectedClouds,classificationType,segmentationType,projectionType,editType,modelPath,numOfClasses);
+    emit resultReady(result);
+}
+void Worker::b
