@@ -16,4 +16,10 @@ void Worker::classify(const cloudControllerSharedPtr modelController, listOfTree
     modelController->classify(selectedClouds,classificationType,segmentationType,projectionType,editType,modelPath,numOfClasses);
     emit resultReady(result);
 }
-void Worker::b
+void Worker::benchmark(const cloudControllerSharedPtr modelController, listOfTreeWidgetItemRawPtr selectedClouds,benchmarkTypeSharedPtr benchmarkType, stdString folderPath){
+    QString result="BENCHMARK FINISHED";
+    modelController->benchmark(selectedClouds,benchmarkType,folderPath);
+    //qDebug()<<"BENCHMARK thread:  "<<thread()->currentThreadId();
+    emit resultReady(result);
+}
+void Worker::prepareFrom3D(const prepareDatasetControllerSharedPtr controller, prepareD
