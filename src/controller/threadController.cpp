@@ -22,4 +22,11 @@ void Worker::benchmark(const cloudControllerSharedPtr modelController, listOfTre
     //qDebug()<<"BENCHMARK thread:  "<<thread()->currentThreadId();
     emit resultReady(result);
 }
-void Worker::prepareFrom3D(const prepareDatasetControllerSharedPtr controller, prepareD
+void Worker::prepareFrom3D(const prepareDatasetControllerSharedPtr controller, prepareDatasetFrom3DSharedPtr prepareDatasetFrom3D){
+    QString result="PREPARING DATA FROM 3D OBJECTS FINISHED";
+    controller->prepare(prepareDatasetFrom3D);
+    emit resultReady(result);
+}
+void Worker::extractObjectsInstances(const prepareDatasetControllerSharedPtr controller,extractObjectsInstancesSharedPtr extractObjectsInstances){
+    QString result="EXTRACTING SINGLE INSTANCES FROM SCENES WITH OBJECTS BELONGING TO SAME CLASSES FINISHED";
+    controller->extract(extra
