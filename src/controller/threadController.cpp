@@ -47,4 +47,12 @@ ThreadController::ThreadController()
     qRegisterMetaType<integer>("integer");//have to fill parenthesis otherwise : QObject::connect: Cannot queue arguments of type 'integer' ,(Make sure 'integer' is registered using qRegisterMetaType().)
 
     qRegisterMetaType<prepareDatasetControllerSharedPtr>();
-    qRegisterMetaType<p
+    qRegisterMetaType<prepareDatasetFrom3DSharedPtr>();
+    qRegisterMetaType<extractObjectsInstancesSharedPtr>();
+
+    Worker *worker = new Worker;
+    worker->moveToThread(&workerThread);
+    connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
+    connect(this, &ThreadController::classify, worker, &Worker::classify);
+    connect(this, &ThreadController::benchmark, worker, &Worker::benchmark);
+    connect(this, &ThreadController::prepareFr
