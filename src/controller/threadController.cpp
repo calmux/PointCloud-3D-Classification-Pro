@@ -29,4 +29,14 @@ void Worker::prepareFrom3D(const prepareDatasetControllerSharedPtr controller, p
 }
 void Worker::extractObjectsInstances(const prepareDatasetControllerSharedPtr controller,extractObjectsInstancesSharedPtr extractObjectsInstances){
     QString result="EXTRACTING SINGLE INSTANCES FROM SCENES WITH OBJECTS BELONGING TO SAME CLASSES FINISHED";
-    controller->extract(extra
+    controller->extract(extractObjectsInstances);
+    emit resultReady(result);
+}
+///////////////////////////////////////////
+ThreadController::ThreadController()
+{
+    //we have to register custom type in order to use it in connect (https://doc.qt.io/qt-5/qmetatype.html#qRegisterMetaType-1)
+    qRegisterMetaType<cloudControllerSharedPtr>();
+    qRegisterMetaType<listOfTreeWidgetItemRawPtr>();
+    qRegisterMetaType<classificationTypeSharedPtr>();
+    qRegisterMetaType<segmentationTypeSharedPtr>("segmentationTypeSharedPtr")
