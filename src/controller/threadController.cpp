@@ -39,4 +39,12 @@ ThreadController::ThreadController()
     qRegisterMetaType<cloudControllerSharedPtr>();
     qRegisterMetaType<listOfTreeWidgetItemRawPtr>();
     qRegisterMetaType<classificationTypeSharedPtr>();
-    qRegisterMetaType<segmentationTypeSharedPtr>("segmentationTypeSharedPtr")
+    qRegisterMetaType<segmentationTypeSharedPtr>("segmentationTypeSharedPtr");
+    qRegisterMetaType<projectionTypeSharedPtr>("projectionTypeSharedPtr");
+    qRegisterMetaType<editTypeSharedPtr>("editTypeSharePtr");
+    qRegisterMetaType<benchmarkTypeSharedPtr>();
+    qRegisterMetaType<stdString>();
+    qRegisterMetaType<integer>("integer");//have to fill parenthesis otherwise : QObject::connect: Cannot queue arguments of type 'integer' ,(Make sure 'integer' is registered using qRegisterMetaType().)
+
+    qRegisterMetaType<prepareDatasetControllerSharedPtr>();
+    qRegisterMetaType<p
