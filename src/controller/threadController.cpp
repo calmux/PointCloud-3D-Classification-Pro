@@ -55,4 +55,16 @@ ThreadController::ThreadController()
     connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
     connect(this, &ThreadController::classify, worker, &Worker::classify);
     connect(this, &ThreadController::benchmark, worker, &Worker::benchmark);
-    connect(this, &ThreadController::prepareFr
+    connect(this, &ThreadController::prepareFrom3D, worker, &Worker::prepareFrom3D);
+    connect(this, &ThreadController::extractObjectsInstances, worker, &Worker::extractObjectsInstances);
+    connect(worker, &Worker::resultReady, this, &ThreadController::handleResults);
+    workerThread.start();
+}
+ThreadController::~ThreadController(){
+    workerThread.quit();
+    workerThread.wait();
+}
+void ThreadController::handleResults(const QString &result){
+    qDebug()<<result;
+}
+
