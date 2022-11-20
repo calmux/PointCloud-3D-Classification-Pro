@@ -42,3 +42,13 @@ public slots:
 signals:
     // stara wersja classify
     //void classify(const cloudControllerSharedPtr modelController, listOfTreeWidgetItemRawPtr selectedClouds,classificationTypeSharedPtr classificationType,stdString modelPath,integer numOfClasses);
+    void classify(const cloudControllerSharedPtr modelController, listOfTreeWidgetItemRawPtr selectedClouds
+                  ,classificationTypeSharedPtr classificationType,segmentationTypeSharedPtr segmentationType
+                  ,projectionTypeSharedPtr projectionType, editTypeSharedPtr editType
+                  ,stdString modelPath,integer numOfClasses);
+    void benchmark(const cloudControllerSharedPtr modelController, listOfTreeWidgetItemRawPtr selectedClouds,benchmarkTypeSharedPtr benchmarkType, stdString folderPath);
+    void prepareFrom3D(const prepareDatasetControllerSharedPtr controller, prepareDatasetFrom3DSharedPtr prepareDatasetFrom3D);
+    void extractObjectsInstances(const prepareDatasetControllerSharedPtr controller,extractObjectsInstancesSharedPtr extractObjectsInstances);
+};
+
+#endif // THREADCONTROLLER_H
