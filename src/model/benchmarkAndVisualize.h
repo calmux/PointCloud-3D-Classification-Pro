@@ -21,4 +21,17 @@ protected:
     float l=-1; //object (or max bounding box when using AABB) length
     float w=-1; //
     float h=-1;
-    float yaw;//->? ustaw paramtery domyslne ! np. #include <limits> + center=s
+    float yaw;//->? ustaw paramtery domyslne ! np. #include <limits> + center=std::numeric_limits<float>::quiet_NaN();
+    BBType bbType = type_NotSpecified;
+public:
+    explicit BoundingBoxType(BBType type);
+    virtual void calculate(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud)=0;
+    pcl::PointXYZ getMinPt();
+    pcl::PointXYZ getMaxPt();
+    pcl::PointXYZ getCenter();
+    float getLength();
+    float getWidth();
+    float getHeight();
+    float getYaw();
+    BBType getType();
+    virtual Eigen::Quate
