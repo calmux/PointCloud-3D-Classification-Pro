@@ -59,4 +59,13 @@ protected:
     std::shared_ptr<BoundingBoxType> boundingBox;
     bool class_mapping_set=false;
     std::vector<std::string> classList;
-    int
+    int class_id=-1;
+    std::string FILEPATH=""; //path to the labels.txt folder
+    std::string FILENAME="object_labels.txt";
+public:
+    explicit BenchmarkType(std::shared_ptr<BoundingBoxType> bBox);
+    virtual void calculateParameters(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud)=0;
+    virtual void saveTxt()=0;
+    void setFileName(std::string fName);
+    void setFilePath(std::string fPath);
+    void setClassMapping(std::vector<std::string> classList); //classList - on i't
