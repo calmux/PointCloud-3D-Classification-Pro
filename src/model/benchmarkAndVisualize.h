@@ -34,4 +34,16 @@ public:
     float getHeight();
     float getYaw();
     BBType getType();
-    virtual Eigen::Quate
+    virtual Eigen::Quaternionf getQuaternionf();
+    virtual Eigen::Vector3f getOBB_positionV3f();
+};
+class AxisAlignedBoudningBox:public BoundingBoxType{
+public:
+    AxisAlignedBoudningBox();
+    void calculate(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+};
+class OrientedBoundingBox:public BoundingBoxType{
+private:
+    BBType bbType = type_OrientedBoundingBox;
+    Eigen::Quaternionf OBB_quaternion;//wykorzystywane tylko do rysowania boundingboxa (funkcja addCube z kwaternionem)
+ 
