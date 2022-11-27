@@ -46,4 +46,17 @@ class OrientedBoundingBox:public BoundingBoxType{
 private:
     BBType bbType = type_OrientedBoundingBox;
     Eigen::Quaternionf OBB_quaternion;//wykorzystywane tylko do rysowania boundingboxa (funkcja addCube z kwaternionem)
- 
+    Eigen::Vector3f OBB_positionV3f;//wykorzystywane tylko do rysowania boundingboxa (funkcja addCube z kwaternionem)
+public:
+    OrientedBoundingBox();
+    void calculate(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+    Eigen::Quaternionf getQuaternionf();
+    Eigen::Vector3f getOBB_positionV3f();
+};
+
+class BenchmarkType{
+protected:
+    std::shared_ptr<BoundingBoxType> boundingBox;
+    bool class_mapping_set=false;
+    std::vector<std::string> classList;
+    int
