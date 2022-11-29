@@ -89,4 +89,12 @@ private:
     double bb2D_Xmax=0;
     double bb2D_Ymax=0;
     double score=1; //->? to jest przekoanie ze obiekt nalezy do klasy class_id
-    boo
+    bool add_only_if_visable_on_image=false;
+    unsigned int im_width=0;  //dimensions of 2D images from KITTI dataset
+    unsigned  int im_height=0;
+public:
+    KITTIBenchmark(std::shared_ptr<BoundingBoxType> bBox);
+    void saveTxt();
+    void calculateParameters(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+    void getMatrix(Eigen::MatrixXd &mat, std::string line);
+    void transformToLeftImage(pcl::PointXYZ point,Eigen::VectorXd &point_transformed,bo
