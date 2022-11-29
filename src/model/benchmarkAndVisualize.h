@@ -97,4 +97,16 @@ public:
     void saveTxt();
     void calculateParameters(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
     void getMatrix(Eigen::MatrixXd &mat, std::string line);
-    void transformToLeftImage(pcl::PointXYZ point,Eigen::VectorXd &point_transformed,bo
+    void transformToLeftImage(pcl::PointXYZ point,Eigen::VectorXd &point_transformed,bool only_to_camera_coordinates=false);
+    void setCALCULATE_2D_BB(bool calculate);
+    void benchmark(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,int c_id);
+};
+
+class VisualizationType{
+public:
+    virtual void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,int class_id,std::string name, pcl::visualization::PCLVisualizer::Ptr viewer)=0;
+    std::vector<uint8_t> mapColor(int class_id);
+};
+class VisualizationNoBB:public VisualizationType{
+public:
+    void visualize(pcl::PointC
