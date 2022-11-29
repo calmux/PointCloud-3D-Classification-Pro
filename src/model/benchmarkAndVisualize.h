@@ -75,4 +75,18 @@ public:
 };
 class CustomBenchmark:public BenchmarkType{
 public:
-    CustomBenchmark(std::shared_ptr<BoundingBoxType> bBox
+    CustomBenchmark(std::shared_ptr<BoundingBoxType> bBox);
+    void saveTxt();
+    void calculateParameters(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+};
+class KITTIBenchmark:public BenchmarkType{
+private:
+    std::string calib_path; //filepath of KITTI calibration file
+    std::string left_image_path;
+    bool CALCULATE_2D_BB=0;
+    double bb2D_Xmin=0;
+    double bb2D_Ymin=0;
+    double bb2D_Xmax=0;
+    double bb2D_Ymax=0;
+    double score=1; //->? to jest przekoanie ze obiekt nalezy do klasy class_id
+    boo
