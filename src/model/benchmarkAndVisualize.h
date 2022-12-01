@@ -109,4 +109,11 @@ public:
 };
 class VisualizationNoBB:public VisualizationType{
 public:
-    void visualize(pcl::PointC
+    void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,int class_id,std::string name, pcl::visualization::PCLVisualizer::Ptr viewer);
+};
+class VisualizationWithBB:public VisualizationType{
+private:
+    std::shared_ptr<BoundingBoxType> boundingBox= nullptr;
+public:
+    VisualizationWithBB(std::shared_ptr<BoundingBoxType> bBox); //use this constructor if you want to draw bounding boxes
+    void visualize(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,int class_id,std::string name
