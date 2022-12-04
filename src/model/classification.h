@@ -24,4 +24,10 @@ class ClassificationType{
 public:
     virtual std::vector<float> classifyAndGetNNResponeVector(const std::vector<cv::Mat>& projection_vector, const std::string modelDirectory, int numOfClasses)=0;
 };
-class MultiViewClassification:public 
+class MultiViewClassification:public ClassificationType{
+public:
+   std::vector<float> listTupleToVector_Float(PyObject* incoming);
+   std::vector<float> classifyAndGetNNResponeVector(const std::vector<cv::Mat>& projection_vector, const std::string modelDirectory, int numOfClasses);
+};
+
+#endif //INC_3DPOINTCLOUDCLASSIFICATION_CLASSIFICATION_H
