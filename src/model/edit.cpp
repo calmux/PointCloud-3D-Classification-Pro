@@ -14,4 +14,6 @@ void ProjectionEdit::edit(std::vector<cv::Mat> &projections){
      //store image in memory buffer (no need to write to file)
      std::vector<uchar> buf;
      //UWAGA - wynik klasyfikacji nieznacznie sie rozni w zaleznosci od zastosowania ponizej jedenj z 3 operacji:
-     //1. Zakodowanie (z domyslnymi parametrami czyli m.in. CV_IMWRITE_JPEG_QUALITY=0.95)  orginalnej powyzszej
+     //1. Zakodowanie (z domyslnymi parametrami czyli m.in. CV_IMWRITE_JPEG_QUALITY=0.95)  orginalnej powyzszej vecMat, a nastepnie odkodowanie - czyli tak jakby odczytanie .jpg z pliku
+     // w ten sposob klasyfikuje tak jakbym wczytywal zjdecie z pliku z uzyciem imread -> tak to jest robione w TestowanieModelu.py jezeli uruchomie jako main (rezultaty sa wowczas tutaj takie same jak tam)
+     //2. Podanie do classify_single oryginalnej cvMat - zdaje sie, ze daje lepsze rezultaty niz sposob 1 (czedu kliku dziesieciotysiecznych na korzysc poprawnej sily odpowiedzi model
