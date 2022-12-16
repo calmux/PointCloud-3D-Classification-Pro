@@ -28,4 +28,7 @@ void CloudComponent::visualizeAllChildren(std::shared_ptr<VisualizationType> vTy
 void CloudComponent::visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer){std::cout<<"Cannot visualize - Operation not supported for this cloudType class";}
 void CloudComponent::visualize(std::shared_ptr<VisualizationType> vTyp,int object_id){throw std::runtime_error ("Cannot visualize - Operation not supported for this cloudType class");}
 void CloudComponent::visualize(std::shared_ptr<VisualizationType> vTyp,int object_id,pcl::visualization::PCLVisualizer::Ptr viewer){throw std::runtime_error ("Cannot visualize - Operation not supported for this cloudType class");}
-void CloudComponent::benchmark(std::shared_ptr<BenchmarkType> bType, std::string FILEPATH){ thr
+void CloudComponent::benchmark(std::shared_ptr<BenchmarkType> bType, std::string FILEPATH){ throw std::runtime_error ("Operation not supported for this cloudType class");}
+void CloudComponent::benchmark(std::shared_ptr<BenchmarkType> bType, std::string FILEPATH,int object_id){ throw std::runtime_error ("Operation not supported for this cloudType class");}
+
+void CloudComponent::addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/){std::cout<<"Cannot addCloud(cc/*CloudComponent *cc*/) - Operation not supported for this cloudType class"<<std::endl;} //when 
