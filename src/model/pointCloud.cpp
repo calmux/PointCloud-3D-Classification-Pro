@@ -40,4 +40,17 @@ void CloudComponent::saveProjections(std::string FILEPATH, int objectID){throw s
 void CloudComponent::setProjectionType(std::shared_ptr<ProjectionType> pTyp){throw std::runtime_error ("Cannot setProjectionType - Operation not supported for this cloudType class");}
 void CloudComponent::setSegmentationType(std::shared_ptr<SegmentationType> sTyp){throw std::runtime_error ("Cannot setSegmentationType - Operation not supported for this cloudType class");}
 void CloudComponent::setClassificationType(std::shared_ptr<ClassificationType> cTyp){throw std::runtime_error ("Cannot setClassificationType - Operation not supported for this cloudType class");}
-void CloudComponent::setBenchmarkType(std::shared_ptr<Benc
+void CloudComponent::setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType,int objectID){}
+void CloudComponent::setBenchmarkType(std::shared_ptr<BenchmarkType> bType){
+    this->benchmarkType=bType;
+}
+
+CloudComponent* CloudComponent::getCloud(int object_ID){
+    return nullptr;
+}
+std::vector<std::string> CloudComponent::getCloudsNames(){
+    throw std::runtime_error ("Cannot getCloudNames() - Operation not supported for this cloudType class");
+    return {};
+}
+std::vector<int> CloudComponent::getCloudsClassIDs(){
+  
