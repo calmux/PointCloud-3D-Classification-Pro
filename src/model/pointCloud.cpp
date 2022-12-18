@@ -34,4 +34,7 @@ void CloudComponent::benchmark(std::shared_ptr<BenchmarkType> bType, std::string
 void CloudComponent::addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/){std::cout<<"Cannot addCloud(cc/*CloudComponent *cc*/) - Operation not supported for this cloudType class"<<std::endl;} //when we are adding objects or clouds by one (for example manually)
 void CloudComponent::removeCloud(int object_ID){std::cout<<"Cannot removeCloud(object_ID) - Operation not supported for this cloudType class"<<std::endl;}
 void CloudComponent::saveClouds(std::string FILEPATH){throw std::runtime_error ("Cannot save - Operation not supported for this cloudType class");}
-void CloudComponent::saveClouds(std::string FILEPATH, int object_ID){std::cout<<"Cannot saveCloud(FILEPATH,object_ID)- Operation not supported for 
+void CloudComponent::saveClouds(std::string FILEPATH, int object_ID){std::cout<<"Cannot saveCloud(FILEPATH,object_ID)- Operation not supported for this cloudType class"<<endl;}
+void CloudComponent::saveProjections(std::string FILEPATH){throw std::runtime_error ("Cannot save - Operation not supported for this cloudType class");}
+void CloudComponent::saveProjections(std::string FILEPATH, int objectID){throw std::runtime_error ("Cannot save - Operation not supported for this cloudType class");}
+void CloudComponent::setProjectionType(std::shared_ptr<ProjectionType> pTyp){throw std::runtime_error ("Cannot setProjectionType - Operat
