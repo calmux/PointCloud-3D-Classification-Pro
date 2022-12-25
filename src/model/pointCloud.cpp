@@ -53,4 +53,16 @@ std::vector<std::string> CloudComponent::getCloudsNames(){
     return {};
 }
 std::vector<int> CloudComponent::getCloudsClassIDs(){
-  
+    std::cout<<"Cannot getCloudsClassIDs - Operation not supported for this cloudType class"<<std::endl;
+    return {};
+}
+int CloudComponent::getCloudClassID(){
+    std::cout<<"Cannot getCloudClassID - Operation not supported for this cloudType class"<<std::endl;
+    return -2;
+}
+std::vector<float> CloudComponent::getNNResopneVector(){return {};}
+int CloudComponent::getNumberOfClouds(){
+    return 0;
+}
+std::size_t CloudComponent::getCloudSize(){
+    std::cout<<"Cannot getCloudSize() - Operati
