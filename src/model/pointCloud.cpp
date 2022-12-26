@@ -112,4 +112,14 @@ std::string CloudComponent::getParentSceneName(){
 std::string CloudComponent::getParentSourcePath(){
     return this->parentSourcePath;
 }
-void CloudComponent::setParentSourcePath(std::string parentSrcPat
+void CloudComponent::setParentSourcePath(std::string parentSrcPath){
+    this->parentSourcePath=parentSrcPath;
+}
+
+void CloudComponent::setController(std::shared_ptr<PointCloudController> ctr){std::cout<<"Could not setController - Operation not supported for this cloudType class"<<std::endl;}
+void CloudComponent::updateView(){std::cout<<"Could not updateView - Operation not supported for this cloudType class"<<std::endl;}
+
+void CloudComponent::clearProjections(){}
+//////////////////////////////////////////////////////////////
+
+CloudObject::CloudObject(pcl::PointClo
