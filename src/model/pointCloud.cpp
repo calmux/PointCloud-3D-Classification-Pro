@@ -80,4 +80,19 @@ int CloudComponent::getCloudID(){
     std::cout<<"Cannot getCloudID - Operation not supported for this cloudType class"<<std::endl;
     return -2;
 }
-std::vector<int> CloudComponent::getCloudsI
+std::vector<int> CloudComponent::getCloudsIDs(){
+    std::cout<<"Cannot getCloudsIDs() - Operation not supported for this cloudType class"<<std::endl;
+    return {};
+}
+void CloudComponent::saveCloud(std::string FILEPATH){
+    std::cout<<"Cannot saveCloud() - operation not suppoerted for this cloudType"<<std::endl;
+}
+CloudComponent* CloudComponent::getCloud(){
+    return this;
+}
+size_t CloudComponent::getCloudNumberOfPoints(){
+    if(this->cloud!=nullptr){
+        return this->cloud->size();
+    }else{
+        return 0;
+  
