@@ -95,4 +95,21 @@ size_t CloudComponent::getCloudNumberOfPoints(){
         return this->cloud->size();
     }else{
         return 0;
-  
+    }
+}
+cloudType CloudComponent::getCloudType(){
+    return this->type;
+}
+std::string CloudComponent::getName(){
+    return  this->name;
+}
+std::string CloudComponent::getSourcePath(){
+    return this->sourcePath;
+}
+std::string CloudComponent::getParentSceneName(){
+    return this->parentSceneName;
+}
+std::string CloudComponent::getParentSourcePath(){
+    return this->parentSourcePath;
+}
+void CloudComponent::setParentSourcePath(std::string parentSrcPat
