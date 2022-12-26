@@ -65,4 +65,19 @@ int CloudComponent::getNumberOfClouds(){
     return 0;
 }
 std::size_t CloudComponent::getCloudSize(){
-    std::cout<<"Cannot getCloudSize() - Operati
+    std::cout<<"Cannot getCloudSize() - Operation not supotted for this cloudType class"<<std::endl;
+    return 0;
+}
+std::string CloudComponent::getCloudClassName(){
+    if(benchmarkType!=nullptr){
+        return this->benchmarkType->mapClass(this->getCloudClassID());
+    }else{
+        return "No benchmarkType set (class mapping not set)";
+    }
+
+}
+int CloudComponent::getCloudID(){
+    std::cout<<"Cannot getCloudID - Operation not supported for this cloudType class"<<std::endl;
+    return -2;
+}
+std::vector<int> CloudComponent::getCloudsI
