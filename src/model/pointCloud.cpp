@@ -122,4 +122,12 @@ void CloudComponent::updateView(){std::cout<<"Could not updateView - Operation n
 void CloudComponent::clearProjections(){}
 //////////////////////////////////////////////////////////////
 
-CloudObject::CloudObject(pcl::PointClo
+CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,int id):CloudComponent(_cloud,"object"){ //->?czyli domyslna nazwa obiektu jest "object"
+    this->id=id;
+    this->type=type_CloudObject;
+} //->? NAUKA - przekazywanie parametrow do konstruktora bazowego
+CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name):CloudComponent(_cloud,_name){
+    //# co z id w przypadku tego konstruktora ?
+    this->type=type_CloudObject;
+}
+CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr
