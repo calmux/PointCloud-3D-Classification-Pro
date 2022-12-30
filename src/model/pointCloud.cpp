@@ -153,4 +153,15 @@ void CloudObject::project(std::shared_ptr<ProjectionType> projTyp) {
         std::cout<<"PROJECTING "<<name<<" "<<id<<std::endl;
         projections=projectionType->project(this->cloud);
     } else{
-        thro
+        throw std::runtime_error ("Set projectionType for CloudObject class first!");
+    }
+}
+void CloudObject::edit(std::shared_ptr<EditType> eType){
+    if(eType!=nullptr){
+        eType->edit(this->projections); //we pass projections by reference so we are editing this class "projections" member
+    }
+}
+void CloudObject::classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClasses) {
+    this->classificationType=cTyp;
+    if(classificationType!= nullptr){
+        std::cout<<"CL
