@@ -130,4 +130,14 @@ CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string 
     //# co z id w przypadku tego konstruktora ?
     this->type=type_CloudObject;
 }
-CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr
+CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path):CloudComponent(_cloud,_name,src_path){
+    this->type=type_CloudObject;
+}
+CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath,int id_,int cls_id,std::vector<float> nnRespVec)
+    :CloudComponent(_cloud,_name,src_path,parName,parSrcPath)
+{
+    this->type=type_CloudObject;
+    this->id=id_;
+    this->class_id=cls_id;
+    this->nnResponseVector=nnRespVec;
+}
