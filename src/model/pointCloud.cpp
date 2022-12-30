@@ -164,4 +164,9 @@ void CloudObject::edit(std::shared_ptr<EditType> eType){
 void CloudObject::classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClasses) {
     this->classificationType=cTyp;
     if(classificationType!= nullptr){
-        std::cout<<"CL
+        std::cout<<"CLASSIFYING "<<name<<" "<<id<<std::endl;
+        //this->class_id=classificationType->classify(this->projections,modelDir,numOfClasses);
+        this->nnResponseVector=classificationType->classifyAndGetNNResponeVector(this->projections,modelDir,numOfClasses); //returns vector-> vecotr[0]=classification result=classID, the rest of vector is a NeuralNet response vector
+        if(!nnResponseVector.empty()){
+            this->class_id=static_cast<int>(nnResponseVector.at(0));
+            this->nnResponseVector=std::vector<f
