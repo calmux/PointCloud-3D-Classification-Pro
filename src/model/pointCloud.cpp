@@ -141,3 +141,16 @@ CloudObject::CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string 
     this->class_id=cls_id;
     this->nnResponseVector=nnRespVec;
 }
+void CloudObject::setProjectionType(std::shared_ptr<ProjectionType> pTyp){
+    this->projectionType=pTyp;
+}
+void CloudObject::setClassificationType(std::shared_ptr<ClassificationType> cTyp){
+    this->classificationType=cTyp;
+}
+void CloudObject::project(std::shared_ptr<ProjectionType> projTyp) {
+    setProjectionType(projTyp);
+    if(projectionType!= nullptr){
+        std::cout<<"PROJECTING "<<name<<" "<<id<<std::endl;
+        projections=projectionType->project(this->cloud);
+    } else{
+        thro
