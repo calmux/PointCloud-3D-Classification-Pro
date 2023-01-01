@@ -169,4 +169,17 @@ void CloudObject::classify(std::shared_ptr<ClassificationType> cTyp,std::string 
         this->nnResponseVector=classificationType->classifyAndGetNNResponeVector(this->projections,modelDir,numOfClasses); //returns vector-> vecotr[0]=classification result=classID, the rest of vector is a NeuralNet response vector
         if(!nnResponseVector.empty()){
             this->class_id=static_cast<int>(nnResponseVector.at(0));
-            this->nnResponseVector=std::vector<f
+            this->nnResponseVector=std::vector<float>(this->nnResponseVector.cbegin()+1,this->nnResponseVector.cend());
+        }
+
+        clearProjections();
+
+        updateView();
+    } else{
+        throw std::runtime_error ("Set classificationType for CloudObject class first!");
+    }
+}
+void CloudObject::classify(std::shared_ptr<ClassificationType> cTyp,std::shared_ptr<SegmentationType> sTyp,std::shared_ptr<ProjectionType> pTyp,std::shared_ptr<EditType> eTyp, std::string modelDir,int numOfClasses){
+    project(pTyp);
+    edit(eTyp);
+    classify(cT
