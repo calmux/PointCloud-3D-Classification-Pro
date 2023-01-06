@@ -182,4 +182,14 @@ void CloudObject::classify(std::shared_ptr<ClassificationType> cTyp,std::string 
 void CloudObject::classify(std::shared_ptr<ClassificationType> cTyp,std::shared_ptr<SegmentationType> sTyp,std::shared_ptr<ProjectionType> pTyp,std::shared_ptr<EditType> eTyp, std::string modelDir,int numOfClasses){
     project(pTyp);
     edit(eTyp);
-    classify(cT
+    classify(cTyp,modelDir,numOfClasses);
+}
+void CloudObject::benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILEPATH){
+    std::cout<<"ADDING BENCHMARK LABEL FOR "<<name<<" CLOUD"<<std::endl;
+    bType->setFileName(this->parentSceneName);
+    bType->setFilePath(FILEPATH);
+    this->benchmarkType=bType;
+    bType->benchmark(this->cloud,this->class_id);
+    updateView();
+}
+void CloudObject::visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization
