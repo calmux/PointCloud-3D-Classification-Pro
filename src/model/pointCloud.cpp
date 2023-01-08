@@ -192,4 +192,17 @@ void CloudObject::benchmark(std::shared_ptr<BenchmarkType> bType,std::string FIL
     bType->benchmark(this->cloud,this->class_id);
     updateView();
 }
-void CloudObject::visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization
+void CloudObject::visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer){
+    vTyp->visualize(this->cloud,this->class_id,this->name,viewer);
+}
+void CloudObject::visualize(){
+    std::cout<<"To be defined"<<std::endl;
+    //...
+}
+void CloudObject::saveCloud(std::string FILEPATH){
+    FILEPATH=FILEPATH+"/"+this->name;
+    if(!ends_with(this->name,".pcd")){
+            FILEPATH=FILEPATH+".pcd";
+    }
+    std::cout<<"Saving cloud to"<<FILEPATH<<std::endl;
+    pcl::io::savePCDFileASCII (FILEPATH, *cloud);
