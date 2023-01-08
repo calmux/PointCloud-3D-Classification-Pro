@@ -206,3 +206,14 @@ void CloudObject::saveCloud(std::string FILEPATH){
     }
     std::cout<<"Saving cloud to"<<FILEPATH<<std::endl;
     pcl::io::savePCDFileASCII (FILEPATH, *cloud);
+}
+void CloudObject::saveClouds(std::string FILEPATH){
+    saveCloud(FILEPATH);
+}
+void CloudObject::saveProjections(std::string FILEPATH){
+    for(int i=0; i<projections.size();++i){
+        cv::imwrite(FILEPATH+"/"+name+
+        /*"_"+std::to_string(id)*/
+        /*TU POWIENNO BYC: NUMER ALBO KAT RZUTU W PIONIE I POZIOMIE, TYMCZASOWO DAJE PO PROSTU NUMER RZUTU*/
+        this->projectionType->getProjectionNameSuffix(i)+".jpg",projections.at(i));
+    
