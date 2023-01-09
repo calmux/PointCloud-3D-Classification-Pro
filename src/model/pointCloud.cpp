@@ -259,4 +259,14 @@ void CloudObject::clearProjections(){
     this->projections.clear();
 }
 /////////////////////////////////////////////////////////////////////////////////////////
-CloudScene::CloudScene(pcl::PointCloud<pcl::PointXYZ>::
+CloudScene::CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name): CloudComponent(cloud,_name){
+    this->type=type_CloudScene;
+}
+CloudScene::CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name,std::string src_path): CloudComponent(cloud,_name,src_path){
+    this->type=type_CloudScene;
+}
+CloudScene::CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath)
+    :CloudComponent(cloud,_name,src_path,parName,parSrcPath)
+{
+    this->type=type_CloudScene;
+}
