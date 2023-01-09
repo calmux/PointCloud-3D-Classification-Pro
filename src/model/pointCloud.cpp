@@ -249,4 +249,14 @@ void CloudObject::setController(std::shared_ptr<PointCloudController> ctr){
 }
 void CloudObject::updateView(){
     if(this->controller!=nullptr){
-        this->c
+        this->controller->updateView(this); //albo this->controller->updateView(this), ktore z kolei updateuje np. treeWidgetItem
+    }else{
+        std::cout<<"Could not update view for CloudObject - set controller in model (CloudComponent in pointCloud.h)"<<std::endl;
+    }
+}
+
+void CloudObject::clearProjections(){
+    this->projections.clear();
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+CloudScene::CloudScene(pcl::PointCloud<pcl::PointXYZ>::
