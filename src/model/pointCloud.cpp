@@ -216,4 +216,19 @@ void CloudObject::saveProjections(std::string FILEPATH){
         /*"_"+std::to_string(id)*/
         /*TU POWIENNO BYC: NUMER ALBO KAT RZUTU W PIONIE I POZIOMIE, TYMCZASOWO DAJE PO PROSTU NUMER RZUTU*/
         this->projectionType->getProjectionNameSuffix(i)+".jpg",projections.at(i));
-    
+    }
+}
+void CloudObject::setName(std::string name){this->name=name;}
+void CloudObject::setParentSceneName(std:: string name){this->parentSceneName=name;}
+std::vector<std::string> CloudObject::getCloudsNames(){
+    return {};
+}
+int CloudObject::getCloudClassID(){
+    return this->class_id;
+}
+int CloudObject::getCloudID(){
+    return this->id;
+}
+/**
+ * @brief CloudObject::getNNResopneVector
+ * @return response vector of neural net (without id of 
