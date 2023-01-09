@@ -231,4 +231,22 @@ int CloudObject::getCloudID(){
 }
 /**
  * @brief CloudObject::getNNResopneVector
- * @return response vector of neural net (without id of 
+ * @return response vector of neural net (without id of max response = class_id)
+ */
+std::vector<float> CloudObject::getNNResopneVector(){
+    if(this->nnResponseVector.size()>=1){
+        return this->nnResponseVector;
+    }else{
+        return {};
+    }
+}
+std::size_t CloudObject::getCloudSize(){
+    return sizeof(pcl::PointXYZ)*this->cloud->size();
+}
+
+void CloudObject::setController(std::shared_ptr<PointCloudController> ctr){
+    this->controller=ctr;
+}
+void CloudObject::updateView(){
+    if(this->controller!=nullptr){
+        this->c
