@@ -302,4 +302,13 @@ void CloudScene::removeCloud(int object_ID) {
         ++index;
     }
 }
-void Cloud
+void CloudScene::setFactory(std::shared_ptr<CloudObjectFactory> fc){
+    this->obFactory=fc;
+}
+void CloudScene::setSegmentationType(std::shared_ptr<SegmentationType> sTyp){
+    this->segmentationType=sTyp;
+}
+void CloudScene::segment(std::shared_ptr<SegmentationType> segmentationType) {
+    if(obFactory!= nullptr){
+        std::cout<<"SEGMETING "<<name<<" scene"<<std::endl;
+        clouds.clear(); //we have to clear this vector otherwise when segmenting same scene n times we would get new 
