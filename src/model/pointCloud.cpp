@@ -270,3 +270,12 @@ CloudScene::CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _na
 {
     this->type=type_CloudScene;
 }
+void CloudScene::addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/) {
+    clouds.push_back(std::move(cc));
+}
+void CloudScene::addClouds(std::vector<std::unique_ptr<CloudComponent>> vec) {
+    for(int i=0; i<vec.size();++i){
+        clouds.push_back(std::move(vec.at(i)));
+    }
+}
+void CloudScene::addClouds(std::vector<std::unique_ptr<CloudObject>> vec) { //->? musialem dac const bo inaczej "cannot bind non-const lvalue reference of type ‘std::vector<std::shared_ptr<CloudObject> >&’ to 
