@@ -278,4 +278,8 @@ void CloudScene::addClouds(std::vector<std::unique_ptr<CloudComponent>> vec) {
         clouds.push_back(std::move(vec.at(i)));
     }
 }
-void CloudScene::addClouds(std::vector<std::unique_ptr<CloudObject>> vec) { //->? musialem dac const bo inaczej "cannot bind non-const lvalue reference of type ‘std::vector<std::shared_ptr<CloudObject> >&’ to 
+void CloudScene::addClouds(std::vector<std::unique_ptr<CloudObject>> vec) { //->? musialem dac const bo inaczej "cannot bind non-const lvalue reference of type ‘std::vector<std::shared_ptr<CloudObject> >&’ to an rvalue of type ‘std::vector<std::shared_ptr<CloudObject> >’
+                                                                                    // addClouds(obFactory->create(segmentationType->segment(this->cloud),this->cloud));"
+                                                                  //wynika to pewnie z tego, ze ten vector uzyskany z obCreate jest tymczasowy i nie powinienem go edytowac ?
+    for(int i=0; i<vec.size();++i){
+        clouds.push_back(std::move(v
