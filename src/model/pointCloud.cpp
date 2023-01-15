@@ -311,4 +311,8 @@ void CloudScene::setSegmentationType(std::shared_ptr<SegmentationType> sTyp){
 void CloudScene::segment(std::shared_ptr<SegmentationType> segmentationType) {
     if(obFactory!= nullptr){
         std::cout<<"SEGMETING "<<name<<" scene"<<std::endl;
-        clouds.clear(); //we have to clear this vector otherwise when segmenting same scene n times we would get new 
+        clouds.clear(); //we have to clear this vector otherwise when segmenting same scene n times we would get new cloud.size()=n*primary clouds.size()
+        //# czy to na pewno oznacza, ze usunolem tez obiekty CloudObject zawarte w Clouds? -> moze lepiej zastosowac do CloudObject tez unique_ptr ?
+        this->setSegmentationType(segmentationType);
+        ///addClouds(obFactory->create(segmentationType->segment(this->cloud),this->cloud)); //segment-> get clusterIndices->create from them CloudObjects-> add those objects to the clouds vector
+        //this->doncloud=(this->segmentationType->get
