@@ -315,4 +315,17 @@ void CloudScene::segment(std::shared_ptr<SegmentationType> segmentationType) {
         //# czy to na pewno oznacza, ze usunolem tez obiekty CloudObject zawarte w Clouds? -> moze lepiej zastosowac do CloudObject tez unique_ptr ?
         this->setSegmentationType(segmentationType);
         ///addClouds(obFactory->create(segmentationType->segment(this->cloud),this->cloud)); //segment-> get clusterIndices->create from them CloudObjects-> add those objects to the clouds vector
-        //this->doncloud=(this->segmentationType->get
+        //this->doncloud=(this->segmentationType->getDonCloud());
+        if(this->controller==nullptr){
+            addClouds(obFactory->create(segmentationType->segment(this->cloud),this->name,this->sourcePath));
+        }else{
+            addClouds(obFactory->create(segmentationType->segment(this->cloud),this->controller,this->name,this->sourcePath));
+        }
+
+    }
+    else
+        throw std::runtime_error ("Set factory for creating objects first");
+}
+void CloudScene::project(std::shared_ptr<ProjectionType> projectionType){
+    for(int i=0; i<clouds.size();++i){
+     
