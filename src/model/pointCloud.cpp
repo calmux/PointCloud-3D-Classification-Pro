@@ -328,4 +328,13 @@ void CloudScene::segment(std::shared_ptr<SegmentationType> segmentationType) {
 }
 void CloudScene::project(std::shared_ptr<ProjectionType> projectionType){
     for(int i=0; i<clouds.size();++i){
-     
+        //clouds.at(i)->setProjectionType(projectionType); //->?UWAGA, tu zeby korzystac jak w CompositePattern (rekursywnie dla scen i obiektow), to deklaracje funkcji project(...) itd. powunny byc takie same w CloudScene i CloudObject
+        clouds.at(i)->project(projectionType);
+    }
+}
+void CloudScene::project(std::shared_ptr<ProjectionType> projectionType,int object_id){
+    bool projected=false;
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==object_id){
+            cloud->project(projectionType);
+        
