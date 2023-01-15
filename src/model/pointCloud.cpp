@@ -337,4 +337,20 @@ void CloudScene::project(std::shared_ptr<ProjectionType> projectionType,int obje
     for(auto &cloud:clouds){
         if(cloud->getCloudID()==object_id){
             cloud->project(projectionType);
-        
+            projected=true;
+            break;
+        }
+    }
+
+    if(projected==false){
+        std::cout<<"Could not project cloud with ID = "<<object_id<<" -> cloud not found"<<std::endl;
+    }
+}
+void CloudScene::edit(std::shared_ptr<EditType> eType){
+    std::cout<<"EDITING "<<std::endl;
+    for(int i=0; i<clouds.size();++i){
+        clouds.at(i)->edit(eType);
+    }
+}
+void CloudScene::edit(std::shared_ptr<EditType> eType, int object_id){
+    std::cout<<"EDITING "<<object_id<<" OBJEC
