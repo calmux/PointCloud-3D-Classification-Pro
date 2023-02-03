@@ -376,4 +376,8 @@ void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp, std::string 
     ///Py_Finalize();//PYTHON EMBEDDING FINALIZATION
 }
 //Use this function for classifing big scenes ->saves memory-> it keeeps only one projections vector (in CloudObject class) at once (we classyfing one object, clear projections vector and so on)
-void CloudS
+void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp,std::shared_ptr<SegmentationType> sTyp,std::shared_ptr<ProjectionType> pTyp,std::shared_ptr<EditType> eTyp, std::string modelDir,int numOfClasses){
+    segment(sTyp);//# INFO -> to ozacza, ze jak usniemy jakies chmury nalezace do sceny (np. po segmentacji), to po wywolaniu tej funkcji znowu bedziemy klasyfikowac wszystkie obiekty (a nie tylko te co zostaly)
+    for(auto &cloud:clouds){
+        cloud->segment(sTyp);
+        cloud->p
