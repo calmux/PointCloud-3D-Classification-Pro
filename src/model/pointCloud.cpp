@@ -368,4 +368,12 @@ void CloudScene::edit(std::shared_ptr<EditType> eType, int object_id){
     }
 }
 void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp, std::string modelDir,int numOfClasses) {
-   
+    ///init_ar(); //PYTHON EMBEDDING INITIALIZATION
+    for(int i=0; i<clouds.size();++i){
+        //clouds.at(i)->setClassificationType(cTyp);
+        clouds.at(i)->classify(cTyp,modelDir,numOfClasses);
+    }
+    ///Py_Finalize();//PYTHON EMBEDDING FINALIZATION
+}
+//Use this function for classifing big scenes ->saves memory-> it keeeps only one projections vector (in CloudObject class) at once (we classyfing one object, clear projections vector and so on)
+void CloudS
