@@ -353,4 +353,19 @@ void CloudScene::edit(std::shared_ptr<EditType> eType){
     }
 }
 void CloudScene::edit(std::shared_ptr<EditType> eType, int object_id){
-    std::cout<<"EDITING "<<object_id<<" OBJEC
+    std::cout<<"EDITING "<<object_id<<" OBJECT PROJECTIONS"<<std::endl;
+    bool edited=false;
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==object_id){
+            cloud->edit(eType);
+            edited=true;
+            break;
+        }
+    }
+
+    if(edited==false){
+        std::cout<<"Could not edit projections of cloud with ID = "<<object_id<<" -> cloud not found"<<std::endl;
+    }
+}
+void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp, std::string modelDir,int numOfClasses) {
+   
