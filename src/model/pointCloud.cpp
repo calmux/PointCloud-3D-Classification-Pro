@@ -406,4 +406,14 @@ void CloudScene::benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILE
     std::cout<<"BENCHMARKING"<<std::endl;
     this->benchmarkType=bType;
     for(int i=0; i<clouds.size();++i){
-     
+        clouds.at(i)->benchmark(bType,FILEPATH);
+    }
+}
+void CloudScene::benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILEPATH,int object_id){
+    std::cout<<"BENCHMARKING "<<object_id<<" OBJECT IN"<<this->name<<" SCENE"<<std::endl;
+    this->benchmarkType=bType; //# moze tutaj nie powinienem ustawiac benchmarkType dla rodzica ?
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==object_id){
+            cloud->benchmark(bType,FILEPATH);
+            break;
+        }
