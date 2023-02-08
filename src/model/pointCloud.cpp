@@ -380,4 +380,16 @@ void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp,std::shared_p
     segment(sTyp);//# INFO -> to ozacza, ze jak usniemy jakies chmury nalezace do sceny (np. po segmentacji), to po wywolaniu tej funkcji znowu bedziemy klasyfikowac wszystkie obiekty (a nie tylko te co zostaly)
     for(auto &cloud:clouds){
         cloud->segment(sTyp);
-        cloud->p
+        cloud->project(pTyp);
+        if(eTyp!=nullptr){
+            cloud->edit(eTyp);
+        }
+        cloud->classify(cTyp,modelDir,numOfClasses);
+    }
+}
+void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp, std::string modelDir,int numOfClasses,int object_id){
+    std::cout<<"CLASSIFINIG "<<object_id<<" OBJECT IN"<<this->name<<" SCENE"<<std::endl;
+    bool classified=false;
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==object_id){
+        
