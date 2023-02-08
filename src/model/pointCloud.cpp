@@ -392,4 +392,18 @@ void CloudScene::classify(std::shared_ptr<ClassificationType> cTyp, std::string 
     bool classified=false;
     for(auto &cloud:clouds){
         if(cloud->getCloudID()==object_id){
-        
+            cloud->classify(cTyp,modelDir,numOfClasses);
+            classified=true;
+            break;
+        }
+    }
+
+    if(classified==false){
+        std::cout<<"Could not classify cloud with ID = "<<object_id<<" -> cloud not found"<<std::endl;
+    }
+}
+void CloudScene::benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILEPATH){
+    std::cout<<"BENCHMARKING"<<std::endl;
+    this->benchmarkType=bType;
+    for(int i=0; i<clouds.size();++i){
+     
