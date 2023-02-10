@@ -417,3 +417,10 @@ void CloudScene::benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILE
             cloud->benchmark(bType,FILEPATH);
             break;
         }
+    }
+}
+void CloudScene::visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer){
+    std::cout<<"VISUALIZING "<<this->name<<" SCENE"<<std::endl;
+    //viewer->reset(new pcl::visualization::PCLVisualizer(this->name,false));//# UWAGA w QT MUSI BYC FALSE :http://www.pointclouds.org/documentation/tutorials/qt_visualizer.php
+    viewer->setWindowName(this->name);
+    vTyp->visualize(this->cl
