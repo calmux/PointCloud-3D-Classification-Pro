@@ -423,4 +423,14 @@ void CloudScene::visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualiz
     std::cout<<"VISUALIZING "<<this->name<<" SCENE"<<std::endl;
     //viewer->reset(new pcl::visualization::PCLVisualizer(this->name,false));//# UWAGA w QT MUSI BYC FALSE :http://www.pointclouds.org/documentation/tutorials/qt_visualizer.php
     viewer->setWindowName(this->name);
-    vTyp->visualize(this->cl
+    vTyp->visualize(this->cloud,-1,this->name,viewer); // passing -1, as class id (visualizing unclassifed scene)
+}
+void CloudScene::visualize(std::shared_ptr<VisualizationType> vTyp){
+    std::cout<<"VISUALIZING OBJECTS IN "<<this->name<<" SCENE"<<std::endl;
+    pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer (this->name));
+    for(int i=0; i<clouds.size();++i){
+        clouds.at(i)->visualize(vTyp,viewer);
+    }
+    while (!viewer->wasStopped())
+    {
+        viewer-
