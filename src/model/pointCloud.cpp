@@ -443,4 +443,16 @@ void CloudScene::visualizeAllChildren(std::shared_ptr<VisualizationType> vTyp,pc
     }
 }
 void CloudScene::visualize(std::shared_ptr<VisualizationType> vTyp,int object_id, pcl::visualization::PCLVisualizer::Ptr viewer){
-    std::cout<<"VISU
+    std::cout<<"VISUALIZING OBJECT IN "<<this->name<<" SCENE, WITH "<<object_id<<" ID"<<std::endl;
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==object_id){
+            cloud->visualize(vTyp,viewer);
+            break;
+        }
+    }
+}
+void CloudScene::saveCloud(std::string FILEPATH){
+    std::cout<<"Saving "<<FILEPATH+"/"+name<<" cloud scene"<<std::endl;
+    pcl::io::savePCDFileASCII (FILEPATH+"/"+name, *cloud);
+}
+void CloudScene::saveClouds(std::st
