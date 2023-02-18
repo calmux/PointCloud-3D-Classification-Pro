@@ -433,4 +433,14 @@ void CloudScene::visualize(std::shared_ptr<VisualizationType> vTyp){
     }
     while (!viewer->wasStopped())
     {
-        viewer-
+        viewer->spinOnce (100);
+    }
+}
+void CloudScene::visualizeAllChildren(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer){
+    std::cout<<"VISUALIZING OBJECTS IN "<<this->name<<" SCENE"<<std::endl;
+    for(int i=0; i<clouds.size();++i){
+        clouds.at(i)->visualize(vTyp,viewer);
+    }
+}
+void CloudScene::visualize(std::shared_ptr<VisualizationType> vTyp,int object_id, pcl::visualization::PCLVisualizer::Ptr viewer){
+    std::cout<<"VISU
