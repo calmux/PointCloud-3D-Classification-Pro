@@ -466,4 +466,20 @@ void CloudScene::saveClouds(std::string FILEPATH, int object_ID){
         if(cloud->getCloudID()==object_ID){
             cloud->saveClouds(FILEPATH);
             saved=true;
-            bre
+            break;
+        }
+    }
+
+    if(saved==false){
+        std::cout<<"Could not save cloud with ID = "<<object_ID<<" -> cloud not found"<<std::endl;
+    }
+}
+
+void CloudScene::saveProjections(std::string FILEPATH){
+    std::cout<<"SAVING PROJECTIONS"<<std::endl;
+    for(int i=0; i<clouds.size();++i){
+        clouds.at(i)->saveProjections(FILEPATH);
+    }
+}
+void CloudScene::saveProjections(std::string FILEPATH,int id){
+    std::cout<<"SAVING PROJECTIONS of object with "<<id<<" i
