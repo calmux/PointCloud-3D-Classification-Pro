@@ -482,4 +482,19 @@ void CloudScene::saveProjections(std::string FILEPATH){
     }
 }
 void CloudScene::saveProjections(std::string FILEPATH,int id){
-    std::cout<<"SAVING PROJECTIONS of object with "<<id<<" i
+    std::cout<<"SAVING PROJECTIONS of object with "<<id<<" id"<<std::endl;
+    bool saved=false;
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==id){
+            cloud->saveProjections(FILEPATH);
+            saved=true;
+            break;
+        }
+    }
+
+    if(saved==false){
+        std::cout<<"CANNOT SAVE PROJECTIONS - cloud with"<<id<<" -> cloud not found"<<std::endl;
+    }
+}
+//# UWAGA tu zwracam zwykly wskaznik pobrany z unique_ptr:
+//# ale to nieszkodzi, bo uniqe_ptr dalej zarzadza tym obiektem (usuwa
