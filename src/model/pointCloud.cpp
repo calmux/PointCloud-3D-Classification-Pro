@@ -537,4 +537,14 @@ int CloudScene::getNumberOfClouds(){
     return clouds.size();
 }
 std::size_t CloudScene::getCloudSize(){
-    std::size_t total_si
+    std::size_t total_size=sizeof(pcl::PointXYZ)*this->cloud->size(); //additionaly to vector of clouds, CloudComponent stores original cloud so we also have to take into account its size
+    for(auto &cloud:clouds){
+        total_size=total_size+cloud->getCloudSize();
+    }
+    return total_size;
+}
+void CloudScene::setController(std::shared_ptr<PointCloudController> ctr){
+    this->controller=ctr;
+    std::cout<<"SET CONTROLLER FOR SCENE"<<endl;
+    for(auto &cloud:clouds){
+        cloud->setControlle
