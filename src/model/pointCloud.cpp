@@ -501,4 +501,23 @@ void CloudScene::saveProjections(std::string FILEPATH,int id){
 //# Notice that a call to this function does not make unique_ptr release ownership of the pointer (i.e., it is still responsible for deleting the managed data at some point). Therefore, the value returned by this function shall not be used to construct a new managed pointer.
 CloudComponent* CloudScene::getCloud(int object_ID){
     int index=0;
-    for(auto &
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==object_ID){
+            return clouds.at(index).get();
+        }
+        ++index;
+    }
+
+    std::cout<<"No cloud with ID "<<object_ID<<" was found"<<endl;
+    return nullptr;
+}
+std::vector<std::string> CloudScene::getCloudsNames(){
+    std::vector<std::string> cloudNames;
+    for (int i=0; i<clouds.size();++i){
+        cloudNames.push_back(clouds.at(i)->getName());
+    }
+    return cloudNames;
+}
+
+std::vector<int> CloudScene::getCloudsClassIDs(){
+    std::vector<int> cl
