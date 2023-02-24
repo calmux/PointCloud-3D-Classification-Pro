@@ -520,4 +520,21 @@ std::vector<std::string> CloudScene::getCloudsNames(){
 }
 
 std::vector<int> CloudScene::getCloudsClassIDs(){
-    std::vector<int> cl
+    std::vector<int> cloudsIDs;
+    for (int i=0; i<clouds.size();++i){
+        cloudsIDs.push_back(clouds.at(i)->getCloudClassID());
+    }
+    return cloudsIDs;
+}
+std::vector<int> CloudScene::getCloudsIDs(){
+    std::vector<int> cloudsIDs;
+    for (int i=0; i<clouds.size();++i){
+        cloudsIDs.push_back(clouds.at(i)->getCloudID());
+    }
+    return cloudsIDs;
+}
+int CloudScene::getNumberOfClouds(){
+    return clouds.size();
+}
+std::size_t CloudScene::getCloudSize(){
+    std::size_t total_si
