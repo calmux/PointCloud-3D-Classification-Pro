@@ -497,4 +497,8 @@ void CloudScene::saveProjections(std::string FILEPATH,int id){
     }
 }
 //# UWAGA tu zwracam zwykly wskaznik pobrany z unique_ptr:
-//# ale to nieszkodzi, bo uniqe_ptr dalej zarzadza tym obiektem (usuwa
+//# ale to nieszkodzi, bo uniqe_ptr dalej zarzadza tym obiektem (usuwaniem)->dlatego lepiej nie USUWAC OBIEKTU ZWROCONEGO PRZEZ TA FUNKCJE (delete CloudComponent*) (i tak nie ma potrzeby tego robic)
+//# Notice that a call to this function does not make unique_ptr release ownership of the pointer (i.e., it is still responsible for deleting the managed data at some point). Therefore, the value returned by this function shall not be used to construct a new managed pointer.
+CloudComponent* CloudScene::getCloud(int object_ID){
+    int index=0;
+    for(auto &
