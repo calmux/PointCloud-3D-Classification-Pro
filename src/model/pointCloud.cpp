@@ -547,4 +547,18 @@ void CloudScene::setController(std::shared_ptr<PointCloudController> ctr){
     this->controller=ctr;
     std::cout<<"SET CONTROLLER FOR SCENE"<<endl;
     for(auto &cloud:clouds){
-        cloud->setControlle
+        cloud->setController(ctr);
+    }
+}
+void CloudScene::setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType,int objectID){
+    bool set=false;
+    for(auto &cloud:clouds){
+        if(cloud->getCloudID()==objectID){
+            cloud->setBenchmarkType(benchmarkType);
+            set=true;
+            break;
+        }
+    }
+
+    if(set==false){
+        std::cout<<"Could not set benchmark type for cloud with ID = "<<objectID<<" -> cloud not found"<<std
