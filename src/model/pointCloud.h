@@ -34,4 +34,12 @@ protected:
     std::shared_ptr<BenchmarkType> benchmarkType=nullptr;
     std::string name="default name";
     std::string sourcePath="";
-    std::string
+    std::string parentSceneName="";
+    std::string parentSourcePath="";
+
+    std::shared_ptr<PointCloudController> controller=nullptr;
+public:
+    CloudComponent(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name);
+    CloudComponent(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path);
+    CloudComponent(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath);
+    virtual void setFactory(std::shared_ptr<C
