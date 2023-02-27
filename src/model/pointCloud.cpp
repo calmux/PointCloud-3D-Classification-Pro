@@ -561,4 +561,23 @@ void CloudScene::setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType,i
     }
 
     if(set==false){
-        std::cout<<"Could not set benchmark type for cloud with ID = "<<objectID<<" -> cloud not found"<<std
+        std::cout<<"Could not set benchmark type for cloud with ID = "<<objectID<<" -> cloud not found"<<std::endl;
+    }
+}
+void CloudScene::updateView(){
+    if(this->controller!=nullptr){
+        this->controller->updateView(this);
+        for(auto &cloud:clouds){
+            cloud->updateView();
+        }
+    }else{
+        std::cout<<"Could not update view for CloudScene - set controller in model (CloudComponent in pointCloud.h)"<<std::endl;
+    }
+
+}
+
+void CloudScene::clearProjections(){
+    for(auto &cloud:clouds){
+        cloud->clearProjections();
+    }
+}
