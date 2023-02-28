@@ -42,4 +42,12 @@ public:
     CloudComponent(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name);
     CloudComponent(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path);
     CloudComponent(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath);
-    virtual void setFactory(std::shared_ptr<C
+    virtual void setFactory(std::shared_ptr<CloudObjectFactory> fc);
+
+    virtual void segment(std::shared_ptr<SegmentationType> segmentationType);
+    virtual void project(std::shared_ptr<ProjectionType> projTyp);
+    virtual void project(std::shared_ptr<ProjectionType> projTyp, int objectID);
+    virtual void edit(std::shared_ptr<EditType> eType);
+    virtual void edit(std::shared_ptr<EditType> eType, int objectID);
+    virtual void classify(std::shared_ptr<ClassificationType> cTyp, std::string modelDir,int numOfClasses);
+    vi
