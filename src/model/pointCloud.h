@@ -58,4 +58,11 @@ public:
     virtual void visualizeAllChildren(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer);
     virtual void visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer);
     virtual void visualize(std::shared_ptr<VisualizationType> vTyp,int object_id);
-    virtual void visualize(std::shared_ptr<VisualizationType> vTyp,int ob
+    virtual void visualize(std::shared_ptr<VisualizationType> vTyp,int object_id,pcl::visualization::PCLVisualizer::Ptr viewer);
+
+    virtual void addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/); //when we are adding objects or clouds by one (for example manually)
+    virtual void removeCloud(int object_ID);
+    virtual void saveCloud(std::string FILEPATH);
+    virtual void saveClouds(std::string FILEPATH);
+    virtual void saveClouds(std::string FILEPATH, int object_ID);
+    virtual void saveProjections(std::string FILEPATH);
