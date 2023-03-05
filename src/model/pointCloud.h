@@ -66,3 +66,11 @@ public:
     virtual void saveClouds(std::string FILEPATH);
     virtual void saveClouds(std::string FILEPATH, int object_ID);
     virtual void saveProjections(std::string FILEPATH);
+    virtual void saveProjections(std::string FILEPATH, int objectID);
+    virtual void setProjectionType(std::shared_ptr<ProjectionType> pTyp);
+    virtual void setSegmentationType(std::shared_ptr<SegmentationType> sTyp);
+    virtual void setClassificationType(std::shared_ptr<ClassificationType> cTyp);
+    virtual void setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType,int objectID);
+    void setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType);
+
+    virtual CloudComponent* getClo
