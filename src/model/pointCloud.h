@@ -86,4 +86,23 @@ public:
     CloudComponent* getCloud();
     size_t getCloudNumberOfPoints();
     cloudType getCloudType();
-    std::string getName(
+    std::string getName();
+    std::string getSourcePath();
+    std::string getParentSceneName();
+    std::string getParentSourcePath();
+    std::string getCloudClassName();
+
+
+    void setParentSourcePath(std::string parentSrcPath);
+
+    virtual void setController(std::shared_ptr<PointCloudController> ctr);
+    virtual void updateView();
+
+    virtual void clearProjections();
+};
+
+class CloudObject: public CloudComponent{
+private:
+    int id=-1;
+    int class_id=-1;
+    std::shared_ptr<Projec
