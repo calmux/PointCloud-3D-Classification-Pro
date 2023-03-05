@@ -105,4 +105,12 @@ class CloudObject: public CloudComponent{
 private:
     int id=-1;
     int class_id=-1;
-    std::shared_ptr<Projec
+    std::shared_ptr<ProjectionType> projectionType= nullptr;
+    std::shared_ptr<ClassificationType> classificationType= nullptr;
+    std::vector<cv::Mat> projections;
+    std::vector<float> nnResponseVector;
+public:
+    CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,int id);
+    CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string name);
+    CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string name,std::string src_path);
+    CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _clo
