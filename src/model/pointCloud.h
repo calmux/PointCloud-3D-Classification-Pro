@@ -73,4 +73,17 @@ public:
     virtual void setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType,int objectID);
     void setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType);
 
-    virtual CloudComponent* getClo
+    virtual CloudComponent* getCloud(int object_ID);
+    virtual std::vector<std::string> getCloudsNames();
+    virtual std::vector<int> getCloudsClassIDs();
+    virtual int getCloudClassID();
+    virtual int getCloudID();
+    virtual std::vector<int> getCloudsIDs();
+    virtual std::vector<float> getNNResopneVector();
+    virtual int getNumberOfClouds();
+    virtual std::size_t getCloudSize();
+
+    CloudComponent* getCloud();
+    size_t getCloudNumberOfPoints();
+    cloudType getCloudType();
+    std::string getName(
