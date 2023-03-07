@@ -118,4 +118,10 @@ public:
     void setClassificationType(std::shared_ptr<ClassificationType> cTyp);
     void project(std::shared_ptr<ProjectionType> projTyp);
     void edit(std::shared_ptr<EditType> eType);
-    void classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClas
+    void classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClasses);
+    void classify(std::shared_ptr<ClassificationType> cTyp,std::shared_ptr<SegmentationType> sTyp,std::shared_ptr<ProjectionType> pTyp,std::shared_ptr<EditType> eTyp, std::string modelDir,int numOfClasses);
+    void benchmark(std::shared_ptr<BenchmarkType> bType, std::string FILEPATH);
+    void visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer);
+    void visualize();
+    void saveCloud(std::string FILEPATH);
+    void saveClouds(std::string 
