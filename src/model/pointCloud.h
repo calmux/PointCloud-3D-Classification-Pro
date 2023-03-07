@@ -113,4 +113,9 @@ public:
     CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,int id);
     CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string name);
     CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string name,std::string src_path);
-    CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _clo
+    CloudObject(pcl::PointCloud<pcl::PointXYZ>::Ptr _cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath,int id_,int cls_id,std::vector<float> nnRespVec);
+    void setProjectionType(std::shared_ptr<ProjectionType>);
+    void setClassificationType(std::shared_ptr<ClassificationType> cTyp);
+    void project(std::shared_ptr<ProjectionType> projTyp);
+    void edit(std::shared_ptr<EditType> eType);
+    void classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClas
