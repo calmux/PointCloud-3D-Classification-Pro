@@ -124,4 +124,20 @@ public:
     void visualize(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer);
     void visualize();
     void saveCloud(std::string FILEPATH);
-    void saveClouds(std::string 
+    void saveClouds(std::string FILEPATH);
+    void saveProjections(std::string FILEPATH);
+    void setName(std::string name);
+    void setParentSceneName(std:: string name);
+    std::vector<std::string> getCloudsNames();
+    int getCloudClassID();
+    int getCloudID();
+    std::vector<float> getNNResopneVector();
+    std::size_t getCloudSize();
+
+    void setController(std::shared_ptr<PointCloudController> ctr);
+    void updateView();
+
+    void clearProjections();
+};
+
+class CloudScene:public CloudComponent{
