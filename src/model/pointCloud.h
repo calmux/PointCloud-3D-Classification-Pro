@@ -141,3 +141,9 @@ public:
 };
 
 class CloudScene:public CloudComponent{
+private:
+    std::vector<std::unique_ptr<CloudComponent>> clouds; //stores subscenes (parent) or objects (children)->? shoudl vector also be shared (or only unique) pointer ?
+    std::shared_ptr<SegmentationType> segmentationType;
+    //pcl::PointCloud<pcl::PointNormal>::Ptr doncloud ;
+    std::shared_ptr<CloudObjectFactory> obFactory= nullptr;
+    bool operationFinished=false; //# wszedzie gdzie uzywasz zmiennych boolowskich by sprawdzic, czy operacja sie udala, chyba lepi
