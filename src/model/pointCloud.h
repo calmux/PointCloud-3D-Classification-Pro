@@ -146,4 +146,9 @@ private:
     std::shared_ptr<SegmentationType> segmentationType;
     //pcl::PointCloud<pcl::PointNormal>::Ptr doncloud ;
     std::shared_ptr<CloudObjectFactory> obFactory= nullptr;
-    bool operationFinished=false; //# wszedzie gdzie uzywasz zmiennych boolowskich by sprawdzic, czy operacja sie udala, chyba lepi
+    bool operationFinished=false; //# wszedzie gdzie uzywasz zmiennych boolowskich by sprawdzic, czy operacja sie udala, chyba lepiej uzywac tej zmiennej -> co bedzie zajmowac mniej pamieci ?
+public:
+    CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name);
+    CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name,std::string src_path);
+    CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath);
+    void addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/); //when we are adding objects or clouds by one (for example
