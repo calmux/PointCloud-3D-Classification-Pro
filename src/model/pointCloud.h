@@ -151,4 +151,10 @@ public:
     CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name);
     CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name,std::string src_path);
     CloudScene(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,std::string _name,std::string src_path,std::string parName, std::string parSrcPath);
-    void addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/); //when we are adding objects or clouds by one (for example
+    void addCloud(std::unique_ptr<CloudComponent> cc/*CloudComponent *cc*/); //when we are adding objects or clouds by one (for example manually)
+    void addClouds(std::vector<std::unique_ptr<CloudComponent>> vec); //when we are adding objects created in factory and returned in form of vector
+    void addClouds(std::vector<std::unique_ptr<CloudObject>> vec);
+    //std::vector<std::shared_ptr<CloudComponent>>* getClouds(); //get vector of sublclouds (objects after segmentation or subscenes)
+    void removeCloud(int object_ID);
+    void setFactory(std::shared_ptr<CloudObjectFactory> fc);
+    void setSegmentationType(std::
