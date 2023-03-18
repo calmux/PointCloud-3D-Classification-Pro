@@ -157,4 +157,11 @@ public:
     //std::vector<std::shared_ptr<CloudComponent>>* getClouds(); //get vector of sublclouds (objects after segmentation or subscenes)
     void removeCloud(int object_ID);
     void setFactory(std::shared_ptr<CloudObjectFactory> fc);
-    void setSegmentationType(std::
+    void setSegmentationType(std::shared_ptr<SegmentationType> sTyp);
+    void segment(std::shared_ptr<SegmentationType> segmentationType);
+    void project(std::shared_ptr<ProjectionType> projectionType);
+    void project(std::shared_ptr<ProjectionType> projectionType,int object_id);
+    void edit(std::shared_ptr<EditType> eType);
+    void edit(std::shared_ptr<EditType> eType, int object_id);
+    void classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClasses);
+    void classify(std::shared_ptr<Class
