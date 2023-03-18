@@ -164,4 +164,8 @@ public:
     void edit(std::shared_ptr<EditType> eType);
     void edit(std::shared_ptr<EditType> eType, int object_id);
     void classify(std::shared_ptr<ClassificationType> cTyp,std::string modelDir,int numOfClasses);
-    void classify(std::shared_ptr<Class
+    void classify(std::shared_ptr<ClassificationType> cTyp,std::shared_ptr<SegmentationType> sTyp,std::shared_ptr<ProjectionType> pTyp,std::shared_ptr<EditType> eTyp, std::string modelDir,int numOfClasses);
+    void classify(std::shared_ptr<ClassificationType> cTyp, std::string modelDir,int numOfClasses,int object_id);
+    void benchmark(std::shared_ptr<BenchmarkType> bType, std::string FILEPATH);
+    void benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILEPATH,int object_id);
+    void visualize(std::shared_ptr<VisualizationType> vTyp, pcl::v
