@@ -168,4 +168,8 @@ public:
     void classify(std::shared_ptr<ClassificationType> cTyp, std::string modelDir,int numOfClasses,int object_id);
     void benchmark(std::shared_ptr<BenchmarkType> bType, std::string FILEPATH);
     void benchmark(std::shared_ptr<BenchmarkType> bType,std::string FILEPATH,int object_id);
-    void visualize(std::shared_ptr<VisualizationType> vTyp, pcl::v
+    void visualize(std::shared_ptr<VisualizationType> vTyp, pcl::visualization::PCLVisualizer::Ptr viewer); //visualize unclassified this cloud scene
+    void visualize(std::shared_ptr<VisualizationType> vTyp);
+    void visualizeAllChildren(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer); //->? dla podtrzymania ewentualnego rekursywnego wsywietlania chmur
+    void visualize(std::shared_ptr<VisualizationType> vTyp,int object_id, pcl::visualization::PCLVisualizer::Ptr viewer);
+    void saveCloud(s
