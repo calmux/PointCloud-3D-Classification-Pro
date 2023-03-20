@@ -214,3 +214,47 @@ void PrepareRangeImages::prepare(std::string SRC_PATH, std::string PROJECTIONS_P
     std::shared_ptr<RangeImageProjection> projection_(new RangeImageProjection(START_DEGREE,END_DEGREE , n_horizontal, START_v, END_v,N_v));
     this->projection=projection_; //now asssign it to appropriate PrepareDatasetFrom3D's member
     int i=0;
+
+    for (const auto &file:fnames)
+    {
+        std::cout<<i<<" ------------------------"<<endl;
+        fpath=SRC_PATH+"/"+file;
+        cout<<fpath<<endl;
+        object=factory->create(fpath);
+        //object->setProjectionType(projection);
+
+        object->project(projection); //(0,360,36,0,0,1,PROJECTIONS_PATH,file)
+        object->saveProjections(PROJECTIONS_PATH);
+        ++i;
+    }
+
+    removeSurplusProjections(PROJECTIONS_PATH,n_horizontal,num_of_class_obj);
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////
+ExtractObjectsInstances::ExtractObjectsInstances(std::shared_ptr<SegmentationType> sType,std::string inPath, std::string outPath):PrepareDataset(inPath,outPath),segType(sType){
+     sceneFactory=std::make_unique<CloudSceneFactory>();
+     objectFactory=std::make_shared<CloudObjectFactory>();
+}
+void ExtractObjectsInstances::extract(){
+    std::vector<std::tuple<std::string,std::string,std::string>> paths_names_parentDir = getPathAndNameAndParentFolderName(".pcd",true);
+    std::string savePath="";
+#pragma omp parallel for //it looks like it doesnt work
+    for(auto const&file:paths_names_parentDir){
+        //std::cout<<std::get<0>(file)<<" | "<<std::get<1>(file)<<" | "<<std::get<2>(file)<<std::endl;
+        savePath=outPath+"/"+std::get<2>(file); //outPath+class_folder
+        if(!boost::filesystem::is_directory(savePath)){
+            std::cout<<"Directory "<<savePath<<" doesnt exist, creating it ..."<<std::endl;
+            if(boost::filesystem::create_directory(savePath)){
+                std::cout<<"succes - created directory"<<std::endl;
+            }else{
+                std::cout<<"fail - could not create directory"<<std::endl;
+                continue;
+            }
+        }
+        scene=sceneFactory->create(std::get<0>(file));
+        scene->setFactory(objectFactory);
+        scene->segment(segType);
+        scene->saveClouds(savePath);
+    }
+
+}
