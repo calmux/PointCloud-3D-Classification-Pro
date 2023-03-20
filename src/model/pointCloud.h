@@ -172,4 +172,15 @@ public:
     void visualize(std::shared_ptr<VisualizationType> vTyp);
     void visualizeAllChildren(std::shared_ptr<VisualizationType> vTyp,pcl::visualization::PCLVisualizer::Ptr viewer); //->? dla podtrzymania ewentualnego rekursywnego wsywietlania chmur
     void visualize(std::shared_ptr<VisualizationType> vTyp,int object_id, pcl::visualization::PCLVisualizer::Ptr viewer);
-    void saveCloud(s
+    void saveCloud(std::string FILEPATH);
+    void saveClouds(std::string FILEPATH);
+    void saveClouds(std::string FILEPATH, int object_ID);
+    void saveProjections(std::string FILEPATH);
+    void saveProjections(std::string FILEPATH,int id);
+
+    CloudComponent* getCloud(int object_ID);
+    std::vector<std::string> getCloudsNames();//same as in getClouds but we are getting only names
+    std::vector<int> getCloudsClassIDs();
+    std::vector<int> getCloudsIDs();
+    int getNumberOfClouds();
+    std::size_t getClo
