@@ -183,4 +183,13 @@ public:
     std::vector<int> getCloudsClassIDs();
     std::vector<int> getCloudsIDs();
     int getNumberOfClouds();
-    std::size_t getClo
+    std::size_t getCloudSize();
+
+    void setController(std::shared_ptr<PointCloudController> ctr);
+    void setBenchmarkType(std::shared_ptr<BenchmarkType> benchamrkType,int objectID);
+
+    void updateView();
+
+    void clearProjections();
+};
+#endif //INC_3DPOINTCLOUDCLASSIFICATION_POINTCLOUD_H
