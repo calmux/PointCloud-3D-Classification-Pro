@@ -39,4 +39,15 @@ protected:
     double START_v=0;
     double END_v=0;
     int N_v=1;
-    //bool RANGE_I
+    //bool RANGE_IMAGE=false
+    //bool EDIT=false
+public:
+    PrepareDatasetFrom3D(uint TOTAL_PROJECTIONS,double START_DEGREE,double END_DEGREE ,double START_v,double END_v,int N_v);
+    virtual void prepare(std::string SRC_PATH, std::string PROJECTIONS_PATH)=0;
+    int calculateNumberOfProjections(uint num_of_class_obj);
+    void removeSurplusProjections(std::string PROJECTIONS_PATH,int n_horizontal, int num_of_class_obj);
+};
+
+class PrepareBinaryImages:public PrepareDatasetFrom3D{
+public:
+    P
