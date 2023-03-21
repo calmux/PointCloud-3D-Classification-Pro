@@ -15,4 +15,15 @@ class CloudSceneFactory;
 
 class PrepareDataset {
 public:
-    PrepareDataset(std::string inP, std::string out
+    PrepareDataset(std::string inP, std::string outP);
+    bool containsCls(std::string cls);
+    void setInPath(std::string inP);
+    void setOutPath(std::string outP);
+    void setClassesOfInterest(std::vector<std::string> classes);
+protected:
+    std::string inPath;
+    std::string outPath;
+    std::vector<std::string> classesOfInterest={};
+    std::vector<std::tuple<std::string,std::string,std::string>> getPathAndNameAndParentFolderName(const std::string extension=".pcd",bool removeExtensionFromName=true);
+};
+class
