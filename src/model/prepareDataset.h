@@ -60,4 +60,15 @@ public:
     void prepare(std::string SRC_PATH, std::string PROJECTIONS_PATH);
 };
 
-class ExtractObjectsInstances:public PrepareData
+class ExtractObjectsInstances:public PrepareDataset{
+    std::shared_ptr<SegmentationType> segType;
+    std::unique_ptr<CloudScene> scene;
+    std::unique_ptr<CloudObject> object;
+    std::unique_ptr<CloudSceneFactory> sceneFactory;
+    std::shared_ptr<CloudObjectFactory> objectFactory;
+public:
+    ExtractObjectsInstances(std::shared_ptr<SegmentationType> sType,std::string inPath, std::string outPath);
+    void extract();
+};
+
+#endif //INC_3DPOINTCLOUDCLASSIFICATION_PREPAREDATASET_H
