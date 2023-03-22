@@ -50,4 +50,14 @@ public:
 
 class PrepareBinaryImages:public PrepareDatasetFrom3D{
 public:
-    P
+    PrepareBinaryImages(uint TOTAL_PROJECTIONS,double START_DEGREE,double END_DEGREE ,double START_v,double END_v,int N_v);
+    void prepare(std::string SRC_PATH, std::string PROJECTIONS_PATH);
+};
+
+class PrepareRangeImages:public PrepareDatasetFrom3D{
+public:
+    PrepareRangeImages(uint TOTAL_PROJECTIONS,double START_DEGREE,double END_DEGREE ,double START_v,double END_v,int N_v);
+    void prepare(std::string SRC_PATH, std::string PROJECTIONS_PATH);
+};
+
+class ExtractObjectsInstances:public PrepareData
