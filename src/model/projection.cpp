@@ -31,4 +31,18 @@ void ProjectionType::setHorizontalAngle(double ha){this->alfa_deg=ha;}
 void ProjectionType::setImageHeight(int height){this->w=height;}
 void ProjectionType::setImageWidth(int width){this->k=width;}
 void ProjectionType::setParameters(double min_deg, double max_deg, int n, double min_h, double max_h, int n_h) {
-    this->projParam.mi
+    this->projParam.min_deg=min_deg;
+    this->projParam.max_deg=max_deg;
+    this->projParam.n=n;
+    this->projParam.min_h=min_h;
+    this->projParam.max_h=max_h;
+    this->projParam.n_h=n_h;
+}
+void ProjectionType::calculateStep() {
+    if(projParam.n>=2)
+        step=(projParam.max_deg-projParam.min_deg)/ static_cast<double>(projParam.n);
+    else
+        step=0;  //czyli jak n=1 to robimy tylko rzut dla h=min_h
+
+    if(projParam.n_h>=2)
+        step_h=(projParam.max_h-projPa
