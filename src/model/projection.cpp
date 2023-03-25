@@ -45,4 +45,20 @@ void ProjectionType::calculateStep() {
         step=0;  //czyli jak n=1 to robimy tylko rzut dla h=min_h
 
     if(projParam.n_h>=2)
-        step_h=(projParam.max_h-projPa
+        step_h=(projParam.max_h-projParam.min_h)/ static_cast<double>(projParam.n_h);
+    else
+        step_h=0;
+}
+std::vector<cv::Mat> ProjectionType::getProjections(){return projections;}
+std::vector<pcl::PointXYZ> ProjectionType::getObjectMinMaxPt(){
+    std::vector<pcl::PointXYZ> min_max;
+    min_max.push_back(object_min_pt);
+    min_max.push_back(object_max_pt);
+    return min_max;
+}
+/**
+ * projectionID - projection id, from 0 to (total_projection_number)-1
+ * @param projectionID
+ * @return
+ */
+std::string ProjectionType::getProjec
