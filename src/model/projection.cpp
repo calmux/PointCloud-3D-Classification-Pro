@@ -25,4 +25,10 @@ n_h(n_h){}
 ProjectionType::ProjectionType(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h)
 :projParam(min_deg,max_deg,n,min_h,max_h,n_h){}
 //ProjectionType::ProjectionType(){}
-std::vector<cv::Mat> ProjectionType::project(pcl::PointCloud<pcl::Poi
+std::vector<cv::Mat> ProjectionType::project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {throw std::runtime_error ("Projection operation not supported for this class");}
+void ProjectionType::setVerticalAngle(double va){this->alfa_h=va;}
+void ProjectionType::setHorizontalAngle(double ha){this->alfa_deg=ha;}
+void ProjectionType::setImageHeight(int height){this->w=height;}
+void ProjectionType::setImageWidth(int width){this->k=width;}
+void ProjectionType::setParameters(double min_deg, double max_deg, int n, double min_h, double max_h, int n_h) {
+    this->projParam.mi
