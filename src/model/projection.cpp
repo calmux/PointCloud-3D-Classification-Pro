@@ -12,3 +12,17 @@
 #include <cmath>
 
 #define PI 3.14159265
+
+ProjectionParameters::ProjectionParameters(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h):
+min_deg(min_deg),
+max_deg(max_deg),
+n(n),
+min_h(min_h),
+max_h(max_h),
+n_h(n_h){}
+
+//double ProjectionType::alfa_deg=0;
+ProjectionType::ProjectionType(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h)
+:projParam(min_deg,max_deg,n,min_h,max_h,n_h){}
+//ProjectionType::ProjectionType(){}
+std::vector<cv::Mat> ProjectionType::project(pcl::PointCloud<pcl::Poi
