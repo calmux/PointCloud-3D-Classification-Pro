@@ -61,4 +61,10 @@ std::vector<pcl::PointXYZ> ProjectionType::getObjectMinMaxPt(){
  * @param projectionID
  * @return
  */
-std::string ProjectionType::getProjec
+std::string ProjectionType::getProjectionNameSuffix(int projectionID){
+    std::stringstream suffix;
+    suffix.str("");
+    if(projectionID<(projParam.n*projParam.n_h)){
+        //#NA RAZIE podaje tu tylko NUMER PORJEKCJI w PIONIE I POZIOMIE, ale w przyszlosci mozna zamiast tego dawac KONKRETNY KAT OBSERWACJI W PIONIE I POZIOMIE
+        suffix<<"_p"<<std::to_string(projectionID)<<"_v"<<setw(2) << setfill('0')<<floor(static_cast<double>(projectionID)/ static_cast<double>(projParam.n))
+   
