@@ -67,4 +67,12 @@ std::string ProjectionType::getProjectionNameSuffix(int projectionID){
     if(projectionID<(projParam.n*projParam.n_h)){
         //#NA RAZIE podaje tu tylko NUMER PORJEKCJI w PIONIE I POZIOMIE, ale w przyszlosci mozna zamiast tego dawac KONKRETNY KAT OBSERWACJI W PIONIE I POZIOMIE
         suffix<<"_p"<<std::to_string(projectionID)<<"_v"<<setw(2) << setfill('0')<<floor(static_cast<double>(projectionID)/ static_cast<double>(projParam.n))
-   
+        <<"_h"<<setw(3) << setfill('0')<<projectionID%projParam.n; //v-vertical, h-horizontal
+    }
+    else{//
+        std::cout<<"Given projection ID is to big (there is no such projection)"<<std::endl;
+    }
+    return suffix.str();
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+BinaryProjection::BinaryProjection(double min_deg,double max_deg , int n, double min_h, double max_h,in
