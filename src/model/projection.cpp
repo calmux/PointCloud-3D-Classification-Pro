@@ -75,4 +75,14 @@ std::string ProjectionType::getProjectionNameSuffix(int projectionID){
     return suffix.str();
 }
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-BinaryProjection::BinaryProjection(double min_deg,double max_deg , int n, double min_h, double max_h,in
+BinaryProjection::BinaryProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h):ProjectionType(min_deg,max_deg ,n,min_h,max_h,n_h) {
+    cloudProjected=pcl::PointCloud<pcl::PointXYZ>::Ptr(new pcl::PointCloud<pcl::PointXYZ>);
+}
+//BinaryProjection::BinaryProjection(){}
+/**
+ *
+ * double alfa_h -parametr 1 - wysokosc (kat) pod jakim ogladamy obiekt wzdluz jego wysokosci;
+ * double alfa_deg -parametr 2 - kat pod jakim ogladamy obiekt wszerz (podajemy w stopniach)
+ */
+void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+    cloudProjected=pcl::PointC
