@@ -85,4 +85,10 @@ BinaryProjection::BinaryProjection(double min_deg,double max_deg , int n, double
  * double alfa_deg -parametr 2 - kat pod jakim ogladamy obiekt wszerz (podajemy w stopniach)
  */
 void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
-    cloudProjected=pcl::PointC
+    cloudProjected=pcl::PointCloud<pcl::PointXYZ>::Ptr(new pcl::PointCloud<pcl::PointXYZ>);
+    // Create a set of planar coefficients with X=Y=0,Z=1 //kolejne wartosci tablicy, to kolejne paramaetry plasczyzny, na
+    //ktora rzutujemy chmure 3D Ax+By+Cz+D=0
+    //warto wykorzystac fakt, ze wektor [A,B,C] jest wektorem normalnym do tej plaszczyzny
+    //kazdy widok powinien byc skierowany w kierunku centroidu badanego obiektu
+    pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
+    d
