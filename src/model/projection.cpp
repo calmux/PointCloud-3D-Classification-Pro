@@ -110,4 +110,13 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     double D=0;//tu trzeba jeszcze ustalic ile ten parametr powinien wynosic
     //Obrot wektora (A0,B0,C0) o kat alfa (szczegoly patrz w zeszycie) (- wektor A,B,C jest prostopadly do plaszczyzny Ax+By+Cz+D=0)
     alfa=alfa_deg*PI/180; //bo funkcja sin() cos() przyjmuje wartosc w radianach
-    double A = (x_c-x_s)*cos(alfa)-(y_c-y_s)*sin(alf
+    double A = (x_c-x_s)*cos(alfa)-(y_c-y_s)*sin(alfa);
+    double B = (x_c-x_s)*sin(alfa)+(y_c-y_s)*cos(alfa);
+    //okreslenie wspolrzednej C (z) wektora na podstawie podanego kata
+    if(alfa_h==90) //wtedy cos bedzie 0 i nie moge korzystac z wzoru
+    {
+        h=10*(object_max_pt.z-object_min_pt.z); //daje jakas duza wielokrotnosc wysokosci obiektu, zeby efekt byl taki jak 90 st (ogladnie go pionowo od gory)
+    }
+    else if(alfa_h==-90)   //ogladamy pionowo od dolu
+    {
+        h=-10*(object_ma
