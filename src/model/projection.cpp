@@ -101,4 +101,13 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     //wspolrzedne srodka boudingbox'a, mozna ewnetualnie to pozniej zastapic srodkiem ciezkosci obiektu
     double x_c=object_min_pt.x+(object_max_pt.x-object_min_pt.x)/2;
     double y_c=object_min_pt.y+(object_max_pt.y-object_min_pt.y)/2;
-    double z_c=object_min_pt.z+(object_max_pt.z-object_min
+    double z_c=object_min_pt.z+(object_max_pt.z-object_min_pt.z)/2;
+
+    double x_s=0,y_s=0,z_s=0;//wspolrzedne poczatku ukl. wsp. (bazowego) - sens
+    double A0=x_c-x_s;
+    double B0=y_c-y_s;
+    double C0=0;//min_pt.z+h;
+    double D=0;//tu trzeba jeszcze ustalic ile ten parametr powinien wynosic
+    //Obrot wektora (A0,B0,C0) o kat alfa (szczegoly patrz w zeszycie) (- wektor A,B,C jest prostopadly do plaszczyzny Ax+By+Cz+D=0)
+    alfa=alfa_deg*PI/180; //bo funkcja sin() cos() przyjmuje wartosc w radianach
+    double A = (x_c-x_s)*cos(alfa)-(y_c-y_s)*sin(alf
