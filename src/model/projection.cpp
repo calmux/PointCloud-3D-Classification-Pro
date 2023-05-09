@@ -91,4 +91,14 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     //warto wykorzystac fakt, ze wektor [A,B,C] jest wektorem normalnym do tej plaszczyzny
     //kazdy widok powinien byc skierowany w kierunku centroidu badanego obiektu
     pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
-    d
+    double alfa=0;//zmienna pomocnicza - zamiana kata ze stopni na radiany
+    double h=0;
+
+
+    //pcl::PointXYZ min_pt;
+    //pcl::PointXYZ max_pt;
+    pcl::getMinMax3D(*cloud, object_min_pt, object_max_pt);
+    //wspolrzedne srodka boudingbox'a, mozna ewnetualnie to pozniej zastapic srodkiem ciezkosci obiektu
+    double x_c=object_min_pt.x+(object_max_pt.x-object_min_pt.x)/2;
+    double y_c=object_min_pt.y+(object_max_pt.y-object_min_pt.y)/2;
+    double z_c=object_min_pt.z+(object_max_pt.z-object_min
