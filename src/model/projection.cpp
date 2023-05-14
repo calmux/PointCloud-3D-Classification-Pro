@@ -146,4 +146,13 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     //TRANSFORMACJA z XYZ do XY:
     pcl::PointXYZ min_pt_proj;
     pcl::PointXYZ max_pt_proj;
-    pcl::getMinMax3D(*cloudProj
+    pcl::getMinMax3D(*cloudProjected, min_pt_proj, max_pt_proj);
+    pcl::PointXYZ P, P1; //P1 wyznacza wektor PP1 ktory okreskla os y' , P - punkt srodkowy chmury
+    double t;//zmienna pomocnicza
+
+    //P to punkt srodkowy chmury -  ale czy to oznacza tez srodek obrazu na rzutowanej plaszczyznie ??
+    P.x=min_pt_proj.x+(max_pt_proj.x-min_pt_proj.x)/2;
+    P.y=min_pt_proj.y+(max_pt_proj.y-min_pt_proj.y)/2;
+    P.z=min_pt_proj.z+(max_pt_proj.z-min_pt_proj.z)/2;
+
+    if(-A*A-B*B != 0){t=(max_pt_pr
