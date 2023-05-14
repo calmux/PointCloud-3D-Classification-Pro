@@ -119,4 +119,17 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     }
     else if(alfa_h==-90)   //ogladamy pionowo od dolu
     {
-        h=-10*(object_ma
+        h=-10*(object_max_pt.z-object_min_pt.z);
+    }
+    else
+    {
+        alfa_h=alfa_h*PI/180;//teraz kat obserwacji obiektu w pionie jest w radianach
+        h=sqrt((A*A*sin(alfa_h)*sin(alfa_h)+B*B*sin(alfa_h)*sin(alfa_h))/(cos(alfa_h)*cos(alfa_h)));
+    }
+    double C = h;//min_pt.z+h;
+    //cout<<"A = "<<A<<endl;
+    //cout<<"B = "<<B<<endl;
+    //cout<<"C = "<<C<<endl;
+    coefficients->values.resize (4);
+    coefficients->values[0] = static_cast<float>(A); //0.8
+    coefficients->values[1] = static_cast<float>(B)
