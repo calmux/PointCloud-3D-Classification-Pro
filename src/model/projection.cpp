@@ -132,4 +132,18 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     //cout<<"C = "<<C<<endl;
     coefficients->values.resize (4);
     coefficients->values[0] = static_cast<float>(A); //0.8
-    coefficients->values[1] = static_cast<float>(B)
+    coefficients->values[1] = static_cast<float>(B); //0.3
+    coefficients->values[2] = static_cast<float>(C); //-0.3
+    coefficients->values[3] = static_cast<float>(D); //0
+
+    // Create the filtering object
+    pcl::ProjectInliers<pcl::PointXYZ> proj;
+    proj.setModelType (pcl::SACMODEL_PLANE);
+    proj.setInputCloud (cloud);
+    proj.setModelCoefficients (coefficients);
+    proj.filter (*cloudProjected);
+
+    //TRANSFORMACJA z XYZ do XY:
+    pcl::PointXYZ min_pt_proj;
+    pcl::PointXYZ max_pt_proj;
+    pcl::getMinMax3D(*cloudProj
