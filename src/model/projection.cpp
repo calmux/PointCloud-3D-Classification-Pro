@@ -155,4 +155,18 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     P.y=min_pt_proj.y+(max_pt_proj.y-min_pt_proj.y)/2;
     P.z=min_pt_proj.z+(max_pt_proj.z-min_pt_proj.z)/2;
 
-    if(-A*A-B*B != 0){t=(max_pt_pr
+    if(-A*A-B*B != 0){t=(max_pt_proj.z-P.z)/(-A*A-B*B);}
+    else{
+        cout<<"Blad - dziel. przez 0";
+    }
+    //A i B nie moga wiec byc rownoczesnie rowne 0 -> plaszczyzne rownolegla
+    //do podloza  (na ktora robie projekcje)-> nalezy postapic inaczej
+    P1.x=P.x+t*(A*C);
+    P1.y=P.y+t*(B*C);
+    P1.z=max_pt_proj.z;
+
+
+    Eigen::Affine3f transformation;
+    //transformation=transformation.;
+    Eigen::VectorXf from_line_x, from_line_y, to_line_x, to_line_y;
+    Eigen::Vector3f vector_y,vector_x, vector_z;// to sa wektroy 
