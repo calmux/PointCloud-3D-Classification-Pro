@@ -169,4 +169,20 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     Eigen::Affine3f transformation;
     //transformation=transformation.;
     Eigen::VectorXf from_line_x, from_line_y, to_line_x, to_line_y;
-    Eigen::Vector3f vector_y,vector_x, vector_z;// to sa wektroy 
+    Eigen::Vector3f vector_y,vector_x, vector_z;// to sa wektroy wyznaczajace kierunek osi ukladu do ktorego transforumjemy chmure
+    from_line_x.resize(6); from_line_y.resize(6);
+    to_line_x.resize(6); to_line_y.resize(6);
+
+    vector_z[0]=A;
+    vector_z[1]=B;
+    vector_z[2]=C;
+
+    vector_y[0]=P1.x-P.x;
+    vector_y[1]=P1.y-P.y;
+    vector_y[2]=P1.z-P.z;
+
+    vector_x=vector_y.cross(vector_z);
+    //normalizacja - inaczej nie dziala funkcja transformBetween2CordinateSystems
+    vector_x.normalize();
+    vector_y.normalize();
+    ve
