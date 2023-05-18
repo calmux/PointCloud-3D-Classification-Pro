@@ -185,4 +185,15 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     //normalizacja - inaczej nie dziala funkcja transformBetween2CordinateSystems
     vector_x.normalize();
     vector_y.normalize();
-    ve
+    vector_z.normalize();
+    //cout<<"vector_x: "<<vector_x[0]<<" "<<vector_x[1]<<" "<<vector_x[2]<<endl;
+    //cout<<"vector_y: "<<vector_y[0]<<" "<<vector_y[1]<<" "<<vector_y[2]<<endl;
+    from_line_x << 0, 0, 0, 1, 0, 0;
+    from_line_y << 0, 0, 0, 0, 1, 0;
+    //to_line_x << 10, -5, 1, 1, 0, 0;
+    //to_line_y << 10, -5, 1, 0, 1, 0;
+    to_line_x << P.x,P.y,P.z,vector_x[0],vector_x[1],vector_x[2];
+    to_line_y << P.x,P.y,P.z,vector_y[0],vector_y[1],vector_y[2];
+
+
+    if(pcl::tran
