@@ -196,4 +196,12 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
     to_line_y << P.x,P.y,P.z,vector_y[0],vector_y[1],vector_y[2];
 
 
-    if(pcl::tran
+    if(pcl::transformBetween2CoordinateSystems (to_line_x, to_line_y,from_line_x, from_line_y, transformation)==0)  //tu zamienilem kolejnosc to_line z from_line i jest ok
+    cout<<"nie udalo sie pozyskac macierzy transformacji"<<endl;
+    //cout<<"Macierz transformacji:"<<transformation.matrix()<<endl;
+    pcl::transformPointCloud(*cloudProjected, *cloudProjected, transformation.matrix()); //transformacja chmury punktow (bedacej rzutem 2D chmury 3D)
+
+} //->? to dziala ok V
+/**
+ *
+ *  int w - height of projection image (num
