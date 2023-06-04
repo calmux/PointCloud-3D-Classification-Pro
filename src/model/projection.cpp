@@ -204,4 +204,13 @@ void BinaryProjection::calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::P
 } //->? to dziala ok V
 /**
  *
- *  int w - height of projection image (num
+ *  int w - height of projection image (number of rows)
+ *  int k- width of projection image (number of columns)
+ */
+cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud) {
+    pcl::PointXYZ min_pt;
+    pcl::PointXYZ max_pt;
+    pcl::getMinMax3D(*cloud, min_pt, max_pt);
+    double sx,sy,delta;
+    //vector<vector<uchar>> vec (w,vector<uchar>(k,0)); //inicjalizowanie wektora zerami - dla zer nie trzeba pisac tego 0
+    vec.assign(w,std::vector<uchar>(k,0));//zerowanie wektora (inaczej bedzie sie nadp
