@@ -220,4 +220,9 @@ cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ
         sx=k/(max_pt.x-min_pt.x);
         delta=static_cast <int>(floor(abs(w/2-((max_pt.y-min_pt.y)*sx)/2))); //roznica pomiedzy srodkami tablicy wzdluz wysokosci, a srodkiem zajetej w pionie czesci tablicy
 //#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek wykonuje czesc pracy)
-      
+        for (size_t i = 0; i < cloud->points.size (); ++i)
+        {
+            if((static_cast<int>(round((cloud->points[i].x-min_pt.x)*sx))>=k) || ((static_cast <int>(round((cloud->points[i].y-min_pt.y)*sx))+delta)>=w) )
+            {continue;}  // tu chyba lepiej rozwiazac to inaczej
+            else
+            {vec.at(static_cast <int>(round((cloud->points[i].y-min_pt.y)*sx))+delta).at(static_cast <int> (round((cloud->points[i].x-min_pt.x)*s
