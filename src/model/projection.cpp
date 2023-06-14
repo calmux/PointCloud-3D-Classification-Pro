@@ -213,4 +213,11 @@ cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ
     pcl::getMinMax3D(*cloud, min_pt, max_pt);
     double sx,sy,delta;
     //vector<vector<uchar>> vec (w,vector<uchar>(k,0)); //inicjalizowanie wektora zerami - dla zer nie trzeba pisac tego 0
-    vec.assign(w,std::vector<uchar>(k,0));//zerowanie wektora (inaczej bedzie sie nadp
+    vec.assign(w,std::vector<uchar>(k,0));//zerowanie wektora (inaczej bedzie sie nadpisywal)
+
+    if(max_pt.x-min_pt.x>=max_pt.y-min_pt.y) //wyprwadzenie ponizszych wzoro w zeszycie (1) // jezli obraz szerszy niz wyzszy lub kwadratowy
+    {
+        sx=k/(max_pt.x-min_pt.x);
+        delta=static_cast <int>(floor(abs(w/2-((max_pt.y-min_pt.y)*sx)/2))); //roznica pomiedzy srodkami tablicy wzdluz wysokosci, a srodkiem zajetej w pionie czesci tablicy
+//#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek wykonuje czesc pracy)
+      
