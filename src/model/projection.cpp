@@ -225,4 +225,14 @@ cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ
             if((static_cast<int>(round((cloud->points[i].x-min_pt.x)*sx))>=k) || ((static_cast <int>(round((cloud->points[i].y-min_pt.y)*sx))+delta)>=w) )
             {continue;}  // tu chyba lepiej rozwiazac to inaczej
             else
-            {vec.at(static_cast <int>(round((cloud->points[i].y-min_pt.y)*sx))+delta).at(static_cast <int> (round((cloud->points[i].x-min_pt.x)*s
+            {vec.at(static_cast <int>(round((cloud->points[i].y-min_pt.y)*sx))+delta).at(static_cast <int> (round((cloud->points[i].x-min_pt.x)*sx)))=255;} //dostep przez at() jest lepszy niz przez [] bo sprawdza poprawnosc zakresu, najpierw dostep do wiersza - y potem do kolumn - x
+        }
+    }
+    else
+    {
+        sy=w/(max_pt.y-min_pt.y);
+        delta=static_cast <int>(floor(abs(k/2-((max_pt.x-min_pt.x)*sy)/2)));
+//#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek wykonuje czesc pracy)
+        for (size_t i = 0; i < cloud->points.size (); ++i)
+        {
+           
