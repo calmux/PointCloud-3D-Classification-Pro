@@ -242,4 +242,9 @@ cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ
         }
     }
 
-    //zapisywanie do 
+    //zapisywanie do pliku jpg z wykorzystaniem opencv
+    cv::Mat vecMat(0, vec[0].size(), cv::DataType<uchar >::type); // Create a new, _empty_ cv::Mat with the row size of vec
+//#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek wykonuje czesc pracy)
+    for (int i=vec.size()-1; i>=0; --i) //nie dawaj unsigned int bo jak dojdzie do 0 to policzy --i i wyjdzie poza zakres, czyli zworci maksymalna wartosc, kotra bedzie dodatnia i wejdzie do petli
+    {
+ 
