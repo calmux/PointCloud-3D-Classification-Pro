@@ -247,4 +247,13 @@ cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ
 //#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek wykonuje czesc pracy)
     for (int i=vec.size()-1; i>=0; --i) //nie dawaj unsigned int bo jak dojdzie do 0 to policzy --i i wyjdzie poza zakres, czyli zworci maksymalna wartosc, kotra bedzie dodatnia i wejdzie do petli
     {
- 
+        // Make a temporary cv::Mat row and add to NewSamples _without_ data copy -efficient
+        cv::Mat Sample(1, vec[0].size(), cv::DataType<uchar>::type, vec[i].data());
+        vecMat.push_back(Sample);
+    }
+
+    return vecMat; //EFFICIENCY - tu mozna spropowac inaczdej zwracac wektro (np referenceje albo cos innego) zeby ewentualnie poprawic wydajnosc
+}
+std::vector<cv::Mat> BinaryProjection::project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
+    projections.clear();
+    calcu
