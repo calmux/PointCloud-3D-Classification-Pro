@@ -256,4 +256,11 @@ cv::Mat BinaryProjection::getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ
 }
 std::vector<cv::Mat> BinaryProjection::project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
     projections.clear();
-    calcu
+    calculateStep(); //->? PERFORMANCE to nie musi byc wykonywane za kazdym razem dla kazdego obiektu (bo na ogol dla wszystkich obiektow w scenie mamy takie same parametry)
+
+    for(int h=0 ; h<projParam.n_h; h++) {
+        for (int m = 0; m < projParam.n; m++) {
+            alfa_h=projParam.min_h+h*step_h;
+            alfa_deg=projParam.min_deg+m*step;
+            calculateCloudProjected(cloud); //uses alfa_h, alfa_deg
+            projections.push_back(get
