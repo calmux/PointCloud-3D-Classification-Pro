@@ -263,4 +263,13 @@ std::vector<cv::Mat> BinaryProjection::project(pcl::PointCloud<pcl::PointXYZ>::P
             alfa_h=projParam.min_h+h*step_h;
             alfa_deg=projParam.min_deg+m*step;
             calculateCloudProjected(cloud); //uses alfa_h, alfa_deg
-            projections.push_back(get
+            projections.push_back(getCloudProjectedToImage(cloudProjected));
+        }
+    }
+    return projections;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+RangeImageProjection::RangeImageProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h):ProjectionType(min_deg,max_deg ,n,min_h,max_h,n_h){
+    rangeImage=pcl::RangeImagePlanar::Ptr(new pcl::RangeImagePlanar);
+    //default parameters
+  
