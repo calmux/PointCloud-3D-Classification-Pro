@@ -272,4 +272,17 @@ std::vector<cv::Mat> BinaryProjection::project(pcl::PointCloud<pcl::PointXYZ>::P
 RangeImageProjection::RangeImageProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h):ProjectionType(min_deg,max_deg ,n,min_h,max_h,n_h){
     rangeImage=pcl::RangeImagePlanar::Ptr(new pcl::RangeImagePlanar);
     //default parameters
-  
+    center_x= static_cast<float>(k)/2;
+    center_y=static_cast<float>(w)/2;
+    fx=100;//=1192;//=298; //tak bylo w ApolloScape SceneParsing camera_inttinics.txt
+    fy=100;
+    cordinate_frame = pcl::RangeImagePlanar::LASER_FRAME;
+    ///JESZCZE JAKIES DOMYSLNE POZY i generowanie
+}
+//RangeImageProjection::RangeImageProjection(){}
+/**
+     * wyjasnienie wyprowadzen w zeszycie
+     * @param cloud
+     * @param x_s, y_s ->camera start position
+     */
+v
