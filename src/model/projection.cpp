@@ -298,4 +298,17 @@ void RangeImageProjection::calculateCameraStartPosition(pcl::PointCloud<pcl::Poi
     double x_s1=0;
     double x_s2=0;
     diagonal=pcl::euclideanDistance(min_pt,max_pt);
-  
+    d=diagonal+margin;
+    y_s=y_c;
+    //|x_c-x_s|=d
+    x_s1=x_c-d;
+    x_s2=x_c+d;
+    if(abs(x_s1)<abs(x_s2))
+        x_s=x_s1;
+    else
+        x_s=x_s2;
+    //cout<<"X_C = "<<x_c<<" Y_C = "<<y_c<<endl;
+    //cout<<"d = "<<d<<" X_S = "<<x_s<<" Y_S= "<<y_s<<endl;
+}
+Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,double _x_s,double _y_s){
+    double alfa=0;//zmienna pomocnicza - zamia
