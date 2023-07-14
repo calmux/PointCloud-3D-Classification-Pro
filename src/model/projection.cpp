@@ -285,4 +285,17 @@ RangeImageProjection::RangeImageProjection(double min_deg,double max_deg , int n
      * @param cloud
      * @param x_s, y_s ->camera start position
      */
-v
+void RangeImageProjection::calculateCameraStartPosition(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud, double &x_s,double &y_s) {
+    pcl::PointXYZ min_pt;
+    pcl::PointXYZ max_pt;
+    pcl::getMinMax3D(*cloud, min_pt, max_pt);
+    //wspolrzedne srodka boudingbox'a
+    double x_c=min_pt.x+(max_pt.x-min_pt.x)/2;
+    double y_c=min_pt.y+(max_pt.y-min_pt.y)/2;
+    double diagonal=0;
+    double margin=1;
+    double d=0;
+    double x_s1=0;
+    double x_s2=0;
+    diagonal=pcl::euclideanDistance(min_pt,max_pt);
+  
