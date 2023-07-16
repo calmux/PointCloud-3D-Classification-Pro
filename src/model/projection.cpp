@@ -311,4 +311,15 @@ void RangeImageProjection::calculateCameraStartPosition(pcl::PointCloud<pcl::Poi
     //cout<<"d = "<<d<<" X_S = "<<x_s<<" Y_S= "<<y_s<<endl;
 }
 Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,double _x_s,double _y_s){
-    double alfa=0;//zmienna pomocnicza - zamia
+    double alfa=0;//zmienna pomocnicza - zamiana kata ze stopni na radiany
+    double h=0;
+    ///WEKTOR SKIEROWANY DO ŚRODKA OBIEKTU oraz jego OBROTY
+    pcl::PointXYZ min_pt;
+    pcl::PointXYZ max_pt;
+    pcl::getMinMax3D(*cloud, min_pt, max_pt);
+    //wspolrzedne srodka boudingbox'a, mozna ewnetualnie to pozniej zastapic srodkiem ciezkosci obiektu
+    double x_c=min_pt.x+(max_pt.x-min_pt.x)/2;
+    double y_c=min_pt.y+(max_pt.y-min_pt.y)/2;
+    double z_c=min_pt.z+(max_pt.z-min_pt.z)/2;
+
+    ///KOLEJNA UWAGA - POCZATKOWO POWIN
