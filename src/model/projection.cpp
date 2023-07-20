@@ -355,4 +355,25 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
     ///TRANSLACJA kamery
     //polozenie kamery (na podstawie wektora [A,B,C]
     double x_n=-A+x_c;
-  
+    double y_n=-B+y_c;
+    double z_n=z_c+h;
+    //uzupelnienie wektora translacji
+    T<<x_n,y_n,z_n;
+
+    //cout<<"["<<A<<" , "<<B<<" , "<<C<<"]"<<endl;
+    ///ROTACJA kamery
+    double roll=0;
+    double yaw,pitch;
+
+    if(A==0)
+    {
+        if(B>=0)
+            yaw=PI/2;
+        else
+            yaw=-PI/2;
+    } else
+        yaw=atan2(B,A);
+
+    if(alfa_h==90)//wtedy cos bedzie 0 i nie moge korzystac z wzoru
+    {
+        pitch=PI/2; //daje jakas duza wielokrotnosc wysokosci obiektu, 
