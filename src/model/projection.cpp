@@ -325,4 +325,11 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
     ///KOLEJNA UWAGA - POCZATKOWO POWINNISMY BYC DALEJ ODDALENI OD OBIEKTU NIZ [Przekatna Bounding Boxa] lub ewentualnie wpisac x_s= jakas duza wartosc:
     ///WYZNACZAMY POCZATKOWE x_s ZEBY OGLADAC OBIEKT Z WYMAGANEJ ODLEGLOSCI (NIE MNIEJSZEJ NIZ PRZEKATNA JEGO B.B.)
     ///JAK BEDZIE TO ZNACZACO WPLYWALO NA WYDAJNOSC, TO MOZNA DAC PO PROSTU DUZA WARTOSC x_s
-    ///ALE to wystarczy liczyc tylko raz dla jednego obiektu (we wszystkich rzutach wartosc tego jest taka sama) - DLATEGO WYLICZAM TO 
+    ///ALE to wystarczy liczyc tylko raz dla jednego obiektu (we wszystkich rzutach wartosc tego jest taka sama) - DLATEGO WYLICZAM TO W generate_multiple_range_images
+    ///przed petla
+    double x_s=_x_s,y_s=_y_s,z_s=z_c;//wspolrzedne poczatku ukl. wsp. (bazowego) - sensor
+    double A0=x_c-x_s;
+    double B0=y_c-y_s;
+    double C0=z_c-z_s;//min_pt.z+h;
+    double D=0;// tu trzeba jeszcze ustalic ile ten parametr powinien wynosic
+    //Obrot wektora (A0,B0,C0) o kat alfa (szczegoly patrz w zeszycie) (- wektor A,B,C jest prostopadly do plaszczyzny Ax+By+Cz+D=0)
