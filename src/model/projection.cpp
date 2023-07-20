@@ -341,4 +341,18 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
     ///UWAGA alfa_h to jest tak naprawde pitch
     if(alfa_h==90)//wtedy cos bedzie 0 i nie moge korzystac z wzoru
     {
-        h = 1000 * (max_pt.z - min_pt.z); 
+        h = 1000 * (max_pt.z - min_pt.z); //daje jakas duza wielokrotnosc wysokosci obiektu, zeby efekt byl taki jak 90 st (ogladnie go pionowo od gory)
+    }
+    else if(alfa_h==-90)   //ogladamy pionowo od dolu
+    {
+        h=-1000*(max_pt.z-min_pt.z);
+    } else
+    {
+        h=tan(alfa_h*PI/180)*sqrt(A*A+B*B);
+    }
+    double C = z_c-(z_s+h);//min_pt.z+h;
+    //cout<<"h = "<<h<<endl;
+    ///TRANSLACJA kamery
+    //polozenie kamery (na podstawie wektora [A,B,C]
+    double x_n=-A+x_c;
+  
