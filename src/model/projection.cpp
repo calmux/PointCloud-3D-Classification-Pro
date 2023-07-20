@@ -333,3 +333,12 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
     double C0=z_c-z_s;//min_pt.z+h;
     double D=0;// tu trzeba jeszcze ustalic ile ten parametr powinien wynosic
     //Obrot wektora (A0,B0,C0) o kat alfa (szczegoly patrz w zeszycie) (- wektor A,B,C jest prostopadly do plaszczyzny Ax+By+Cz+D=0)
+    alfa=alfa_deg*PI/180; //bo funkcja sin() cos() przyjmuje wartosc w radianach
+
+    double A = (x_c-x_s)*cos(alfa)-(y_c-y_s)*sin(alfa);
+    double B = (x_c-x_s)*sin(alfa)+(y_c-y_s)*cos(alfa);
+    ///Obliczenie wysokości h ponad srodkiem obiektu na podstawie rzadanego kata obserwacji alfa_h w pionie
+    ///UWAGA alfa_h to jest tak naprawde pitch
+    if(alfa_h==90)//wtedy cos bedzie 0 i nie moge korzystac z wzoru
+    {
+        h = 1000 * (max_pt.z - min_pt.z); 
