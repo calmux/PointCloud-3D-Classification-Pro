@@ -322,4 +322,7 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
     double y_c=min_pt.y+(max_pt.y-min_pt.y)/2;
     double z_c=min_pt.z+(max_pt.z-min_pt.z)/2;
 
-    ///KOLEJNA UWAGA - POCZATKOWO POWIN
+    ///KOLEJNA UWAGA - POCZATKOWO POWINNISMY BYC DALEJ ODDALENI OD OBIEKTU NIZ [Przekatna Bounding Boxa] lub ewentualnie wpisac x_s= jakas duza wartosc:
+    ///WYZNACZAMY POCZATKOWE x_s ZEBY OGLADAC OBIEKT Z WYMAGANEJ ODLEGLOSCI (NIE MNIEJSZEJ NIZ PRZEKATNA JEGO B.B.)
+    ///JAK BEDZIE TO ZNACZACO WPLYWALO NA WYDAJNOSC, TO MOZNA DAC PO PROSTU DUZA WARTOSC x_s
+    ///ALE to wystarczy liczyc tylko raz dla jednego obiektu (we wszystkich rzutach wartosc tego jest taka sama) - DLATEGO WYLICZAM TO 
