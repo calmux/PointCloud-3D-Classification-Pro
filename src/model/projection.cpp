@@ -376,4 +376,15 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
 
     if(alfa_h==90)//wtedy cos bedzie 0 i nie moge korzystac z wzoru
     {
-        pitch=PI/2; //daje jakas duza wielokrotnosc wysokosci obiektu, 
+        pitch=PI/2; //daje jakas duza wielokrotnosc wysokosci obiektu, zeby efekt byl taki jak 90 st (ogladnie go pionowo od gory)
+    }
+    else if(alfa_h==-90)   //ogladamy pionowo od dolu
+    {
+        pitch=-PI/2;
+    } else
+    {
+        pitch=atan2(h,sqrt(A*A+B*B));
+        //cout<<"PITCH = "<<pitch<<endl;
+    }
+    //q.setIdentity();
+    R = Eigen::AngleAxisf(static_cast<float>(yaw), Eigen::Vector3f::UnitZ())//yaw   //KOLEJNOSC TRANSFORMACJI MA ZNACZENIE (wczesniej mialem roll pitch yaw i przez to jak dodawalem kat gora dol to c
