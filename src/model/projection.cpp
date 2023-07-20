@@ -387,4 +387,14 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
         //cout<<"PITCH = "<<pitch<<endl;
     }
     //q.setIdentity();
-    R = Eigen::AngleAxisf(static_cast<float>(yaw), Eigen::Vector3f::UnitZ())//yaw   //KOLEJNOSC TRANSFORMACJI MA ZNACZENIE (wczesniej mialem roll pitch yaw i przez to jak dodawalem kat gora dol to c
+    R = Eigen::AngleAxisf(static_cast<float>(yaw), Eigen::Vector3f::UnitZ())//yaw   //KOLEJNOSC TRANSFORMACJI MA ZNACZENIE (wczesniej mialem roll pitch yaw i przez to jak dodawalem kat gora dol to cos bylo przekszywione)
+        * Eigen::AngleAxisf(static_cast<float>(pitch), Eigen::Vector3f::UnitY())//pitch
+        * Eigen::AngleAxisf(static_cast<float>(roll), Eigen::Vector3f::UnitX());  //roll
+
+    Eigen::Vector4f camera_dir_vector;
+    camera_dir_vector<<A,B,C,D;
+}
+void RangeImageProjection::create(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
+    bool visualize=false;
+    Transformation.setIdentity();   // Set to Identity to make bottom row of Matrix 0,0,0,1
+    Transformation.block<3,3>(0,0) = R.toRo
