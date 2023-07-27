@@ -407,4 +407,14 @@ void RangeImageProjection::create(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
     {
         pcl::visualization::RangeImageVisualizer range_image_widget ("Range image");
         range_image_widget.showRangeImage (*rangeImage);
-        while(!range_image_wi
+        while(!range_image_widget.wasStopped()){
+            range_image_widget.spinOnce ();
+        }
+    }
+}
+cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,bool save_projections=false,bool normalize=true){
+    bool INV=false; //true = 255 - najdalej , 0 - najblizej - ale to daje biale tlo. Zeby tlo bylo czarne (wartosci zerowe piskeli) dac false
+    float image_x=-1;
+    float image_y=-1;
+    float range=-1;
+    float min_x=std::numeric_limit
