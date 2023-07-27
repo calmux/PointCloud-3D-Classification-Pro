@@ -397,4 +397,14 @@ Eigen::Vector4f RangeImageProjection::calculatePose(pcl::PointCloud<pcl::PointXY
 void RangeImageProjection::create(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
     bool visualize=false;
     Transformation.setIdentity();   // Set to Identity to make bottom row of Matrix 0,0,0,1
-    Transformation.block<3,3>(0,0) = R.toRo
+    Transformation.block<3,3>(0,0) = R.toRotationMatrix();
+    Transformation.block<3,1>(0,3)  = T;
+    sensorPose.matrix()=Transformation;
+
+    rangeImage->createFromPointCloudWithFixedSize(*cloud,k,w,center_x,center_y,fx,
+                                                  fy,sensorPose,cordinate_frame);
+    if(visualize)
+    {
+        pcl::visualization::RangeImageVisualizer range_image_widget ("Range image");
+        range_image_widget.showRangeImage (*rangeImage);
+        while(!range_image_wi
