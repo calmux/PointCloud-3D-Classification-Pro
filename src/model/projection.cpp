@@ -417,4 +417,15 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
     float image_x=-1;
     float image_y=-1;
     float range=-1;
-    float min_x=std::numeric_limit
+    float min_x=std::numeric_limits<float>::max();
+    float max_x=std::numeric_limits<float>::min();
+    float min_y=std::numeric_limits<float>::max();
+    float max_y=std::numeric_limits<float>::min();
+    float min_range=std::numeric_limits<float>::max();
+    float max_range=std::numeric_limits<float>::min();
+    double sx,sy,delta;
+
+    cv::Mat scaled_image(w, k, CV_32FC1, cv::Scalar(std::numeric_limits<float>::max()));
+
+    //find min/max
+    //cout<<"Finding min and max va
