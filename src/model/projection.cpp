@@ -428,4 +428,16 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
     cv::Mat scaled_image(w, k, CV_32FC1, cv::Scalar(std::numeric_limits<float>::max()));
 
     //find min/max
-    //cout<<"Finding min and max va
+    //cout<<"Finding min and max value of range image (min_x,max_x,min_y,max_y) "<<endl;
+    for (size_t i = 0; i < cloud->points.size (); ++i)
+    {
+        rangeImage->getImagePoint(cloud->points[i].x,cloud->points[i].y,cloud->points[i].z,image_x,image_y,range);
+        if(image_x>max_x)
+            max_x=image_x;
+        if(image_x<min_x)
+            min_x=image_x;
+        if(image_y>max_y)
+            max_y=image_y;
+        if(image_y<min_y)
+            min_y=image_y;
+        //cout<<i<<"  i
