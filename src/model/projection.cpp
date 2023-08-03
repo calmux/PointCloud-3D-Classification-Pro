@@ -440,4 +440,12 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
             max_y=image_y;
         if(image_y<min_y)
             min_y=image_y;
-        //cout<<i<<"  i
+        //cout<<i<<"  image_x= "<<image_x<<"  image_y= "<<image_y<<"  range= "<<range<<endl;
+    }
+    //skalowanie i offset
+
+    if(max_x-min_x>=max_y-min_y) //wyprwadzenie ponizszych wzoro w zeszycie (1) // jezli obraz szerszy niz wyzszy lub kwadratowy
+    {
+        sx=k/(max_x-min_x);
+        delta=static_cast <int>(floor(abs(w/2-((max_y-min_y)*sx)/2))); //roznica pomiedzy srodkami tablicy wzdluz wysokosci, a srodkiem zajetej w pionie czesci tablicy
+#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek 
