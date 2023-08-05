@@ -448,4 +448,15 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
     {
         sx=k/(max_x-min_x);
         delta=static_cast <int>(floor(abs(w/2-((max_y-min_y)*sx)/2))); //roznica pomiedzy srodkami tablicy wzdluz wysokosci, a srodkiem zajetej w pionie czesci tablicy
-#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek 
+#pragma omp parallel for  //to powoduje wielowatkowe wykonywanie petli (kazdy watek wykonuje czesc pracy)
+        for (size_t i = 0; i < cloud->points.size (); ++i)
+        {
+            rangeImage->getImagePoint(cloud->points[i].x,cloud->points[i].y,cloud->points[i].z,image_x,image_y,range);
+            if(range>0) //dla nieskonczonej odleglosci range_image daje chyba -inf
+            {
+                if (range>max_range)
+                    max_range=range;
+                if(range<min_range)
+                    min_range=range;
+
+                if((static
