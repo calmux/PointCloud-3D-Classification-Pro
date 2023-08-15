@@ -478,4 +478,13 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
 #pragma omp parallel for
         for (size_t i = 0; i < cloud->points.size (); ++i)
         {
-   
+            rangeImage->getImagePoint(cloud->points[i].x,cloud->points[i].y,cloud->points[i].z,image_x,image_y,range);
+            if(range>0)
+            {
+                if (range>max_range)
+                    max_range=range;
+                if(range<min_range)
+                    min_range=range;
+
+                if(((static_cast<int>(round((image_x-min_x)*sy))+delta)>=k) || (static_cast <int>(round((image_y-min_y)*sy))>=w) )
+                {continue;}  // tu chyba lep
