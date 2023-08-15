@@ -493,4 +493,15 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
                     if(range<=scaled_image.at<float>(static_cast <int>(round((image_y-min_y)*sy)),static_cast<int>(static_cast <int> (round((image_x-min_x)*sy))+delta)))
                         scaled_image.at<float>(static_cast <int>(round((image_y-min_y)*sy)),
                                                static_cast<int>(static_cast <int> (round((image_x-min_x)*sy))+delta))=range;}
-            
+            }
+
+        }
+    }
+    //cout<<scaled_image<<endl;
+    if(normalize)
+    {
+        float lower_bound=0;
+        float upper_bound=255;
+        ///UWAGA ZNAJDOWANIE MIN I MAX TRZEBA ZROBIC W INNY SPOSOB, BO PONIZSZA FUNKCJA ZNAJDUJE WARTOSCI ODLEGLOSCI MINIMALNE I MAKSYMALNE
+        ///ALE TYLKO DLA FRAGMENTU CHMURY, KTORA ZNAJDUJE SIE W OBIEKTYWIE KAMERY -> CZYLI JEST ZALEZNE OD FX,FY, I WYMIAROW ZDJECIA (PODAWNAYCH JAKO PARAMETR
+        ///W RANGEIMAGEPLANAR:
