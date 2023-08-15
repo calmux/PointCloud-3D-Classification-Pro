@@ -504,4 +504,21 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
         float upper_bound=255;
         ///UWAGA ZNAJDOWANIE MIN I MAX TRZEBA ZROBIC W INNY SPOSOB, BO PONIZSZA FUNKCJA ZNAJDUJE WARTOSCI ODLEGLOSCI MINIMALNE I MAKSYMALNE
         ///ALE TYLKO DLA FRAGMENTU CHMURY, KTORA ZNAJDUJE SIE W OBIEKTYWIE KAMERY -> CZYLI JEST ZALEZNE OD FX,FY, I WYMIAROW ZDJECIA (PODAWNAYCH JAKO PARAMETR
-        ///W RANGEIMAGEPLANAR:
+        ///W RANGEIMAGEPLANAR::CREATEFROMFROM.....
+        ///rangeImage->getMinMaxRanges(min,max);
+        ///JUZ JEST OK
+
+        float k=0;
+        float value=0;
+        k=(upper_bound-lower_bound)/(max_range-min_range);
+        int i,j;
+        float* p;
+#pragma omp parallel for
+        for( i = 0; i < scaled_image.rows; ++i)
+        {
+            p = scaled_image.ptr<float>(i);
+            for ( j = 0; j < scaled_image.cols; ++j)
+            {
+                if(INV)
+                {
+                    if(p[j]!=255)
