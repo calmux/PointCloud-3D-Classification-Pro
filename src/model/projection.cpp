@@ -459,4 +459,8 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
                 if(range<min_range)
                     min_range=range;
 
-                if((static
+                if((static_cast<int>(round((image_x-min_x)*sx))>=k) || ((static_cast <int>(round((image_y-min_y)*sx))+delta)>=w) )
+                {continue;}  // tu chyba lepiej rozwiazac to inaczej
+                else
+                {
+                    if(range<=scaled_image.at<float>(static_cast<int>(static_cast <int>(round((image_y-min_y)*sx))+delta),static_cast <int> (round((image_x-min_x)*sx)))) //bo opisujemy punkty, ktore widzimy (a nie te, ktore sie znajduja za pier
