@@ -463,4 +463,19 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
                 {continue;}  // tu chyba lepiej rozwiazac to inaczej
                 else
                 {
-                    if(range<=scaled_image.at<float>(static_cast<int>(static_cast <int>(round((image_y-min_y)*sx))+delta),static_cast <int> (round((image_x-min_x)*sx)))) //bo opisujemy punkty, ktore widzimy (a nie te, ktore sie znajduja za pier
+                    if(range<=scaled_image.at<float>(static_cast<int>(static_cast <int>(round((image_y-min_y)*sx))+delta),static_cast <int> (round((image_x-min_x)*sx)))) //bo opisujemy punkty, ktore widzimy (a nie te, ktore sie znajduja za pierwszym widzianym w porjekcji punktem)
+                        scaled_image.at<float>(static_cast<int>(static_cast <int>(round((image_y-min_y)*sx))+delta),static_cast <int> (round((image_x-min_x)*sx)))=range;
+                }
+
+            }
+
+        }
+    }
+    else //obraz wyzszy niz szerszy
+    {
+        sy=w/(max_y-min_y);
+        delta=static_cast <int>(floor(abs(k/2-((max_x-min_x)*sy)/2)));
+#pragma omp parallel for
+        for (size_t i = 0; i < cloud->points.size (); ++i)
+        {
+   
