@@ -522,3 +522,26 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
                 if(INV)
                 {
                     if(p[j]!=255)
+                        p[j] = (p[j]-min_range)*k;
+                }
+                else
+                {
+                    value = (p[j] - min_range) * k;
+                    if (value > 255)
+                        value = 255;
+                    p[j] = 255 - value;
+
+                }
+
+            }
+
+        }
+    }
+    /*
+    if(save_projections)
+    {
+        cout<<"Saving "<<file_name<<" image"<<endl;
+        cv::imwrite (file_name,scaled_image);
+    }
+     */
+    return 
