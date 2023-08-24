@@ -544,4 +544,10 @@ cv::Mat RangeImageProjection::getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::
         cv::imwrite (file_name,scaled_image);
     }
      */
-    return 
+    return scaled_image;
+}
+std::vector<cv::Mat> RangeImageProjection::project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud){
+    projections.clear();
+    double x_s,y_s; //camera start position cordinates (on the ground near observed object)
+    calculateStep(); //->? PERFORMANCE to nie musi byc wykonywane za kazdym razem dla kazdego obiektu (bo na ogol dla wszystkich obiektow w scenie mamy takie same parametry)
+    calculateCameraStartPosition(cloud,x_s,y_s); //we have to calculate it for ea
