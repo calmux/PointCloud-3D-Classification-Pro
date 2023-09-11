@@ -26,4 +26,8 @@ class ProjectionType{
 protected:
     ///->? Uwaga - tu mozna rozwazyc deklaracje niektorych zmiennych (np. alfa_deg) jako static, poniewaz nie musimy tworzyc nowych tych zmiennych przey inicjalizowaniu nowego obiektu tej klasy
     ///moze to miec znaczenie chyba dla wydajnosci, jezeli towrzylibysmy duzo obiektow tej klasy -> ale ostateczenie nie towrzymy przeciez duzo obiektow typu ProjectionType wiec raczej nie stanowi problemu, ze nie uzwywamy static
-    st
+    std::vector<cv::Mat> projections;//stores projections //vector<cv::Mat ...> projections; // jakis vector projekcji (juz obrazow 2D) danej chmury (najpewniej obiektu) - tutaj jedne, albo w kazdej z klas pochodnych
+    std::vector<std::vector<uchar>> vec; //same as above but in 2D uchar vector type instead of cv::Mat
+    ProjectionParameters projParam;
+    double alfa_h=0;//current angle (deg) at wich we're observing the object along its heigth (vertically)
+    double s
