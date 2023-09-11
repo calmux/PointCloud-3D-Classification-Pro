@@ -19,4 +19,11 @@ struct ProjectionParameters{ //# NAUKA-> CZYTAJ: https://stackoverflow.com/quest
 
     double min_deg=0;// for horizontal observations, analogously as for vertical
     double max_deg=0;
-    int n=1;// number of horizontal angles at witch we want to project 
+    int n=1;// number of horizontal angles at witch we want to project object
+};
+
+class ProjectionType{
+protected:
+    ///->? Uwaga - tu mozna rozwazyc deklaracje niektorych zmiennych (np. alfa_deg) jako static, poniewaz nie musimy tworzyc nowych tych zmiennych przey inicjalizowaniu nowego obiektu tej klasy
+    ///moze to miec znaczenie chyba dla wydajnosci, jezeli towrzylibysmy duzo obiektow tej klasy -> ale ostateczenie nie towrzymy przeciez duzo obiektow typu ProjectionType wiec raczej nie stanowi problemu, ze nie uzwywamy static
+    st
