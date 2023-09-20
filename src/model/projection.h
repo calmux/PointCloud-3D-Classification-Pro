@@ -30,4 +30,13 @@ protected:
     std::vector<std::vector<uchar>> vec; //same as above but in 2D uchar vector type instead of cv::Mat
     ProjectionParameters projParam;
     double alfa_h=0;//current angle (deg) at wich we're observing the object along its heigth (vertically)
-    double s
+    double step_h=0;// number of deegres between two consecutive projections (vertically)
+
+    //static double alfa_deg;//current angle (deg) at wich we're observing the object across (horizontaly, arround)
+    double alfa_deg=0;//current horizontal angle
+    double step=0;// number of deegres between two consecutive projections (horizontally)
+
+    int w=299; // height of projection image (number of rows)
+    int k=299;// width of projection image (number of columns)
+
+    pcl::PointXYZ object_
