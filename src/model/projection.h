@@ -39,4 +39,10 @@ protected:
     int w=299; // height of projection image (number of rows)
     int k=299;// width of projection image (number of columns)
 
-    pcl::PointXYZ object_
+    pcl::PointXYZ object_min_pt=pcl::PointXYZ(0,0,0);  //we store min and max pt of bounding box of an axis aligned bounding box, so we dont have to calculate them later
+    pcl::PointXYZ object_max_pt=pcl::PointXYZ(0,0,0);
+public:
+    //ProjectionType();
+    ProjectionType(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h);
+    //ProjectionType();
+    virtual std::vector<cv::Mat> project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //cout<<Projection op
