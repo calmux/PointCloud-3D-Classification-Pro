@@ -45,4 +45,13 @@ public:
     //ProjectionType();
     ProjectionType(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h);
     //ProjectionType();
-    virtual std::vector<cv::Mat> project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //cout<<Projection op
+    virtual std::vector<cv::Mat> project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //cout<<Projection operation not supported
+    void setVerticalAngle(double va);
+    void setHorizontalAngle(double ha);
+    void setImageHeight(int height);
+    void setImageWidth(int width);
+    void setParameters(double min_deg, double max_deg , int n,double min_h,double max_h,int n_h);
+    void calculateStep();
+    std::string getProjectionNameSuffix(int projectionNumber);
+    std::vector<cv::Mat> getProjections();//->? raczej nie uzywane, bo funkcja project() zwraca juz vector z projekcjami
+    std::vector<pcl::PointXYZ> g
