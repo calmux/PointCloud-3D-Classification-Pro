@@ -54,4 +54,14 @@ public:
     void calculateStep();
     std::string getProjectionNameSuffix(int projectionNumber);
     std::vector<cv::Mat> getProjections();//->? raczej nie uzywane, bo funkcja project() zwraca juz vector z projekcjami
-    std::vector<pcl::PointXYZ> g
+    std::vector<pcl::PointXYZ> getObjectMinMaxPt();
+};
+
+class BinaryProjection:public ProjectionType{
+private:
+    //ewentualnie bool edit; + dodatkowo funkcja setEdit(bool e) -> w ten sposob ustalamy, czy chcemy edytowac czy nie
+    pcl::PointCloud<pcl::PointXYZ>::Ptr cloudProjected;
+public:
+    BinaryProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h);
+    //BinaryProjection();
+    void calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //->? =
