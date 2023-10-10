@@ -64,4 +64,13 @@ private:
 public:
     BinaryProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h);
     //BinaryProjection();
-    void calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //->? =
+    void calculateCloudProjected(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //->? = my_Cloud::project
+    cv::Mat getCloudProjectedToImage(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud); //->? = my_Cloud::get_projection_as_array
+    std::vector<cv::Mat> project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+};
+
+class RangeImageProjection:public ProjectionType{
+private:
+    pcl::RangeImagePlanar::Ptr rangeImage;
+    Eigen::Affine3f sensorPose;//(Eigen::Affine3f)Eigen::Translation3f(0.0f, 0.0f, 0.0f);
+    pcl::RangeImage
