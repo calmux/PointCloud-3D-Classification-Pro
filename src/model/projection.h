@@ -73,4 +73,13 @@ class RangeImageProjection:public ProjectionType{
 private:
     pcl::RangeImagePlanar::Ptr rangeImage;
     Eigen::Affine3f sensorPose;//(Eigen::Affine3f)Eigen::Translation3f(0.0f, 0.0f, 0.0f);
-    pcl::RangeImage
+    pcl::RangeImagePlanar::CoordinateFrame cordinate_frame ;
+    float center_x;
+    float center_y;
+    float fx;//=1192;//=298; //tak bylo w ApolloScape SceneParsing camera_inttinics.txt
+    float fy;
+    Eigen::Quaternionf R;
+    Eigen::Vector3f T;
+    Eigen::Matrix4f Transformation;
+public:
+    EIGEN_MAKE_ALIGNED_OPERATOR_NEW  //inaczej blad:SegAndProj_1: /usr/include/eigen3/Eigen/src/Core/DenseStorage.h:128: Eigen::internal::plain_array<T, Size, MatrixOrArrayOptions, 32>::plain_
