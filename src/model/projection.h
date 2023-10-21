@@ -83,4 +83,8 @@ private:
     Eigen::Matrix4f Transformation;
 public:
     EIGEN_MAKE_ALIGNED_OPERATOR_NEW  //inaczej blad:SegAndProj_1: /usr/include/eigen3/Eigen/src/Core/DenseStorage.h:128: Eigen::internal::plain_array<T, Size, MatrixOrArrayOptions, 32>::plain_array() [with T = float; int Size = 16; int MatrixOrArrayOptions = 0]: Assertion `(reinterpret_cast<size_t>(eigen_unaligned_array_assert_workaround_gcc47(array)) & (31)) == 0 && "this assertion is explained here: " "http://eigen.tuxfamily.org/dox-devel/group__TopicUnalignedArrayAssert.html" " **** READ THIS WEB PAGE !!! ****"' failed.
-    RangeImageProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h); //->? zamiast tego ponizszego uzyj initilizer list i ewentualni
+    RangeImageProjection(double min_deg,double max_deg , int n, double min_h, double max_h,int n_h); //->? zamiast tego ponizszego uzyj initilizer list i ewentualnie przenies kod do projection.cpp
+                            //->? NAUKA - Constructor for 'RangeImageProjection' must explicitly initialize the base class 'ProjectionType' which does not have a default constructor
+                            //czyli jak zmienie domyslny konstruktor w klasie bazowej, to w kazdej z klad pochodnuch musze go zainicjalizowac recznie
+    //RangeImageProjection();
+    void calculateCameraStartPosition(pcl::PointCloud<pcl::PointXYZ>::Ptr
