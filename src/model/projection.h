@@ -87,4 +87,7 @@ public:
                             //->? NAUKA - Constructor for 'RangeImageProjection' must explicitly initialize the base class 'ProjectionType' which does not have a default constructor
                             //czyli jak zmienie domyslny konstruktor w klasie bazowej, to w kazdej z klad pochodnuch musze go zainicjalizowac recznie
     //RangeImageProjection();
-    void calculateCameraStartPosition(pcl::PointCloud<pcl::PointXYZ>::Ptr
+    void calculateCameraStartPosition(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,double &x_s,double &y_s);// ->? zmiana pierwszego parametru w stosunku do SegAndProj1
+    Eigen::Vector4f calculatePose(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,double _x_s,double _y_s);
+    void create(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);//creates range image based on camera position and pose of the camrea (use after setting all parameters (camera start position and pose))
+    cv::Mat getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::P
