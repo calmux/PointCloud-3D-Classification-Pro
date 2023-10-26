@@ -90,4 +90,7 @@ public:
     void calculateCameraStartPosition(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,double &x_s,double &y_s);// ->? zmiana pierwszego parametru w stosunku do SegAndProj1
     Eigen::Vector4f calculatePose(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,double _x_s,double _y_s);
     void create(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);//creates range image based on camera position and pose of the camrea (use after setting all parameters (camera start position and pose))
-    cv::Mat getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::P
+    cv::Mat getPCLRangeImageToRangeImage(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud,bool save_projections,bool normalize);
+    std::vector<cv::Mat> project(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+};
+#endif //INC_3DPOINTCLOUDCLASSIFICATION_PROJECTION_H
