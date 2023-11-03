@@ -571,3 +571,67 @@ std::vector<std::string> MainWindow::getClassesIDsToExtract(){
 }
 std::shared_ptr<ExtractObjectsInstances> MainWindow::getExtractInstancesType(){
     std::shared_ptr<SegmentationType> sType=std::make_shared<EuclideanClustering>(/*segRadius*/ui->prepareEuclideanCluSegRadius_doubleSpinBox->value()
+                                                                                  ,/*minClusterSize*/ui->prepareEuclideanCluMinClusterSize_spinBox->value()
+                                                                                  ,/*maxClusterSize*/ui->prepareEuclideanCluMaxClusterSize_spinBox->value());
+    std::shared_ptr<ExtractObjectsInstances> extractObjectsInstancesType = std::make_shared<ExtractObjectsInstances>(
+                /*segmentation type = euclidean clustering*/sType,
+                /*source path ->default value ->actual value is set in "prepareDatasetController" when user
+                 * has chosen item in  prepare qTreeWidget*/"",
+                /*destination path ->default value -> -||-*/"");
+    extractObjectsInstancesType->setClassesOfInterest(getClassesIDsToExtract()); //optionaly set what classes we want to take into account (based on clouds parent folder name)
+    return extractObjectsInstancesType;
+}
+
+void MainWindow::extractObjectsInstances(){
+    std::shared_ptr<ExtractObjectsInstances> extractObjectsInstancesType = getExtractInstancesType();
+    this->threadController->extractObjectsInstances(this->prepareDatasetController,extractObjectsInstancesType);
+}
+void MainWindow::treeCustomMenu(const QPoint & pos)
+{
+    QString loaded="";
+    //Implement your menu here using myTreeView->itemAt(pos);
+    if(this->ui->prepare_treeWidget->itemAt(pos)!=nullptr){
+      //loaded=QFileDialog::getOpenFileName(this,("Select folder or cloud"), "/home/",tr("(*.pcd *.bin);;(*./)"),nullptr,QFileDialog::ShowDirsOnly| QFileDialog::DontResolveSymlinks);
+        loaded=QFileDialog::getExistingDirectory(this, tr("Open Directory with 3D clouds"),
+                                                        "/home",
+                                                        /*QFileDialog::DontUseNativeDialog  //so we can see files (not only folders) on windows
+                                                        |*/ QFileDialog::DontResolveSymlinks);
+      if(loaded!=""){
+        this->ui->prepare_treeWidget->itemAt(pos)->setText(this->ui->prepare_treeWidget->currentColumn(),loaded);
+      }
+    }
+
+}
+
+void MainWindow::on_addPrepareTreeItem_pushButton_clicked()
+{
+    QTreeWidgetItem * item = new QTreeWidgetItem ((QTreeWidget*)0, QStringList{QString("right click to select folder path"),QString("right click to select folder path")});
+    item->setFlags(item->flags()|Qt::ItemIsEditable);
+    ui->prepare_treeWidget->insertTopLevelItem(0, item);
+}
+
+void MainWindow::on_removePrepareTreeItem_pushButton_clicked()
+{
+    QList<QTreeWidgetItem*> selectedItems=ui->prepare_treeWidget->selectedItems();
+    for(auto item:selectedItems){
+        delete item;
+    }
+}
+
+void MainWindow::on_actionsave_configuration_triggered()
+{
+    QString selected="";
+    selected=QFileDialog::getSaveFileName(this,tr("Save configuration file"),"/home/",tr("(*.txt *dat)"));
+    this->config->saveConfiguration(selected);//"/home/radek/Documents/Qt5/data/configuration/configuration.txt"
+}
+
+void MainWindow::on_actionload_configuration_triggered()
+{
+    QString selected="";
+    selected=QFileDialog::getOpenFileName(this,tr("Load configuration file"),"/home/",tr("(*.txt *dat)"));
+    this->config->loadConfiguration(selected);
+}
+
+
+
+
