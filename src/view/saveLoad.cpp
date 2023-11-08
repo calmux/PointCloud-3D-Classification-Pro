@@ -34,4 +34,15 @@ bool SaveLoad::saveTXT(QString path,const std::vector<std::string> saveVector){
 std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPath,bool saveParentScenes,std::shared_ptr<SaveConditions> saveCond){
     std::stringstream line("");
 
-    st
+    std::string FILEPATH, newParentFILEPATH;
+
+    //children (created for. ex during segmentation) and saved parent scnenes have set sourcePath like this:
+    if(ends_with(cloud->getName(),".pcd")){
+        FILEPATH=saveFolderPath.toStdString()+"/"+cloud->getName();
+    }else{
+        FILEPATH=saveFolderPath.toStdString()+"/"+cloud->getName()+".pcd";
+
+    }
+    if(cloud->getParentSourcePath()!=""){
+        if(ends_with(cloud->getParentSceneName(),".pcd")){
+            newParentFI
