@@ -24,4 +24,14 @@ bool SaveLoad::saveTXT(QString path,const std::vector<std::string> saveVector){
     }
 }
 /**
- * @brief S
+ * @brief SaveLoad::saveSingleCloud
+ * Saves one cloud + creates single line with cloud info (name, sourcePath,class id and so on) and returnes it so it can be saved to file
+ * @param cloud
+ * @param saveFolderPath
+ * @param saveParentScenes
+ * @return one line to be saved to file with cloud info
+ */
+std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPath,bool saveParentScenes,std::shared_ptr<SaveConditions> saveCond){
+    std::stringstream line("");
+
+    st
