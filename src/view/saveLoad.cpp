@@ -45,4 +45,15 @@ std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPa
     }
     if(cloud->getParentSourcePath()!=""){
         if(ends_with(cloud->getParentSceneName(),".pcd")){
-            newParentFI
+            newParentFILEPATH=saveFolderPath.toStdString()+"/"+cloud->getParentSceneName();
+        }else{
+            newParentFILEPATH=saveFolderPath.toStdString()+"/"+cloud->getParentSceneName()+".pcd";
+        }
+    }else {
+        newParentFILEPATH=cloud->getParentSourcePath();
+    }
+
+    if(saveParentScenes){
+        if(cloud->getCloudType()==type_CloudObject){
+            //evaluation of CONDITIONS TO SAVE CLOUD  - WE DO IT ONLY FOR OBJECTS
+            if(saveCond->getNumberOfConditions
