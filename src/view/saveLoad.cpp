@@ -69,4 +69,15 @@ std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPa
 
                 line<<cloud->getCloudType()<<separator<<cloud->getName()<<separator<<FILEPATH<<separator<<cloud->getParentSceneName()<<separator
                 <</*parent source path is now in saveFolderPath*/newParentFILEPATH
-                <<separator<<cloud->getCloudID()<<separator<<cloud->getCloudClassID()<<separator<<vectorToString(cloud-
+                <<separator<<cloud->getCloudID()<<separator<<cloud->getCloudClassID()<<separator<<vectorToString(cloud->getNNResopneVector(),vectorSeparator);
+            }
+
+
+        }else if(cloud->getCloudType()==type_CloudScene){
+            cloud->saveCloud(saveFolderPath.toStdString());
+
+            line<<cloud->getCloudType()<<separator<<cloud->getName()<<separator<<FILEPATH<<separator<<cloud->getParentSceneName()<<separator<<cloud->getParentSourcePath()
+                <<separator<<cloud->getCloudID()
+               <<separator<<cloud->getCloudClassID()
+              <<separator
+             <
