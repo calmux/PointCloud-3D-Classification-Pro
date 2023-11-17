@@ -80,4 +80,13 @@ std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPa
                 <<separator<<cloud->getCloudID()
                <<separator<<cloud->getCloudClassID()
               <<separator
-             <
+             <<vectorToString(cloud->getNNResopneVector(),vectorSeparator);
+        }
+    }else{
+        if(cloud->getCloudType()==type_CloudObject){
+            //evaluation of CONDITIONS TO SAVE CLOUD  - WE DO IT ONLY FOR OBJECTS
+            if(saveCond->getNumberOfConditions()>0){
+                if(saveCond->evaluateConditions(cloud)){
+                    cloud->saveCloud(saveFolderPath.toStdString());
+
+                    line<<cloud->getCloudType()<<separator<<cloud->getName()
