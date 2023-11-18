@@ -103,3 +103,14 @@ std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPa
 
         }else if(cloud->getCloudType()==type_CloudScene){
             line<<cloud->getCloudType()<<separator<<cloud->getName()<<separator<<cloud->getSourcePath()<<separator<<cloud->getParentSceneName()<<separator<<cloud->getParentSourcePath()
+                <<separator<<cloud->getCloudID()<<separator<<cloud->getCloudClassID()<<separator<<vectorToString(cloud->getNNResopneVector(),vectorSeparator);
+        }
+    }
+
+    return line.str();
+}
+/**
+ * @brief SaveLoad::save
+ * @param cloudConrtainer
+ * @param indexesToSave -indexesToSave[i][j] = index of j'th child of i'th topLevelCloud (topLevel - in cloudContainer)
+ *                                             if indexesToSave[i].at(0)==-std::numeric_limits::max -> topL
