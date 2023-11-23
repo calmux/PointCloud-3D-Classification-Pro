@@ -113,4 +113,16 @@ std::string SaveLoad::saveSingleCloud(CloudComponent *cloud,QString saveFolderPa
  * @brief SaveLoad::save
  * @param cloudConrtainer
  * @param indexesToSave -indexesToSave[i][j] = index of j'th child of i'th topLevelCloud (topLevel - in cloudContainer)
- *                                             if indexesToSave[i].at(0)==-std::numeric_limits::max -> topL
+ *                                             if indexesToSave[i].at(0)==-std::numeric_limits::max -> topLevelCloud or its children were not selected
+ * @return
+ */
+bool SaveLoad::save(QString saveFolderPath,const std::vector<std::unique_ptr<CloudComponent> > &cloudConrtainer, const std::vector<std::vector<int> > &indexesToSave,std::shared_ptr<SaveConditions> saveCond){
+    int i=-1;
+    int j=0;
+    bool cloudWasSelected=false;
+    std::vector<std::string> saveVector;
+    std::string line;
+    CloudComponent* cloud;
+    for(auto topLevelIndex:indexesToSave){
+        ++i;
+        c
