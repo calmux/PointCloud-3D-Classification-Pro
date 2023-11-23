@@ -125,4 +125,17 @@ bool SaveLoad::save(QString saveFolderPath,const std::vector<std::unique_ptr<Clo
     CloudComponent* cloud;
     for(auto topLevelIndex:indexesToSave){
         ++i;
-        c
+        cloudWasSelected=false;
+        //if we selected Top level cloud at ith place (otherwise topLevelIndex.at(notSelectedCloud)={-std::numeric_limits<int>::max()}
+        if(!topLevelIndex.empty()){
+            if(topLevelIndex.at(0)!=-std::numeric_limits<int>::max()){
+                cloudWasSelected=true;
+            }else{
+                cloudWasSelected=false;
+            }
+        }else{
+            cloudWasSelected=true;
+        }
+
+        if(cloudWasSelected){
+        
