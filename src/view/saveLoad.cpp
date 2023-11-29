@@ -148,4 +148,15 @@ bool SaveLoad::save(QString saveFolderPath,const std::vector<std::unique_ptr<Clo
             //save children
             for(auto childIndex:topLevelIndex){
                 line="";
-                cloud=cloudConrtainer.at(
+                cloud=cloudConrtainer.at(i)->getCloud(childIndex);
+                if(cloud!=nullptr){ 
+                    line=saveSingleCloud(cloud,saveFolderPath,saveCond->getSaveParentScene(),saveCond);
+                    if(line!=""){saveVector.push_back(line);}
+                }
+            }
+            saveVector.push_back("#");//SYMBOL SEPRERATING TopLevelClouds
+        }else{
+            continue;
+        }
+    }
+    return saveTXT(saveFolderPath,saveVect
