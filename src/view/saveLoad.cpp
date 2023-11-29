@@ -159,4 +159,14 @@ bool SaveLoad::save(QString saveFolderPath,const std::vector<std::unique_ptr<Clo
             continue;
         }
     }
-    return saveTXT(saveFolderPath,saveVect
+    return saveTXT(saveFolderPath,saveVector);
+}
+bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &cloudConrtainer, std::shared_ptr<PointCloudController> controller,std::shared_ptr<CloudObjectFactory> objectFactory){
+    cloudType type;
+    std::map<std::string, cloudType> cloudTypeMap {
+        {"0", type_CloudScene},
+        {"1", type_CloudObject},
+        {"type_CloudScene", type_CloudScene},
+        {"type_CloudObject", type_CloudObject},
+      };
+ 
