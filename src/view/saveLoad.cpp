@@ -169,4 +169,20 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
         {"type_CloudScene", type_CloudScene},
         {"type_CloudObject", type_CloudObject},
       };
- 
+    std::string name;
+    std::string sourcePath;
+    std::string parentSceneName;
+    std::string parentSourcePath;
+    int class_id=-1;
+    int id=-1;
+    std::vector<float> nnResponseVector={};
+
+    QFile file(path);
+    QString data="";
+    QStringList singleLineWords={};
+
+
+    if (file.open(QIODevice::ReadOnly)) {
+        QTextStream stream(&file);
+        std::unique_ptr<CloudComponent> parent=nullptr;
+        std::unique_ptr<CloudComponent> child=nu
