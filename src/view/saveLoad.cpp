@@ -185,4 +185,11 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
     if (file.open(QIODevice::ReadOnly)) {
         QTextStream stream(&file);
         std::unique_ptr<CloudComponent> parent=nullptr;
-        std::unique_ptr<CloudComponent> child=nu
+        std::unique_ptr<CloudComponent> child=nullptr;
+
+        //We are using searching by name so in case of change made in vector of widgets types we want to save, added new widgets to application and so on
+        //it takes more time but it assures that configurations are always compatible and can be always loaded (as long as there are widgets (with names form configuration) in application)
+        while(!stream.atEnd()){
+            data=stream.readLine();
+            if(data=="#"){
+           
