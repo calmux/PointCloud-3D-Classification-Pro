@@ -192,4 +192,15 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
         while(!stream.atEnd()){
             data=stream.readLine();
             if(data=="#"){
-           
+                if(parent!=nullptr){
+                    //add previous parent filled with children
+                    cloudConrtainer.push_back(std::move(parent));
+                }
+                continue;
+            }
+
+            singleLineWords=data.split(QString(separator.c_str()));
+            try {
+                type=cloudTypeMap.at(QVariant(singleLineWords.at(0)).toString().toStdString());
+            } catch (std::out_of_range ) {
+                qDebug()<<"Could not read cl
