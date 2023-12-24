@@ -212,4 +212,13 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
                 parentSceneName=QVariant(singleLineWords.at(3)).toString().toStdString();
                 parentSourcePath=QVariant(singleLineWords.at(4)).toString().toStdString();
                 id=QVariant(singleLineWords.at(5)).toInt();
-                cl
+                class_id=QVariant(singleLineWords.at(6)).toInt();
+                nnResponseVector=stringToFloatVector(singleLineWords.at(7),QString(vectorSeparator.c_str()));
+            }catch (std::out_of_range ){
+                qDebug()<<"cannot acces singleLineWords.at(x) - out_of_range";
+                return false;
+            }
+
+            if(parentSourcePath==""){
+                if(type==type_CloudScene){
+                    parent=sceneFactory->create(sourcePath,contro
