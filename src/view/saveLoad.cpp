@@ -203,4 +203,13 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
             try {
                 type=cloudTypeMap.at(QVariant(singleLineWords.at(0)).toString().toStdString());
             } catch (std::out_of_range ) {
-                qDebug()<<"Could not read cl
+                qDebug()<<"Could not read cloud type !";
+                return false;
+            }
+            try{
+                name=QVariant(singleLineWords.at(1)).toString().toStdString();
+                sourcePath=QVariant(singleLineWords.at(2)).toString().toStdString();
+                parentSceneName=QVariant(singleLineWords.at(3)).toString().toStdString();
+                parentSourcePath=QVariant(singleLineWords.at(4)).toString().toStdString();
+                id=QVariant(singleLineWords.at(5)).toInt();
+                cl
