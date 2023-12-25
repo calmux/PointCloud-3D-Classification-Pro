@@ -227,4 +227,14 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
                     parent=objectFactory->create(sourcePath,controller,sourcePath,parentSceneName,parentSourcePath
                                                  ,id,class_id,nnResponseVector);
                 }else{
-                    qDebug()<<"Cannot load cloud"<<sourcePath.c_str()<<" - no 
+                    qDebug()<<"Cannot load cloud"<<sourcePath.c_str()<<" - no such  cloud_type";
+                    continue;
+                }
+
+            }else if(parent!=nullptr){
+                if(parentSourcePath==parent->getSourcePath()){
+                    if(type==type_CloudScene){
+                        child=sceneFactory->create(sourcePath,controller);
+                        parent->setFactory(objectFactory); //set factory for creating objets (for. ex. after segmentation) used in controller
+                    }else if(type==type_CloudObject){
+     
