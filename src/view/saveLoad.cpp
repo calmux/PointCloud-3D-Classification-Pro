@@ -244,4 +244,16 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
                         continue;
                     }
                     if(parent!=nullptr && child!=nullptr){
-         
+                        parent->addCloud(std::move(child));
+                    }
+            }
+            }else{
+                qDebug()<<"Problem with parentSourcePath";
+                qDebug()<<"parentSourcePath (txt)="<<parentSourcePath.c_str();
+                continue;
+            }
+            /*
+            qDebug()<<"type="<<type;
+            qDebug()<<"name="<<name.c_str();
+            qDebug()<<"sourcePath="<<sourcePath.c_str();
+            qDebug()<<"parentSceneName="<<parentSceneName.c_str();
