@@ -257,3 +257,19 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
             qDebug()<<"name="<<name.c_str();
             qDebug()<<"sourcePath="<<sourcePath.c_str();
             qDebug()<<"parentSceneName="<<parentSceneName.c_str();
+            qDebug()<<"parentSourcePath="<<parentSourcePath.c_str();
+            qDebug()<<"id="<<id;
+            qDebug()<<"class_id="<<class_id;
+            */
+        }
+
+        file.close();
+        qDebug()<<"CLOUD/S LOADED";
+        return true;
+    }else{
+        qDebug()<<"COULD NOT OPEN "<<path<<" for READING data.";
+        return false;
+    }
+}
+std::vector<float> SaveLoad::stringToFloatVector(const QString &stringVector,const QString separator){
+    std::vector<fl
