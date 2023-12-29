@@ -31,4 +31,21 @@ void SaveSettings::on_save_pushButton_clicked()
         addCondition(std::bind(&SaveSettings::hasNnResponseStrengthBiggerEqualThan, this, std::placeholders::_1));
     }
     if(this->ui->cloudSize_spinBox->value()>0){
-        addCondition(std::bind(&SaveSettings::hasNumOfPointsBiggerE
+        addCondition(std::bind(&SaveSettings::hasNumOfPointsBiggerEqualThan, this, std::placeholders::_1));
+    }
+    if(this->ui->saveParentScene_checkBox->isChecked()){
+        this->saveConditions->setSaveParentScene(true);
+    }else{
+        this->saveConditions->setSaveParentScene(false);
+    }
+    if(this->savePath!=""){
+        accept();
+    }else{
+        reject();
+    }
+
+}
+QStringList SaveSettings::getClassesIDs(){
+    return this->ui->clsIDs_lineEdit->text().split(classesSeparator,QString::SkipEmptyParts);
+}
+float SaveSettings::getMinNnResponseSt
