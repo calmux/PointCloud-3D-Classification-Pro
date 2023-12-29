@@ -272,4 +272,20 @@ bool SaveLoad::load(QString path,std::vector<std::unique_ptr<CloudComponent> > &
     }
 }
 std::vector<float> SaveLoad::stringToFloatVector(const QString &stringVector,const QString separator){
-    std::vector<fl
+    std::vector<float> fVec={};
+    QStringList strVec={};
+    strVec=stringVector.split(separator);
+    for(auto element:strVec){
+        fVec.push_back((element.toFloat()));
+    }
+    return fVec;
+}
+//# funckja do testow
+void SaveLoad::setSeparator(std::string separator){
+    this->separator=separator;
+}
+
+/////////////////////////////////////////
+SaveConditions::SaveConditions(){
+    /*
+    //std::function<bool(CloudComponent*)> testFunc(std::bind(&SaveConditions::isAmongClasses, this
