@@ -291,4 +291,18 @@ SaveConditions::SaveConditions(){
     //std::function<bool(CloudComponent*)> testFunc(std::bind(&SaveConditions::isAmongClasses, this, std::placeholders::_1));
     //# addCondition(isAmongClasses); //# w tym przypadku funkcja isAmongClasses powinna byc static (ale wtedy nie mialbym w niej dostepu do czlonkow klasy SaveConditions)
     addCondition(std::bind(&SaveConditions::isAmongClasses, this, std::placeholders::_1));//https://stackoverflow.com/questions/10022789/stdfunction-with-non-static-member-functions
-    addCondition(std::bind(&SaveConditions::hasNnResponseStrengthBiggerEqualThan, this, 
+    addCondition(std::bind(&SaveConditions::hasNnResponseStrengthBiggerEqualThan, this, std::placeholders::_1));
+    addCondition(std::bind(&SaveConditions::hasNumOfPointsBiggerEqualThan, this, std::placeholders::_1));
+    */
+}
+void SaveConditions::addCondition(std::function<bool(CloudComponent*)> condition){
+    this->cloudConditions.push_back(condition);
+}
+/**
+ * @brief SaveConditions::evaluateConditions
+ * returns binary PRODUCT of all conditions
+ * @param cloud
+ * @return
+ */
+bool SaveConditions::evaluateConditions(CloudComponent* cloud){
+    bool result=
