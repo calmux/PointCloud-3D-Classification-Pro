@@ -305,4 +305,18 @@ void SaveConditions::addCondition(std::function<bool(CloudComponent*)> condition
  * @return
  */
 bool SaveConditions::evaluateConditions(CloudComponent* cloud){
-    bool result=
+    bool result=true;
+    for(auto condition:cloudConditions){
+       result=result*condition(cloud);
+    }
+    return result;
+}
+size_t SaveConditions::getNumberOfConditions(){
+    return this->cloudConditions.size();
+}
+void SaveConditions::setSaveParentScene(bool save){
+    this->saveParentScene=save;
+}
+bool SaveConditions::getSaveParentScene(){
+    return this->saveParentScene;
+}
