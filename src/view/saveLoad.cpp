@@ -288,4 +288,7 @@ void SaveLoad::setSeparator(std::string separator){
 /////////////////////////////////////////
 SaveConditions::SaveConditions(){
     /*
-    //std::function<bool(CloudComponent*)> testFunc(std::bind(&SaveConditions::isAmongClasses, this
+    //std::function<bool(CloudComponent*)> testFunc(std::bind(&SaveConditions::isAmongClasses, this, std::placeholders::_1));
+    //# addCondition(isAmongClasses); //# w tym przypadku funkcja isAmongClasses powinna byc static (ale wtedy nie mialbym w niej dostepu do czlonkow klasy SaveConditions)
+    addCondition(std::bind(&SaveConditions::isAmongClasses, this, std::placeholders::_1));//https://stackoverflow.com/questions/10022789/stdfunction-with-non-static-member-functions
+    addCondition(std::bind(&SaveConditions::hasNnResponseStrengthBiggerEqualThan, this, 
