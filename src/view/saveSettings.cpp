@@ -70,4 +70,20 @@ bool SaveSettings::isAmongClasses(CloudComponent *cloud){
 }
 bool SaveSettings::hasNnResponseStrengthBiggerEqualThan(CloudComponent* cloud){
      float max_response=0;
-     std::
+     std::vector<float> responseVector=cloud->getNNResopneVector();
+     std::vector<float>::iterator iterToMaxResponse;
+     iterToMaxResponse=std::max_element(responseVector.begin(),responseVector.end());
+     // if range is empty
+     if(iterToMaxResponse==responseVector.end()){
+         return false;
+     }
+
+     max_response=*iterToMaxResponse;
+     if(max_response >= getMinNnResponseStrength()){
+         return true;
+     }
+     else{
+         return false;
+     }
+}
+bool SaveSettings::hasNumOfPointsBiggerEqualThan(CloudCom
