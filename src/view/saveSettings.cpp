@@ -60,4 +60,14 @@ void SaveSettings::addCondition(std::function<bool(CloudComponent*)> condition){
 std::shared_ptr<SaveConditions> SaveSettings::getSaveConditions(){
     return this->saveConditions;
 }
-//Condit
+//Conditions: //
+bool SaveSettings::isAmongClasses(CloudComponent *cloud){
+    QStringList classesIDs;
+    const QString cloudClassID=QString::number(cloud->getCloudClassID()); //# musze wiec zaincludowac pointCloud.h -> ale wtedy znowu bug ze na szaro saveSettings.h ->pewnie zapetlenie
+    classesIDs=getClassesIDs();
+
+    return classesIDs.contains(cloudClassID);
+}
+bool SaveSettings::hasNnResponseStrengthBiggerEqualThan(CloudComponent* cloud){
+     float max_response=0;
+     std::
