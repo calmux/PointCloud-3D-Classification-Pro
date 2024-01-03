@@ -48,4 +48,16 @@ void SaveSettings::on_save_pushButton_clicked()
 QStringList SaveSettings::getClassesIDs(){
     return this->ui->clsIDs_lineEdit->text().split(classesSeparator,QString::SkipEmptyParts);
 }
-float SaveSettings::getMinNnResponseSt
+float SaveSettings::getMinNnResponseStrength(){
+    return static_cast<float>(this->ui->nnRespon_doubleSpinBox->value());
+}
+uint SaveSettings::getMinNumOfPoints(){
+    return static_cast<uint>(this->ui->cloudSize_spinBox->value());
+}
+void SaveSettings::addCondition(std::function<bool(CloudComponent*)> condition){
+    this->saveConditions->addCondition(condition);
+}
+std::shared_ptr<SaveConditions> SaveSettings::getSaveConditions(){
+    return this->saveConditions;
+}
+//Condit
