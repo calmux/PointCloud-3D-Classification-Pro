@@ -86,4 +86,10 @@ bool SaveSettings::hasNnResponseStrengthBiggerEqualThan(CloudComponent* cloud){
          return false;
      }
 }
-bool SaveSettings::hasNumOfPointsBiggerEqualThan(CloudCom
+bool SaveSettings::hasNumOfPointsBiggerEqualThan(CloudComponent* cloud){
+    if(cloud->getCloudNumberOfPoints()>=getMinNumOfPoints()){
+        return true;
+    }else{
+        return false;
+    }
+}

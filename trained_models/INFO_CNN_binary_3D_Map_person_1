@@ -1,0 +1,4 @@
+The total number of images in trainig dataset was 23580 per class. There were two sources
+of images : projections of 3D objects (3D) and adaptivly binarized photos from Mapillary Vistas [1] dataset (MV).
+
+To achive same numbers of projections for objects in each 
