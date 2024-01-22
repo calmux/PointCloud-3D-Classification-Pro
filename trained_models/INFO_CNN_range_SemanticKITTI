@@ -1,0 +1,3 @@
+TRAINING AND VALIDATION DATA is composed of projections extracted form semantically labeled point clouds downloaded from: http://www.semantic-kitti.org/dataset.html
+
+Checkpoint after 353000 and 354000 iterations and ConsoleOutput in chekpoint
