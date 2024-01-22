@@ -8,4 +8,10 @@ To achive same numbers of projections for objects in each class, classes with le
 class                             |car |building/wall |tree | street light | person
 ------------------------------------------------------------------------------------
 data source                       | 3D |  3D           | 3D  | 3D          | 3D + MV
-------------------
+------------------------------------------------------------------------------------
+number of         |   3D obj.     | 655| 238           | 225 | 117         | 361
+uniqe objects     |-------------- |-------------------------------------------------
+(trainig dataset) |  photos before| 
+                  |  dataset      | -  |  -            |  -  |  -          | 17961 (MV) 
+                  |  balancing    |
+-------------------------------------------------------------------------
