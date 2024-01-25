@@ -22,4 +22,11 @@ pole		80 -> 		   67 458
 
 
 DATASET BALANCING AND VALIDATION SPLIT
-For classes "30" and "50" clouds wi
+For classes "30" and "50" clouds with less than 25 points were removed (i forgot to skip them while i was extracting them). For rest of the classes it was alredy done while extracting single instances.
+
+For class "50" first 139285 objects were removed (undersampling),after that 15 % was moved to validation
+For class "30" additional 422 objects were added from (datasts_3D/person/PCD + datasts_3D/person/PCD_test)
+
+In all cases validation = 15 % of training data
+
+Only class "30" is balanced by copy (from 351
