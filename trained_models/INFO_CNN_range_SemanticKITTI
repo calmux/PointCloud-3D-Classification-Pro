@@ -1,3 +1,12 @@
 TRAINING AND VALIDATION DATA is composed of projections extracted form semantically labeled point clouds downloaded from: http://www.semantic-kitti.org/dataset.html
 
-Checkpoint after 353000 and 354000 iterations and ConsoleOutput in chekpoint
+Checkpoint after 353000 and 354000 iterations and ConsoleOutput in chekpoints folder.
+Data composition:
+Instances for classes 50 (building), 71 (tree trunk) and 80 (pole) were extracted by me (3DPointCloudClassificaion_GUI -prepare tab).
+Classes 30 (person) and 10 (car) were already annoteted at the instance level. 
+
+Classes 30 and 10 I cut from all sequances folders and merged them in here. Name convention:
+ex. 02_000075_247 -> 02(sequence number)_000075(scene number within sequence)_247(instance number) 
+
+For extracted classes:
+Every object has a diff
