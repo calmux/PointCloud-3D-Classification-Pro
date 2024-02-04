@@ -29,4 +29,13 @@ For class "30" additional 422 objects were added from (datasts_3D/person/PCD + d
 
 In all cases validation = 15 % of training data
 
-Only class "30" is balanced by copy (from 351
+Only class "30" is balanced by copy (from 3518 to 4*3518 = 14072)
+
+Each object in class with biggest numbers of objects ("50") has 5 projections so total number of images for this class (and all the other after balancing with variable number of pojections) is 177009*8=1416072
+
+Projection parameters:
+-Range image
+-For class with buggest number of objects -> 8 projections per object -> for the rest variable number of projections (so the total for each class is 1 416 072)
+-horizontal projections 
+TRAIN|VALIDATION
+		"50"			"71"					"10"		"30"		"80
