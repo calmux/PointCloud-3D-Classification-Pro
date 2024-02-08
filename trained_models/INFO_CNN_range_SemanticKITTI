@@ -38,4 +38,19 @@ Projection parameters:
 -For class with buggest number of objects -> 8 projections per object -> for the rest variable number of projections (so the total for each class is 1 416 072)
 -horizontal projections 
 TRAIN|VALIDATION
-		"50"			"71"					"10"		"30"		"80
+		"50"			"71"					"10"		"30"		"80"
+final
+number		177009|			89791|					132309|		14052|		57334|
+of clouds	
+
+degree
+range		from 0 to 360 deg	0 to 360 (each object has 16 projections, 
+		(each 8 projections)	than some are removed to reach 1 416 072)
+projections
+per object 	8|			16|					11|	 	101|		25|
+
+-vertical - only one vertical angle = 0 deg
+
+Final nuber of images in each class may differ by couple images, because at the end i reomved some corrupted ones.
+
+
